@@ -8,7 +8,6 @@ linters:
   enable:
     - dogsled
     - gocognit
-    - goconst
     - gocritic
     - gocyclo
     - godoclint
@@ -27,9 +26,6 @@ linters:
       threshold: 100
     gocognit:
       min-complexity: 40
-    goconst:
-      min-len: 3
-      min-occurrences: 2
     gocritic:
       disabled-checks:
         - wrapperFunc

@@ -37,9 +37,11 @@ func TestLoad(t *testing.T) {
 			So(compareCmd.Commands(), ShouldBeEmpty)
 		})
 
-		Convey("Then export requires the output flag and import requires the input flag", func() {
-			So(exportCmd.Flag("output"), ShouldNotBeNil)
-			So(importCmd.Flag("input"), ShouldNotBeNil)
+		Convey("Then the parent commands define flags inherited by judgements", func() {
+			So(exportCmd.PersistentFlags().Lookup("output"), ShouldNotBeNil)
+			So(findCommand(exportCmd.Commands(), "judgements").InheritedFlags().Lookup("output"), ShouldNotBeNil)
+			So(importCmd.PersistentFlags().Lookup("input"), ShouldNotBeNil)
+			So(findCommand(importCmd.Commands(), "judgements").InheritedFlags().Lookup("input"), ShouldNotBeNil)
 		})
 
 		Convey("Then compare accepts an optional list of algorithms", func() {
@@ -63,11 +65,12 @@ func TestLoad(t *testing.T) {
 }
 
 func TestExportCommandRequiresOutput(t *testing.T) {
-	Convey("Given an export command without an output path", t, func() {
+	Convey("Given export judgements without an output path", t, func() {
 		command, err := exportCommand()
 		So(err, ShouldBeNil)
 		command.SetOut(io.Discard)
 		command.SetErr(io.Discard)
+		command.SetArgs([]string{"judgements"})
 
 		Convey("When the command is executed", func() {
 			err := command.Execute()
@@ -81,11 +84,12 @@ func TestExportCommandRequiresOutput(t *testing.T) {
 }
 
 func TestImportCommandRequiresInput(t *testing.T) {
-	Convey("Given an import command without an input path", t, func() {
+	Convey("Given import judgements without an input path", t, func() {
 		command, err := importCommand()
 		So(err, ShouldBeNil)
 		command.SetOut(io.Discard)
 		command.SetErr(io.Discard)
+		command.SetArgs([]string{"judgements"})
 
 		Convey("When the command is executed", func() {
 			err := command.Execute()

@@ -280,8 +280,8 @@ NDCG = DCG / IDCG = 5.0237 / 5.7619 = 0.872
 ```sh
 go run . compare                 # evaluate every term with every algorithm and compare their NDCG
 go run . compare -a baseline     # or restrict it to selected algorithms
-go run . export -o results.csv   # also write the results to CSV
-go run . import -i results.csv   # merge a re-scored CSV back into the judgements
+go run . export judgements -o results.csv   # also write the results to CSV
+go run . import judgements -i results.csv   # merge a re-scored CSV back into the judgements
 
 # or use the Makefile to run compare:
 make compare

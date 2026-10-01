@@ -1,6 +1,7 @@
 package app
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"os"
@@ -8,6 +9,7 @@ import (
 
 	"github.com/ONSdigital/dis-search-test-bed/algorithm"
 	"github.com/ONSdigital/dis-search-test-bed/ui"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	"github.com/pkg/errors"
 )
 
@@ -30,6 +32,24 @@ type algorithmSummary struct {
 	Algorithm algorithm.SearchAlgorithm
 	Terms     int
 	MeanNDCG  float64
+}
+
+// Compare evaluates every test term with each of the given algorithms against
+// the same index, logs their full-corpus relevance scores, then prints a table
+// comparing each algorithm's NDCG. An empty algorithms slice evaluates every
+// registered algorithm.
+func (a *App) Compare(ctx context.Context, algorithms []algorithm.SearchAlgorithm) error {
+	if len(algorithms) == 0 {
+		algorithms = algorithm.AllSearchAlgorithms()
+	}
+
+	return a.withElasticsearch(ctx, func(ctx context.Context, esClient dpEsClient.Client) error {
+		evaluations, err := a.evaluateTerms(ctx, esClient, algorithms)
+		if err != nil {
+			return err
+		}
+		return reportComparison(evaluations)
+	})
 }
 
 // reportComparison prints the NDCG of every term and algorithm, followed by

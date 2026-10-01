@@ -47,8 +47,9 @@ type importSummary struct {
 	Updated int // judgement files whose contents changed
 }
 
-// ImportJudgements reads re-scored relevance judgements from the export-format CSV at
-// inputPath and merges them back into the judgement store.
+// ImportJudgements reads re-scored relevance judgements
+// from the export-format CSV at inputPath and merges them
+// back into the judgement store.
 // Rows are merged into each query's existing judgements (upsert); a 0 grade
 // is treated as unjudged (its entry is removed);
 // and rows whose doc_id is not in the document corpus are skipped with a
@@ -73,8 +74,9 @@ func (a *App) ImportJudgements(ctx context.Context, inputPath string) (err error
 	return a.importCSV(ctx, file)
 }
 
-// ExportJudgements evaluates every test term and writes the ranked results and their
-// current relevance judgements as CSV to outputPath.
+// ExportJudgements evaluates every test term and writes the
+// ranked results and their current relevance judgements as
+// CSV to outputPath.
 func (a *App) ExportJudgements(ctx context.Context, outputPath string) error {
 	if strings.TrimSpace(outputPath) == "" {
 		return errors.New("output path is required")

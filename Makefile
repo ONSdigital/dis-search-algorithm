@@ -7,8 +7,6 @@ BUILD_DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # Directories
 BIN_DIR := bin
-DATA_DIR := data
-CONFIG_DIR := config
 
 # Build flags
 LDFLAGS := -ldflags "-s -w -X main.version=$(VERSION) -X main.commit=$(COMMIT) -X main.date=$(BUILD_DATE)"
@@ -50,13 +48,6 @@ help: ## Show this help
 ##################################
 ## Development
 ##################################
-setup: ## Setup development environment
-	@echo "Setting up development environment..."
-	@mkdir -p $(BIN_DIR) $(DATA_DIR) $(CONFIG_DIR)
-	@$(GOMOD) download
-	@$(GOMOD) tidy
-	@echo "✅ Setup complete"
-
 build: ## Build binary
 	@echo "Building $(BINARY_NAME)..."
 	@$(GOBUILD) $(LDFLAGS) -o $(BIN_DIR)/$(BINARY_NAME) main.go
@@ -117,13 +108,6 @@ check: fmt vet audit lint test ## Run all checks
 compare: build 
 	@./$(BIN_DIR)/$(BINARY_NAME) compare
 
-##########################
-## Workflows
-##########################
-full: seed generate query compare ## Run full workflow
-
-quick: build query ## Quick rebuild and query
-
 ##############################
 ## Utilities
 ##############################
@@ -132,10 +116,5 @@ clean: ## Clean generated files
 	@rm -rf $(BIN_DIR)
 	@rm -f coverage.out coverage.html
 	@echo "✅ Clean complete"
-
-clean-all: clean ## Deep clean including data
-	@echo "Deep cleaning..."
-	@rm -rf $(DATA_DIR)/*
-	@echo "✅ Deep clean complete"
 
 .DEFAULT_GOAL := help

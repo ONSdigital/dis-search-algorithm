@@ -252,3 +252,60 @@ func TestFileStorePut(t *testing.T) {
 		})
 	})
 }
+
+func TestFileStoreDelete(t *testing.T) {
+	Convey("Given a writable FileStore with multiple items", t, func() {
+		dir := t.TempDir()
+		store := NewFileStore(os.DirFS(dir), ".", dir, JSONCodec[testDoc]())
+		for _, item := range []testDoc{
+			{ID: "delete-me", Name: "Delete me"},
+			{ID: "keep-me", Name: "Keep me"},
+		} {
+			So(store.Put(context.Background(), item.ID, item), ShouldBeNil)
+		}
+
+		Convey("When Delete is called for an existing item", func() {
+			err := store.Delete(context.Background(), "delete-me")
+
+			Convey("Then it removes only that item's file", func() {
+				So(err, ShouldBeNil)
+				_, statErr := os.Stat(filepath.Join(dir, "delete-me.json"))
+				So(os.IsNotExist(statErr), ShouldBeTrue)
+				_, statErr = os.Stat(filepath.Join(dir, "keep-me.json"))
+				So(statErr, ShouldBeNil)
+			})
+		})
+
+		Convey("When Delete is called with an invalid id", func() {
+			for _, id := range []string{"", ".", "..", "a/b", `a\b`} {
+				Convey(fmt.Sprintf("Then id %q should be rejected", id), func() {
+					err := store.Delete(context.Background(), id)
+					So(err, ShouldNotBeNil)
+					So(err.Error(), ShouldContainSubstring, "invalid item id")
+				})
+			}
+		})
+
+		Convey("When Delete is called for a missing item", func() {
+			err := store.Delete(context.Background(), "missing")
+
+			Convey("Then it returns a wrapped delete error", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, `failed to delete item "missing"`)
+			})
+		})
+	})
+
+	Convey("Given a read-only FileStore", t, func() {
+		store := NewFileStore(newTestReadFS(), "dir", "", JSONCodec[testDoc]())
+
+		Convey("When Delete is called", func() {
+			err := store.Delete(context.Background(), "a")
+
+			Convey("Then it returns a read-only error", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, "read-only")
+			})
+		})
+	})
+}

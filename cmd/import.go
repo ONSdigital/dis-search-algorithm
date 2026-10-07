@@ -21,6 +21,7 @@ func importCommand() (*cobra.Command, error) {
 		return nil, errors.Wrap(err, "failed to require input flag")
 	}
 	importCmd.AddCommand(importJudgementsCommand(&inputPath))
+	importCmd.AddCommand(importTermsCommand(&inputPath))
 
 	return importCmd, nil
 }
@@ -32,6 +33,17 @@ func importJudgementsCommand(inputPath *string) *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			return app.New().ImportJudgements(cmd.Context(), *inputPath)
+		},
+	}
+}
+
+func importTermsCommand(inputPath *string) *cobra.Command {
+	return &cobra.Command{
+		Use:   "terms",
+		Short: "Import terms from a CSV",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			return app.New().ImportTerms(cmd.Context(), *inputPath)
 		},
 	}
 }

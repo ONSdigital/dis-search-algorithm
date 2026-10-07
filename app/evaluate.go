@@ -22,8 +22,9 @@ const (
 
 // term is the decoded body of a testset/terms fixture.
 type term struct {
-	ID    string `json:"id"`
-	Query string `json:"query"`
+	ID          string `json:"id"`
+	Query       string `json:"query"`
+	Description string `json:"description"`
 }
 
 // judgement is the decoded body of a testset/judgements fixture: the relevance

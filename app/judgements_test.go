@@ -357,7 +357,7 @@ func TestImportCSV(t *testing.T) {
 				Judgements: fakeStore{items: []stream.Item{existing}, putCalls: &puts},
 			}
 
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody(
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody(
 				"cpi-latest,cpi latest,cpi-latest,3,Consumer prices,/cpi",
 			)))
 
@@ -386,7 +386,7 @@ func TestImportCSV(t *testing.T) {
 				Judgements: fakeStore{items: []stream.Item{existing}, putCalls: &puts},
 			}
 
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody(
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody(
 				"cpi-latest,cpi latest,cpi-latest,4,Consumer prices,/cpi",
 				"cpi-latest,cpi latest,accountancy-services-timeseries,1,Accountancy,/acc",
 				"cpi-latest,cpi latest,growth-dataset,2,Growth,/growth",
@@ -405,7 +405,7 @@ func TestImportCSV(t *testing.T) {
 				Judgements: fakeStore{items: []stream.Item{existing}, putCalls: &puts},
 			}
 
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody(
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody(
 				"cpi-latest,cpi latest,cpi-latest,3,Consumer prices,/cpi",
 				"cpi-latest,cpi latest,unknown-doc,4,Ghost,/ghost",
 			)))
@@ -426,7 +426,7 @@ func TestImportCSV(t *testing.T) {
 		}
 
 		Convey("When a CSV scores it", func() {
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody(
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody(
 				"cpi-latest,cpi latest,cpi-latest,3,Consumer prices,/cpi",
 			)))
 
@@ -448,7 +448,7 @@ func TestImportCSV(t *testing.T) {
 		}
 
 		Convey("When it is imported", func() {
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody()))
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody()))
 
 			Convey("Then nothing is written", func() {
 				So(err, ShouldBeNil)
@@ -464,7 +464,7 @@ func TestImportCSV(t *testing.T) {
 		}
 
 		Convey("When a CSV is imported", func() {
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody(
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody(
 				"cpi-latest,cpi latest,cpi-latest,3,Consumer prices,/cpi",
 			)))
 
@@ -482,7 +482,7 @@ func TestImportCSV(t *testing.T) {
 		}
 
 		Convey("When an import would change a judgement", func() {
-			err := app.importCSV(context.Background(), strings.NewReader(csvBody(
+			err := app.importJudgementsCSV(context.Background(), strings.NewReader(csvBody(
 				"cpi-latest,cpi latest,cpi-latest,3,Consumer prices,/cpi",
 			)))
 

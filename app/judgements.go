@@ -23,8 +23,6 @@ const (
 	minRelevance = 0
 	maxRelevance = 4
 
-	csvColumnQueryID          = "query_id"
-	csvColumnQuery            = "query"
 	csvColumnDocumentID       = "doc_id"
 	csvColumnCurrentRelevance = "current_relevance"
 	csvColumnTitle            = "title"
@@ -71,7 +69,7 @@ func (a *App) ImportJudgements(ctx context.Context, inputPath string) (err error
 		}
 	}()
 
-	return a.importCSV(ctx, file)
+	return a.importJudgementsCSV(ctx, file)
 }
 
 // ExportJudgements evaluates every test term and writes the
@@ -93,7 +91,7 @@ func (a *App) ExportJudgements(ctx context.Context, outputPath string) error {
 
 // importCSV is the io.Reader core of Import (mirrors writeEvaluationsCSV). It
 // is split out so the merge can be tested without a file on disk.
-func (a *App) importCSV(ctx context.Context, r io.Reader) error {
+func (a *App) importJudgementsCSV(ctx context.Context, r io.Reader) error {
 	rows, err := readRelevanceCSV(r)
 	if err != nil {
 		return err

@@ -24,12 +24,14 @@ const (
 
 // fakeStore is a [stream.Stream[stream.Item]] implementation for injecting test data.
 type fakeStore struct {
-	items     []stream.Item
-	itemsByID map[string]stream.Item
-	getErr    error
-	listErr   error
-	putErr    error          // when set, Put returns it
-	putCalls  *[]stream.Item // when non-nil, Put appends each written item
+	items       []stream.Item
+	itemsByID   map[string]stream.Item
+	getErr      error
+	listErr     error
+	putErr      error          // when set, Put returns it
+	putCalls    *[]stream.Item // when non-nil, Put appends each written item
+	deleteErr   error
+	deleteCalls *[]string
 }
 
 func (f fakeStore) Get(_ context.Context, id string) (stream.Item, error) {
@@ -42,6 +44,15 @@ func (f fakeStore) Put(_ context.Context, _ string, item stream.Item) error {
 	}
 	if f.putCalls != nil {
 		*f.putCalls = append(*f.putCalls, item)
+	}
+	return nil
+}
+func (f fakeStore) Delete(_ context.Context, id string) error {
+	if f.deleteErr != nil {
+		return f.deleteErr
+	}
+	if f.deleteCalls != nil {
+		*f.deleteCalls = append(*f.deleteCalls, id)
 	}
 	return nil
 }

@@ -21,6 +21,7 @@ func exportCommand() (*cobra.Command, error) {
 		return nil, errors.Wrap(err, "failed to require output flag")
 	}
 	exportCmd.AddCommand(exportJudgementsCommand(&outputPath))
+	exportCmd.AddCommand(exportTermsCommand(&outputPath))
 
 	return exportCmd, nil
 }
@@ -32,6 +33,17 @@ func exportJudgementsCommand(outputPath *string) *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			return app.New().ExportJudgements(cmd.Context(), *outputPath)
+		},
+	}
+}
+
+func exportTermsCommand(outputPath *string) *cobra.Command {
+	return &cobra.Command{
+		Use:   "terms",
+		Short: "Export terms and their descriptions",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			return app.New().ExportTerms(cmd.Context(), *outputPath)
 		},
 	}
 }

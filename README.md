@@ -1,9 +1,5 @@
 # Search Relevance Test Bed
 
-> [!NOTE]
-> This repository is being gradually transitioned to a new approach to measure relevancy and so some instructions may be out of date.
-> The [original readme](./README_old.md) has been kept for now to aid the transition.
-
 A comprehensive tool for testing and comparing search algorithm relevance across different configurations and datasets.
 
 For how the tooling is structured (the data model, the commands, and how scoring works), see [ARCHITECTURE.md](./ARCHITECTURE.md).

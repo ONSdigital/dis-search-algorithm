@@ -6,8 +6,8 @@
 package app
 
 import (
-	"github.com/ONSdigital/dis-search-test-bed/algorithm"
-	"github.com/ONSdigital/dis-search-test-bed/testset/stream"
+	"github.com/ONSdigital/dis-search-algorithm/algorithm"
+	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 )
 
 // exportAlgorithm is the algorithm whose ranking Export evaluates. The export

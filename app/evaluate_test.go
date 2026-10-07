@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ONSdigital/dis-search-test-bed/algorithm"
-	"github.com/ONSdigital/dis-search-test-bed/testset/stream"
+	"github.com/ONSdigital/dis-search-algorithm/algorithm"
+	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
 	. "github.com/smartystreets/goconvey/convey"

@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ONSdigital/dis-search-test-bed/testset"
+	"github.com/ONSdigital/dis-search-algorithm/testset"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/ONSdigital/dis-search-test-bed/algorithm"
+	"github.com/ONSdigital/dis-search-algorithm/algorithm"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

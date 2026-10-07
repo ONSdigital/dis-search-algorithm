@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/ONSdigital/dis-search-test-bed/app"
+	"github.com/ONSdigital/dis-search-algorithm/app"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )

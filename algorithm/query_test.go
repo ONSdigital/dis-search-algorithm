@@ -16,7 +16,7 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/modules/elasticsearch"
 
-	"github.com/ONSdigital/dis-search-test-bed/settings"
+	"github.com/ONSdigital/dis-search-algorithm/settings"
 )
 
 var update = flag.Bool("update", false, "update reference fixture files")

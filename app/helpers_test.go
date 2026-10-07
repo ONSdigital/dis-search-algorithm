@@ -3,7 +3,7 @@ package app
 import (
 	"context"
 
-	"github.com/ONSdigital/dis-search-test-bed/testset/stream"
+	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 )
 
 const (

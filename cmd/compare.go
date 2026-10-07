@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ONSdigital/dis-search-test-bed/algorithm"
-	"github.com/ONSdigital/dis-search-test-bed/app"
+	"github.com/ONSdigital/dis-search-algorithm/algorithm"
+	"github.com/ONSdigital/dis-search-algorithm/app"
 	"github.com/spf13/cobra"
 )
 

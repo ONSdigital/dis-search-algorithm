@@ -3,9 +3,9 @@ package app
 import (
 	"context"
 
-	testElasticsearch "github.com/ONSdigital/dis-search-test-bed/elasticsearch"
-	"github.com/ONSdigital/dis-search-test-bed/testset/stream"
-	"github.com/ONSdigital/dis-search-test-bed/ui"
+	testElasticsearch "github.com/ONSdigital/dis-search-algorithm/elasticsearch"
+	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
+	"github.com/ONSdigital/dis-search-algorithm/ui"
 	"github.com/pkg/errors"
 
 	dpEs "github.com/ONSdigital/dp-elasticsearch/v4"

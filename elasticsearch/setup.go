@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/ONSdigital/dis-search-test-bed/settings"
+	"github.com/ONSdigital/dis-search-algorithm/settings"
 	dpEs "github.com/ONSdigital/dp-elasticsearch/v4/client"
 )
 

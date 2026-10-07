@@ -16,7 +16,7 @@ env:
   GOLANGCI_LINT_VERSION: 'v2.6.0'
 
 jobs:
-  dis-search-test-bed-audit:
+  dis-search-algorithm-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -31,7 +31,7 @@ jobs:
         run: make audit
 
 
-  dis-search-test-bed-build:
+  dis-search-algorithm-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -44,7 +44,7 @@ jobs:
       - name: Run Go build test
         run: make build
   
-  dis-search-test-bed-test:
+  dis-search-algorithm-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -57,7 +57,7 @@ jobs:
       - name: Run Go build test
         run: make test
 
-  dis-search-test-bed-lint:
+  dis-search-algorithm-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -73,7 +73,7 @@ jobs:
           version: ${{ env.GOLANGCI_LINT_VERSION }}
           install-mode: goinstall
 
-  dis-search-test-bed-lint-json:
+  dis-search-algorithm-lint-json:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -85,7 +85,7 @@ jobs:
       - name: Run JSON lint checks
         run: make lint-json
 
-  dis-search-test-bed-lint-json-templates:
+  dis-search-algorithm-lint-json-templates:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

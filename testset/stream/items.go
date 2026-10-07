@@ -3,8 +3,8 @@ package stream
 import (
 	"encoding/json"
 
-	"github.com/ONSdigital/dis-search-test-bed/algorithm"
-	"github.com/ONSdigital/dis-search-test-bed/testset"
+	"github.com/ONSdigital/dis-search-algorithm/algorithm"
+	"github.com/ONSdigital/dis-search-algorithm/testset"
 	"github.com/pkg/errors"
 )
 

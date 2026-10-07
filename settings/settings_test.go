@@ -11,7 +11,7 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 	"github.com/testcontainers/testcontainers-go/modules/elasticsearch"
 
-	"github.com/ONSdigital/dis-search-test-bed/settings"
+	"github.com/ONSdigital/dis-search-algorithm/settings"
 )
 
 func TestGetSearchIndexSettings(t *testing.T) {

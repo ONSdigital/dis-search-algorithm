@@ -1,4 +1,4 @@
-module github.com/ONSdigital/dis-search-test-bed
+module github.com/ONSdigital/dis-search-algorithm
 
 go 1.26.0
 

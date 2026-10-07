@@ -1,4 +1,4 @@
-# Search Relevance Test Bed
+# dis-search-algorithm
 
 A comprehensive tool for testing and comparing search algorithm relevance across different configurations and datasets.
 

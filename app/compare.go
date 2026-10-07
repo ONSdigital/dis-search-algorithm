@@ -7,8 +7,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ONSdigital/dis-search-test-bed/algorithm"
-	"github.com/ONSdigital/dis-search-test-bed/ui"
+	"github.com/ONSdigital/dis-search-algorithm/algorithm"
+	"github.com/ONSdigital/dis-search-algorithm/ui"
 	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	"github.com/pkg/errors"
 )

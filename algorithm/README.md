@@ -46,7 +46,7 @@ The package is structured in three layers. Start at whichever level matches your
 `NewRequestRegistry` pre-builds all requested algorithm variants at startup. Call `GetRequestBuilder` at request time to retrieve the right one without re-allocating templates:
 
 ```go
-import "github.com/ONSdigital/dis-search-test-bed/algorithm"
+import "github.com/ONSdigital/dis-search-algorithm/algorithm"
 
 registry := algorithm.NewRequestRegistry([]algorithm.SearchAlgorithm{
     algorithm.SearchAlgorithmBaseline,

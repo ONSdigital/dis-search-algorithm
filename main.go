@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/ONSdigital/dis-search-test-bed/cmd"
-	"github.com/ONSdigital/dis-search-test-bed/ui"
+	"github.com/ONSdigital/dis-search-algorithm/cmd"
+	"github.com/ONSdigital/dis-search-algorithm/ui"
 )
 
 func main() {

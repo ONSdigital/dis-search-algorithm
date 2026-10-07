@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ONSdigital/dis-search-test-bed/testset/stream"
+	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	"github.com/pkg/errors"
 	. "github.com/smartystreets/goconvey/convey"
 )

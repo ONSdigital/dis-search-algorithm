@@ -6,4 +6,7 @@ import "context"
 type Writer[T any] interface {
 	// Put creates or replaces the item stored under id.
 	Put(ctx context.Context, id string, item T) error
+
+	// Delete removes an item stored under the id.
+	Delete(ctx context.Context, id string) error
 }

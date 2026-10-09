@@ -111,14 +111,14 @@ testset/
 **Terms** are the searches ([`testset/terms/cpi-latest.json`](testset/terms/cpi-latest.json)):
 
 ```json
-{ "id": "cpi-latest", "query": "cpi latest", "description": "Most recent CPI bulletin" }
+{ "id": "cpi-latest", "term": "cpi latest", "description": "Most recent CPI bulletin" }
 ```
 
 **Judgements** are one term's answer key ([`testset/judgements/cpi-latest.json`](testset/judgements/cpi-latest.json)):
 
 ```json
 {
-  "query_id": "cpi-latest",
+  "term_id": "cpi-latest",
   "judgements": [
     { "doc_id": "cpi-latest", "relevance": 4 },
     { "doc_id": "accountancy-services-timeseries", "relevance": 1 },
@@ -130,12 +130,12 @@ testset/
 **How they relate.** A judgement is the _link_ between a term and a document, and the relevance grade lives on that link (it's a property of the pair, not of either side alone). The join keys are:
 
 - `judgements[*].doc_id` maps to `documents[*].id`
-- a judgement file's `query_id` maps to `terms[*].id` (and the judgement's **filename** is also the term id, so the code can fetch a term's answer key directly by id, see [`relevanceForTerm`](app/evaluate.go#L256)).
+- a judgement file's `term_id` maps to `terms[*].id` (and the judgement's **filename** is also the term id, so the code can fetch a term's answer key directly by id, see [`relevanceForTerm`](app/evaluate.go#L256)).
 
 Two things to note:
 
 - The set is **sparse**: we only record judged pairs. Any returned document **not** in a term's answer key is treated as **relevance 0**.
-- Filenames must equal ids, ids must be unique, and every `doc_id`/`query_id` must resolve. These are the validation rules in [`testset/README.md`](testset/README.md).
+- Filenames must equal ids, ids must be unique, and every `doc_id`/`term_id` must resolve. These are the validation rules in [`testset/README.md`](testset/README.md).
 
 ---
 
@@ -267,13 +267,7 @@ NDCG = DCG / IDCG = 5.0237 / 5.7619 = 0.872
 
 ---
 
-## 9. Terminology
-
-**Terminology.** You will see both "queries" and "terms" for the same thing. The concept was renamed from _query_ to _term_, but the JSON and Go still use the older field names `query_id` / `Query` (see the [`term`](app/evaluate.go#L24) and [`judgement`](app/evaluate.go#L31) structs). Read "term" and "query" as synonyms.
-
----
-
-## 10. Running and verifying it
+## 9. Running and verifying it
 
 **Run a command** (see the [README](README.md) for full usage and prerequisites). `compare` and `export` need Docker running for the Elasticsearch testcontainer; `import` does not:
 

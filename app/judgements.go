@@ -23,8 +23,8 @@ const (
 	minRelevance = 0
 	maxRelevance = 4
 
-	csvColumnQueryID          = "query_id"
-	csvColumnQuery            = "query"
+	csvColumnTermID           = "term_id"
+	csvColumnTerm             = "term"
 	csvColumnDocumentID       = "doc_id"
 	csvColumnCurrentRelevance = "current_relevance"
 	csvColumnTitle            = "title"
@@ -45,6 +45,26 @@ type importSummary struct {
 	Applied int // rows whose document is in the corpus
 	Skipped int // rows skipped because their doc_id is not in the corpus
 	Updated int // judgement files whose contents changed
+}
+
+// TermJudgements groups all judgements for a single term.
+type TermJudgements struct {
+	TermID     string      `json:"term_id"`
+	Judgements []Judgement `json:"judgements"`
+}
+
+// Judgement represents the relevance judgement for a single document.
+type Judgement struct {
+	DocID     string `json:"doc_id"`
+	Relevance int    `json:"relevance"`
+}
+
+// TermJudgement is single row for import export that represents a
+// judgement for a document for a particular term.
+type TermJudgement struct {
+	Judgement Judgement
+	Document  Document
+	Term      Term
 }
 
 // ImportJudgements reads re-scored relevance judgements

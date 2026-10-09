@@ -101,10 +101,11 @@ raw search term(s) as a user would type them into `ons.gov.uk/search`.
 
 **`judgements/<term>.json`** — one term's answer key: which documents are
 relevant, and how much (0 = not relevant … 4 = perfect match). The file is keyed
-by `query_id`; each entry references a document and its grade.
+by `term_id`; each entry references a document and its grade.
+
 ```json
 {
-  "query_id": "cpi-latest",
+  "term_id": "cpi-latest",
   "judgements": [
     { "doc_id": "cpi-latest", "relevance": 4 },
     { "doc_id": "accountancy-services-timeseries", "relevance": 1 },
@@ -124,13 +125,13 @@ by `query_id`; each entry references a document and its grade.
    references it.
 
 ### Add a term
-1. Create `terms/<id>.json` with `id`, `query`, `description`. `query` is the
+1. Create `terms/<id>.json` with `id`, `term`, `description`. `term` is the
    raw search term(s) (e.g. `cpi latest`); `id` is a plain slug.
 2. Create the matching `judgements/<id>.json` (see below). A term with no
    judgements cannot be scored.
 
 ### Add / change a judgement
-1. Open the term's file in `judgements/` (or create it: `{ "query_id": "...", "judgements": [] }`).
+1. Open the term's file in `judgements/` (or create it: `{ "term_id": "...", "judgements": [] }`).
 2. Add `{ "doc_id": "<existing document id>", "relevance": <0-4> }`.
 3. The `doc_id` **must** already exist in `documents/` — no dangling references.
 4. To re-score, edit the `relevance` value in place.
@@ -142,7 +143,7 @@ The assembled set must pass these checks on load:
 - **filename == id** for documents and terms.
 - **No duplicate ids** within `documents/` or `terms/`.
 - **No dangling references**: every `doc_id` resolves to a `documents/` file, and
-  every judgement file's `query_id` resolves to a `terms/` file.
+  every judgement file's `term_id` resolves to a `terms/` file.
 - **In-range grades**: every `relevance` is an integer from 0 to 4.
 
 ## Why split it this way

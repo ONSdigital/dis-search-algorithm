@@ -14,10 +14,10 @@ import (
 )
 
 const (
-	comparisonTitle         = "NDCG comparison"
-	comparisonColumnQueryID = "query_id"
-	comparisonSummaryLabel  = "mean NDCG"
-	comparisonNDCGFormat    = "%.4f"
+	comparisonTitle        = "NDCG comparison"
+	comparisonColumnTermID = "term_id"
+	comparisonSummaryLabel = "mean NDCG"
+	comparisonNDCGFormat   = "%.4f"
 
 	// comparisonNDCGWidth is the rendered width of a formatted NDCG ("0.0000"),
 	// the minimum width of an algorithm column.
@@ -108,7 +108,7 @@ func writeComparisonTable(w io.Writer, evaluations []termEvaluation) error {
 	summaries := summariseEvaluations(evaluations)
 	termIDs, ndcgByTerm := indexEvaluations(evaluations)
 
-	labelWidth := widestString(append([]string{comparisonColumnQueryID, comparisonSummaryLabel}, termIDs...))
+	labelWidth := widestString(append([]string{comparisonColumnTermID, comparisonSummaryLabel}, termIDs...))
 	columnWidths := make([]int, 0, len(summaries))
 	for _, summary := range summaries {
 		columnWidths = append(columnWidths, max(len(summary.Algorithm), comparisonNDCGWidth))
@@ -116,7 +116,7 @@ func writeComparisonTable(w io.Writer, evaluations []termEvaluation) error {
 
 	var table strings.Builder
 
-	writeComparisonRow(&table, labelWidth, columnWidths, comparisonColumnQueryID, algorithmNames(summaries))
+	writeComparisonRow(&table, labelWidth, columnWidths, comparisonColumnTermID, algorithmNames(summaries))
 
 	for _, id := range termIDs {
 		cells := make([]string, 0, len(summaries))

@@ -1,5 +1,5 @@
 {
   "id": "cpi-latest",
-  "query": "cpi latest",
+  "term": "cpi latest",
   "description": "Most recent CPI bulletin"
 }

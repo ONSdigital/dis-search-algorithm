@@ -1,5 +1,5 @@
 {
-  "query_id": "cpi-latest",
+  "term_id": "cpi-latest",
   "judgements": [
     { "doc_id": "accountancy-services-timeseries", "relevance": 1 },
     { "doc_id": "cpi-latest", "relevance": 2 },

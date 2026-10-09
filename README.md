@@ -46,7 +46,7 @@ Names are matched case-insensitively, duplicates are ignored, and the columns fo
 The run ends with an NDCG table, one row per term and one column per algorithm:
 
 ```text
-query_id         baseline   unweighted
+term_id         baseline   unweighted
 cpi-latest         0.5317       0.5317
 data               0.4200       0.4200
 growth-figures     0.6942       0.6942

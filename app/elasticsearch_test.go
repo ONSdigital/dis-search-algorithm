@@ -5,8 +5,11 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
+	fileStoreMocks "github.com/ONSdigital/dis-search-algorithm/testset/stream/mocks"
 	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
+
 	"github.com/pkg/errors"
 	. "github.com/smartystreets/goconvey/convey"
 )
@@ -31,7 +34,13 @@ func TestLoadStore(t *testing.T) {
 					},
 				}
 
-				err := app.loadStore(context.Background(), mockClient, fakeStore{items: sampleItems()}, tc.indexName, tc.label)
+				fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+					ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+						return testDocuments, nil
+					},
+				}
+
+				err := app.loadStore(context.Background(), mockClient, fakeDocumentStore, tc.indexName, tc.label)
 
 				Convey("Then it should index every item once with no error", func() {
 					So(err, ShouldBeNil)
@@ -54,7 +63,12 @@ func TestLoadStore(t *testing.T) {
 					},
 				}
 
-				err := app.loadStore(context.Background(), mockClient, fakeStore{listErr: errors.New(errDiskError)}, tc.indexName, tc.label)
+				fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+					ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+						return nil, errors.New(errDiskError)
+					},
+				}
+				err := app.loadStore(context.Background(), mockClient, fakeDocumentStore, tc.indexName, tc.label)
 
 				Convey("Then it should return a wrapped error and index nothing", func() {
 					So(err, ShouldNotBeNil)
@@ -71,7 +85,12 @@ func TestLoadStore(t *testing.T) {
 					},
 				}
 
-				err := app.loadStore(context.Background(), mockClient, fakeStore{items: sampleItems()}, tc.indexName, tc.label)
+				fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+					ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+						return testDocuments, nil
+					},
+				}
+				err := app.loadStore(context.Background(), mockClient, fakeDocumentStore, tc.indexName, tc.label)
 
 				Convey("Then it should return a wrapped error and stop at the first failure", func() {
 					So(err, ShouldNotBeNil)
@@ -87,8 +106,13 @@ func TestLoadStore(t *testing.T) {
 
 func TestLoadStores(t *testing.T) {
 	Convey("Given an App with its document store populated", t, func() {
+		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+				return testDocuments, nil
+			},
+		}
 		app := &App{
-			Documents: fakeStore{items: sampleItems()},
+			Documents: fakeDocumentStore,
 		}
 		mockClient := &dpEsClientMock.ClientMock{
 			AddDocumentFunc: func(ctx context.Context, indexName, documentID string, document []byte, opts *dpEsClient.AddDocumentOptions) error {
@@ -118,7 +142,9 @@ func TestLoadStores(t *testing.T) {
 				label: "documents",
 				newApp: func() *App {
 					return &App{
-						Documents: fakeStore{listErr: errors.New(errDiskError)},
+						Documents: &fileStoreMocks.StreamMock[stream.Item]{ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+							return nil, errors.New(errDiskError)
+						}},
 					}
 				},
 				wantLoaded: 0,

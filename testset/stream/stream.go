@@ -7,6 +7,8 @@
 package stream
 
 // Stream combines read and write access to a store of items of type T.
+//
+//go:generate moq -out mocks/stream.go -pkg mocks . Stream
 type Stream[T any] interface {
 	Reader[T]
 	Writer[T]

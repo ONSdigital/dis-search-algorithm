@@ -252,3 +252,51 @@ func TestFileStorePut(t *testing.T) {
 		})
 	})
 }
+
+func TestFileStoreDelete(t *testing.T) {
+	Convey("Given a writable FileStore containing an item", t, func() {
+		dir := t.TempDir()
+		store := NewFileStore(os.DirFS(dir), ".", dir, JSONCodec[testDoc]())
+		item := testDoc{ID: "remove-me", Name: "Temporary"}
+		putErr := store.Put(context.Background(), item.ID, item)
+
+		Convey("When Delete is called with the item id", func() {
+			err := store.Delete(context.Background(), item.ID)
+
+			Convey("Then it should remove the item file", func() {
+				So(putErr, ShouldBeNil)
+				So(err, ShouldBeNil)
+				_, statErr := os.Stat(filepath.Join(dir, item.ID+".json"))
+				So(os.IsNotExist(statErr), ShouldBeTrue)
+			})
+		})
+	})
+
+	Convey("Given a read-only FileStore", t, func() {
+		store := NewFileStore(newTestReadFS(), "dir", "", JSONCodec[testDoc]())
+
+		Convey("When Delete is called", func() {
+			err := store.Delete(context.Background(), "a")
+
+			Convey("Then it should return a read-only error", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, "read-only")
+			})
+		})
+	})
+
+	Convey("Given a writable FileStore", t, func() {
+		dir := t.TempDir()
+		store := NewFileStore(os.DirFS(dir), ".", dir, JSONCodec[testDoc]())
+
+		Convey("When Delete is called with an invalid id", func() {
+			for _, id := range []string{"", ".", "..", "a/b", `a\b`} {
+				Convey(fmt.Sprintf("Then id %q should be rejected", id), func() {
+					err := store.Delete(context.Background(), id)
+					So(err, ShouldNotBeNil)
+					So(err.Error(), ShouldContainSubstring, "invalid item id")
+				})
+			}
+		})
+	})
+}

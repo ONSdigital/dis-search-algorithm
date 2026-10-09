@@ -34,7 +34,7 @@
         <mxCell id="JUDGMENT" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="JUDGMENT" vertex="1">
           <mxGeometry height="104" width="330" x="470" y="320" as="geometry" />
         </mxCell>
-        <mxCell id="JUDGMENT-a1" parent="JUDGMENT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;" value="+ query_id : string  «FK → QUERY.id»" vertex="1">
+        <mxCell id="JUDGMENT-a1" parent="JUDGMENT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;" value="+ term_id : string  «FK → QUERY.id»" vertex="1">
           <mxGeometry height="26" width="330" y="26" as="geometry" />
         </mxCell>
         <mxCell id="JUDGMENT-a2" parent="JUDGMENT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;" value="+ doc_id : string  «FK → DOCUMENT.id»" vertex="1">
@@ -58,7 +58,7 @@
         <mxCell id="DOCUMENT-a4" parent="DOCUMENT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;" value="+ content_type : string" vertex="1">
           <mxGeometry height="26" width="260" y="104" as="geometry" />
         </mxCell>
-        <mxCell id="e_q_j" edge="1" parent="1" source="QUERY" style="endArrow=open;endFill=0;html=1;strokeColor=#333333;fontSize=11;" target="JUDGMENT" value="query_id">
+        <mxCell id="e_q_j" edge="1" parent="1" source="QUERY" style="endArrow=open;endFill=0;html=1;strokeColor=#333333;fontSize=11;" target="JUDGMENT" value="term_id">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e_q_j_s" connectable="0" parent="e_q_j" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontStyle=1;" value="1" vertex="1">

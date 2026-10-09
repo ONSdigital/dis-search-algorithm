@@ -6,18 +6,13 @@
 package app
 
 import (
-	"github.com/ONSdigital/dis-search-algorithm/algorithm"
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 )
-
-// exportAlgorithm is the algorithm whose ranking Export evaluates. The export
-// CSV has no algorithm column, so the export stays single-algorithm.
-const exportAlgorithm = algorithm.SearchAlgorithmBaseline
 
 // App holds the stores the evaluation operates on.
 type App struct {
 	Documents  stream.Stream[stream.Item] // indexed into Elasticsearch (see storeTargets)
-	Terms      stream.Stream[stream.Item] // evaluation data: query terms (not indexed)
+	Terms      stream.Stream[stream.Item] // evaluation data: terms (not indexed)
 	Judgements stream.Stream[stream.Item] // evaluation data: relevance labels (not indexed)
 }
 

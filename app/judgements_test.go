@@ -421,8 +421,6 @@ func TestImportJudgementsToStore(t *testing.T) {
 				So(json.Unmarshal(fakeJudgementStore.PutCalls()[0].Item.Body, &got), ShouldBeNil)
 				So(got.Judgements, ShouldResemble, []Judgement{{DocID: docNameCPI, Relevance: 3}})
 			})
-		})
-	})
 
 	Convey("Given the document store fails to get a document", t, func() {
 		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{

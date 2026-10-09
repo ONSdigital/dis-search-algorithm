@@ -6,13 +6,8 @@
 package app
 
 import (
-	"github.com/ONSdigital/dis-search-algorithm/algorithm"
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 )
-
-// exportAlgorithm is the algorithm whose ranking Export evaluates. The export
-// CSV has no algorithm column, so the export stays single-algorithm.
-const exportAlgorithm = algorithm.SearchAlgorithmBaseline
 
 // App holds the stores the evaluation operates on.
 type App struct {

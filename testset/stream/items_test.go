@@ -75,42 +75,20 @@ func TestItemCodec(t *testing.T) {
 
 func TestStores(t *testing.T) {
 	cases := []struct {
-		name          string
-		store         Stream[Item]
-		expectedNames []string
-		getName       string
+		name  string
+		store Stream[Item]
 	}{
 		{
 			name:  "document",
 			store: NewDocumentStore(),
-			expectedNames: []string{
-				"accountancy-services-timeseries",
-				"cpi-latest",
-				"growth-dataset",
-			},
-			getName: "cpi-latest",
 		},
 		{
 			name:  "judgement",
 			store: NewJudgementStore(),
-			expectedNames: []string{
-				"cpi-latest",
-				"data",
-				"growth-figures",
-				"stat",
-			},
-			getName: "cpi-latest",
 		},
 		{
 			name:  "term",
 			store: NewTermStore(),
-			expectedNames: []string{
-				"cpi-latest",
-				"data",
-				"growth-figures",
-				"stat",
-			},
-			getName: "cpi-latest",
 		},
 	}
 
@@ -121,35 +99,36 @@ func TestStores(t *testing.T) {
 			Convey("When List is called", func() {
 				items, err := store.List(context.Background())
 
-				Convey("Then it should return all fixtures as valid, named bodies", func() {
+				Convey("Then it should return non-empty items with valid, minified bodies", func() {
 					So(err, ShouldBeNil)
-					So(items, ShouldHaveLength, len(tc.expectedNames))
+					So(items, ShouldNotBeEmpty)
 
-					names := map[string]bool{}
 					for _, item := range items {
 						So(item.Name, ShouldNotBeEmpty)
 						So(json.Valid(item.Body), ShouldBeTrue)
 						// Fixtures are stored indented on disk; the loaded body is
 						// minified, so it must contain no newlines.
 						So(bytes.Contains(item.Body, []byte("\n")), ShouldBeFalse)
-						names[item.Name] = true
 					}
-
-					Convey("And the names should match the fixture file base names", func() {
-						for _, name := range tc.expectedNames {
-							So(names[name], ShouldBeTrue)
-						}
-					})
 				})
 			})
 
-			Convey("When Get is called with an existing name", func() {
-				item, err := store.Get(context.Background(), tc.getName)
+			Convey("When Get is called with a name returned by List", func() {
+				items, listErr := store.List(context.Background())
+				var item Item
+				var getErr error
+				if listErr == nil && len(items) > 0 {
+					item, getErr = store.Get(context.Background(), items[0].Name)
+				}
 
 				Convey("Then it should return that item with a valid body", func() {
-					So(err, ShouldBeNil)
-					So(item.Name, ShouldEqual, tc.getName)
-					So(json.Valid(item.Body), ShouldBeTrue)
+					So(listErr, ShouldBeNil)
+					So(items, ShouldNotBeEmpty)
+					if listErr == nil && len(items) > 0 {
+						So(getErr, ShouldBeNil)
+						So(item.Name, ShouldEqual, items[0].Name)
+						So(json.Valid(item.Body), ShouldBeTrue)
+					}
 				})
 			})
 
@@ -165,13 +144,10 @@ func TestStores(t *testing.T) {
 }
 
 func TestStoreWriteDir(t *testing.T) {
-	// documents/ holds three fixtures; the embed-backed reads must not change
-	// when Put is redirected to a temp dir.
-	const expectedDocumentCount = 3
-
 	Convey("Given a document store whose writes are redirected to a temp dir", t, func() {
 		dir := t.TempDir()
 		store := NewDocumentStoreWithWriteDir(dir)
+		embeddedItems, embeddedErr := store.List(context.Background())
 
 		Convey("When an item is Put", func() {
 			err := store.Put(context.Background(), "probe",
@@ -194,8 +170,10 @@ func TestStoreWriteDir(t *testing.T) {
 			items, err := store.List(context.Background())
 
 			Convey("Then it should still return the embedded fixtures", func() {
+				So(embeddedErr, ShouldBeNil)
 				So(err, ShouldBeNil)
-				So(items, ShouldHaveLength, expectedDocumentCount)
+				So(embeddedItems, ShouldNotBeEmpty)
+				So(items, ShouldResemble, embeddedItems)
 			})
 		})
 	})

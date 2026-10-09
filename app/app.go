@@ -17,7 +17,7 @@ const exportAlgorithm = algorithm.SearchAlgorithmBaseline
 // App holds the stores the evaluation operates on.
 type App struct {
 	Documents  stream.Stream[stream.Item] // indexed into Elasticsearch (see storeTargets)
-	Terms      stream.Stream[stream.Item] // evaluation data: query terms (not indexed)
+	Terms      stream.Stream[stream.Item] // evaluation data: terms (not indexed)
 	Judgements stream.Stream[stream.Item] // evaluation data: relevance labels (not indexed)
 }
 

@@ -1,5 +1,5 @@
 {
   "id": "data",
-  "query": "data",
+  "term": "data",
   "description": "single term ons.gov.uk/search?q=data"
 }

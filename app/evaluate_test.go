@@ -20,12 +20,12 @@ func TestEvaluateTermsFullCorpus(t *testing.T) {
 			{Name: docNameGrowth, Body: []byte(`{"title":"Growth","uri":"/growth"}`)},
 		}
 		terms := []stream.Item{
-			{Name: docNameCPI, Body: []byte(`{"id":"cpi-latest","query":"cpi"}`)},
+			{Name: termIDCPI, Body: []byte(`{"id":"cpi-latest","term":"cpi"}`)},
 		}
 		judgements := map[string]stream.Item{
-			docNameCPI: {
-				Name: docNameCPI,
-				Body: []byte(`{"query_id":"cpi-latest","judgements":[{"doc_id":"cpi-latest","relevance":4}]}`),
+			termIDCPI: {
+				Name: termIDCPI,
+				Body: []byte(`{"term_id":"cpi-latest","judgements":[{"doc_id":"cpi-latest","relevance":4}]}`),
 			},
 		}
 		app := &App{
@@ -96,17 +96,17 @@ func TestEvaluateTermsMultipleAlgorithms(t *testing.T) {
 			{Name: docNameGrowth, Body: []byte(`{"title":"Growth","uri":"/growth"}`)},
 		}
 		terms := []stream.Item{
-			{Name: docNameCPI, Body: []byte(`{"id":"cpi-latest","query":"cpi"}`)},
-			{Name: docNameGrowth, Body: []byte(`{"id":"growth-dataset","query":"growth"}`)},
+			{Name: termIDCPI, Body: []byte(`{"id":"cpi-latest","term":"cpi"}`)},
+			{Name: termIDGrowth, Body: []byte(`{"id":"growth-dataset","term":"growth"}`)},
 		}
 		judgements := map[string]stream.Item{
-			docNameCPI: {
-				Name: docNameCPI,
-				Body: []byte(`{"query_id":"cpi-latest","judgements":[{"doc_id":"cpi-latest","relevance":4}]}`),
+			termIDCPI: {
+				Name: termIDCPI,
+				Body: []byte(`{"term_id":"cpi-latest","judgements":[{"doc_id":"cpi-latest","relevance":4}]}`),
 			},
-			docNameGrowth: {
-				Name: docNameGrowth,
-				Body: []byte(`{"query_id":"growth-dataset","judgements":[{"doc_id":"growth-dataset","relevance":3}]}`),
+			termIDGrowth: {
+				Name: termIDGrowth,
+				Body: []byte(`{"term_id":"growth-dataset","judgements":[{"doc_id":"growth-dataset","relevance":3}]}`),
 			},
 		}
 		app := &App{

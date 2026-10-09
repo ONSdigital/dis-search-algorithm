@@ -54,7 +54,7 @@ type evaluatedHit struct {
 
 type termEvaluation struct {
 	Algorithm algorithm.SearchAlgorithm
-	Term      term
+	Term      Term
 	Hits      []evaluatedHit
 	DCG       float64
 	IDCG      float64
@@ -67,7 +67,7 @@ type termEvaluation struct {
 type evaluationContext struct {
 	documentByID    map[string]documentMetadata
 	corpusSize      int
-	terms           []term
+	terms           []Term
 	relevanceByTerm map[string]map[string]int // term id -> document id -> relevance
 }
 
@@ -126,7 +126,7 @@ func (a *App) evaluateTerms(ctx context.Context, esClient dpEsClient.Client,
 			evaluations = append(evaluations, evaluation)
 
 			ui.Info("term %q (%s) [%s]: DCG=%.4f IDCG=%.4f NDCG=%.4f",
-				t.Query, t.ID, algo,
+				t.Value, t.ID, algo,
 				evaluation.DCG, evaluation.IDCG, evaluation.NDCG)
 		}
 	}
@@ -158,10 +158,10 @@ func (a *App) loadEvaluationContext(ctx context.Context, esClient dpEsClient.Cli
 		return nil, errors.Wrap(err, "failed to list terms")
 	}
 
-	terms := make([]term, 0, len(items))
+	terms := make([]Term, 0, len(items))
 	relevanceByTerm := make(map[string]map[string]int, len(items))
 	for _, item := range items {
-		var t term
+		var t Term
 		if err := json.Unmarshal(item.Body, &t); err != nil {
 			return nil, errors.Wrapf(err, "failed to parse term %q", item.Name)
 		}
@@ -186,9 +186,9 @@ func (a *App) loadEvaluationContext(ctx context.Context, esClient dpEsClient.Cli
 // evaluateTerm runs one term through one algorithm and scores the ranking it
 // returns against the term's relevance answer key.
 func evaluateTerm(ctx context.Context, esClient dpEsClient.Client, builder algorithm.SearchRequestBuilder,
-	algo algorithm.SearchAlgorithm, t term, evalCtx *evaluationContext) (termEvaluation, error) {
+	algo algorithm.SearchAlgorithm, t Term, evalCtx *evaluationContext) (termEvaluation, error) {
 	searches, err := builder.BuildRequest(ctx, &algorithm.SearchParameters{
-		Term:  t.Query,
+		Term:  t.Value,
 		Index: indexNameDocuments,
 		From:  0,
 		Size:  evalCtx.corpusSize,
@@ -251,7 +251,7 @@ func buildDocumentMetadata(documents []stream.Item) (map[string]documentMetadata
 }
 
 // relevanceForTerm returns the term's relevance answer key as a map of document
-// id to graded relevance. Judgement filenames match their query_id, so the
+// id to graded relevance. Judgement filenames match their term_id, so the
 // judgement is fetched directly by term id.
 func (a *App) relevanceForTerm(ctx context.Context, termID string) (map[string]int, error) {
 	item, err := a.Judgements.Get(ctx, termID)
@@ -259,7 +259,7 @@ func (a *App) relevanceForTerm(ctx context.Context, termID string) (map[string]i
 		return nil, errors.Wrapf(err, "failed to get judgement for term %q", termID)
 	}
 
-	var j judgement
+	var j TermJudgements
 	if err := json.Unmarshal(item.Body, &j); err != nil {
 		return nil, errors.Wrapf(err, "failed to parse judgement %q", termID)
 	}

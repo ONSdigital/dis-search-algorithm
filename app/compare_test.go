@@ -12,10 +12,10 @@ import (
 // algorithm-major order evaluateTerms produces.
 func comparisonFixture() []termEvaluation {
 	return []termEvaluation{
-		{Algorithm: algorithm.SearchAlgorithmBaseline, Term: term{ID: docNameCPI}, NDCG: 0.8},
-		{Algorithm: algorithm.SearchAlgorithmBaseline, Term: term{ID: docNameGrowth}, NDCG: 0.6},
-		{Algorithm: algorithm.SearchAlgorithmUnweighted, Term: term{ID: docNameCPI}, NDCG: 0.5},
-		{Algorithm: algorithm.SearchAlgorithmUnweighted, Term: term{ID: docNameGrowth}, NDCG: 0.1},
+		{Algorithm: algorithm.SearchAlgorithmBaseline, Term: Term{ID: termIDCPI}, NDCG: 0.8},
+		{Algorithm: algorithm.SearchAlgorithmBaseline, Term: Term{ID: termIDGrowth}, NDCG: 0.6},
+		{Algorithm: algorithm.SearchAlgorithmUnweighted, Term: Term{ID: termIDCPI}, NDCG: 0.5},
+		{Algorithm: algorithm.SearchAlgorithmUnweighted, Term: Term{ID: termIDGrowth}, NDCG: 0.1},
 	}
 }
 
@@ -35,7 +35,7 @@ func TestSummariseEvaluations(t *testing.T) {
 
 	Convey("Given evaluations for a single algorithm", t, func() {
 		evaluations := []termEvaluation{
-			{Algorithm: algorithm.SearchAlgorithmUnweighted, Term: term{ID: docNameCPI}, NDCG: 0.25},
+			{Algorithm: algorithm.SearchAlgorithmUnweighted, Term: Term{ID: termIDCPI}, NDCG: 0.25},
 		}
 
 		Convey("When the evaluations are summarised", func() {
@@ -70,7 +70,7 @@ func TestWriteComparisonTable(t *testing.T) {
 			Convey("Then it should render an NDCG row per term and a mean NDCG row", func() {
 				So(err, ShouldBeNil)
 				So(output.String(), ShouldEqual, ""+
-					"query_id         baseline   unweighted\n"+
+					"term_id          baseline   unweighted\n"+
 					"cpi-latest         0.8000       0.5000\n"+
 					"growth-dataset     0.6000       0.1000\n"+
 					"--------------------------------------\n"+
@@ -82,7 +82,7 @@ func TestWriteComparisonTable(t *testing.T) {
 	Convey("Given evaluations for a single algorithm", t, func() {
 		var output bytes.Buffer
 		evaluations := []termEvaluation{
-			{Algorithm: algorithm.SearchAlgorithmBaseline, Term: term{ID: docNameCPI}, NDCG: 0.5},
+			{Algorithm: algorithm.SearchAlgorithmBaseline, Term: Term{ID: termIDCPI}, NDCG: 0.5},
 		}
 
 		Convey("When the comparison table is written", func() {
@@ -91,7 +91,7 @@ func TestWriteComparisonTable(t *testing.T) {
 			Convey("Then it should render a single algorithm column", func() {
 				So(err, ShouldBeNil)
 				So(output.String(), ShouldEqual, ""+
-					"query_id     baseline\n"+
+					"term_id      baseline\n"+
 					"cpi-latest     0.5000\n"+
 					"---------------------\n"+
 					"mean NDCG      0.5000\n")

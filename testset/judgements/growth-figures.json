@@ -1,5 +1,5 @@
 {
-  "query_id": "growth-figures",
+  "term_id": "growth-figures",
   "judgements": [
     { "doc_id": "growth-dataset", "relevance": 4 },
     { "doc_id": "cpi-latest", "relevance": 2 },

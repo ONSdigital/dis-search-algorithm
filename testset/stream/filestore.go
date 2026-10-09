@@ -172,3 +172,20 @@ func (s *FileStore[T]) Put(_ context.Context, id string, item T) error {
 
 	return nil
 }
+
+// Delete removes the item stored under id from the write directory.
+func (s *FileStore[T]) Delete(_ context.Context, id string) error {
+	if s.writeDir == "" {
+		return errors.Errorf("store is read-only: cannot delete item %q", id)
+	}
+
+	if id == "" || id == "." || id == ".." || strings.ContainsAny(id, `/\\`) {
+		return errors.Errorf("invalid item id %q", id)
+	}
+
+	if err := os.Remove(filepath.Join(s.writeDir, id+".json")); err != nil {
+		return errors.Wrapf(err, "failed to delete item %q", id)
+	}
+
+	return nil
+}

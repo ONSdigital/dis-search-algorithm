@@ -65,7 +65,7 @@ type termEvaluation struct {
 // is loaded once, so evaluating another algorithm costs only its searches and
 // not a second pass over the fixtures or another wait for the index.
 type evaluationContext struct {
-	documentByID    map[string]documentMetadata
+	documentByID    map[string]Document
 	corpusSize      int
 	terms           []Term
 	relevanceByTerm map[string]map[string]int // term id -> document id -> relevance
@@ -238,10 +238,10 @@ func evaluateTerm(ctx context.Context, esClient dpEsClient.Client, builder algor
 	}, nil
 }
 
-func buildDocumentMetadata(documents []stream.Item) (map[string]documentMetadata, error) {
-	documentByID := make(map[string]documentMetadata, len(documents))
+func buildDocumentMetadata(documents []stream.Item) (map[string]Document, error) {
+	documentByID := make(map[string]Document, len(documents))
 	for _, item := range documents {
-		var document documentMetadata
+		var document Document
 		if err := json.Unmarshal(item.Body, &document); err != nil {
 			return nil, errors.Wrapf(err, "failed to parse document %q", item.Name)
 		}

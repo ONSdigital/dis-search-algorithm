@@ -8,12 +8,14 @@ import (
 
 	"github.com/ONSdigital/dis-search-algorithm/algorithm"
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
+	fileStoreMocks "github.com/ONSdigital/dis-search-algorithm/testset/stream/mocks"
 	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
+	"github.com/pkg/errors"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
-func TestEvaluateTermsFullCorpus(t *testing.T) {
+func TestEvaluateTermsFullStore(t *testing.T) {
 	Convey("Given two documents, one term, and one stored judgement", t, func() {
 		documents := []stream.Item{
 			{Name: docNameCPI, Body: []byte(`{"title":"CPI","uri":"/cpi"}`)},
@@ -28,10 +30,28 @@ func TestEvaluateTermsFullCorpus(t *testing.T) {
 				Body: []byte(`{"term_id":"cpi-latest","judgements":[{"doc_id":"cpi-latest","relevance":4}]}`),
 			},
 		}
+		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+				return documents, nil
+			},
+		}
+		fakeTermsStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+				return terms, nil
+			},
+		}
+		fakeJudgementStore := &fileStoreMocks.StreamMock[stream.Item]{GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+			item, ok := judgements[id]
+			if !ok {
+				return stream.Item{}, errors.New("not found")
+			}
+			return item, nil
+		}}
+
 		app := &App{
-			Documents:  fakeStore{items: documents},
-			Terms:      fakeStore{items: terms},
-			Judgements: fakeStore{itemsByID: judgements},
+			Documents:  fakeDocumentStore,
+			Terms:      fakeTermsStore,
+			Judgements: fakeJudgementStore,
 		}
 		mockClient := &dpEsClientMock.ClientMock{
 			CountIndicesFunc: func(context.Context, []string) ([]byte, error) {
@@ -46,7 +66,7 @@ func TestEvaluateTermsFullCorpus(t *testing.T) {
 			evaluations, err := app.evaluateTerms(context.Background(), mockClient,
 				[]algorithm.SearchAlgorithm{algorithm.SearchAlgorithmBaseline})
 
-			Convey("Then the query should request the full document corpus", func() {
+			Convey("Then the query should request the full document store", func() {
 				So(err, ShouldBeNil)
 				calls := mockClient.MultiSearchCalls()
 				So(calls, ShouldHaveLength, 1)
@@ -109,10 +129,29 @@ func TestEvaluateTermsMultipleAlgorithms(t *testing.T) {
 				Body: []byte(`{"term_id":"growth-dataset","judgements":[{"doc_id":"growth-dataset","relevance":3}]}`),
 			},
 		}
+
+		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+				return documents, nil
+			},
+		}
+		fakeTermsStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+				return terms, nil
+			},
+		}
+		fakeJudgementStore := &fileStoreMocks.StreamMock[stream.Item]{GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+			item, ok := judgements[id]
+			if !ok {
+				return stream.Item{}, errors.New("not found")
+			}
+			return item, nil
+		}}
+
 		app := &App{
-			Documents:  fakeStore{items: documents},
-			Terms:      fakeStore{items: terms},
-			Judgements: fakeStore{itemsByID: judgements},
+			Documents:  fakeDocumentStore,
+			Terms:      fakeTermsStore,
+			Judgements: fakeJudgementStore,
 		}
 		mockClient := &dpEsClientMock.ClientMock{
 			CountIndicesFunc: func(context.Context, []string) ([]byte, error) {
@@ -175,9 +214,9 @@ func TestEvaluateTermsMultipleAlgorithms(t *testing.T) {
 
 	Convey("Given no algorithms to evaluate", t, func() {
 		app := &App{
-			Documents:  fakeStore{},
-			Terms:      fakeStore{},
-			Judgements: fakeStore{},
+			Documents:  &fileStoreMocks.StreamMock[stream.Item]{},
+			Terms:      &fileStoreMocks.StreamMock[stream.Item]{},
+			Judgements: &fileStoreMocks.StreamMock[stream.Item]{},
 		}
 
 		Convey("When the terms are evaluated", func() {

@@ -60,7 +60,7 @@ mean NDCG          0.4115       0.4115
 
 ### export
 
-Run the same evaluation with the baseline algorithm and write each ranked result with its current judgement to a CSV (needs Docker). The CSV has no algorithm column, so the export is single-algorithm. The output path is required:
+Outputs the stored judgements for updates to relevancy.
 
 ```sh
 go run . export judgements -o results.csv
@@ -68,7 +68,7 @@ go run . export judgements -o results.csv
 
 ### import
 
-Read a re-scored CSV in the export format and merge the new grades back into the judgements (no Docker). The input path is required:
+Read a re-scored CSV in the export format. The input path is required:
 
 ```sh
 go run . import judgements -i results.csv

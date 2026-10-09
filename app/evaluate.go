@@ -20,29 +20,6 @@ const (
 	searchablePollWait = 250 * time.Millisecond
 )
 
-// term is the decoded body of a testset/terms fixture.
-type term struct {
-	ID    string `json:"id"`
-	Query string `json:"query"`
-}
-
-// judgement is the decoded body of a testset/judgements fixture: the relevance
-// answer key for a single term.
-type judgement struct {
-	QueryID    string           `json:"query_id"`
-	Judgements []judgementEntry `json:"judgements"`
-}
-
-type judgementEntry struct {
-	DocID     string `json:"doc_id"`
-	Relevance int    `json:"relevance"`
-}
-
-type documentMetadata struct {
-	Title string `json:"title"`
-	URI   string `json:"uri"`
-}
-
 type evaluatedHit struct {
 	DocumentID string
 	Rank       int

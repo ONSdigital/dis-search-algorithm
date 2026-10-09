@@ -53,6 +53,15 @@ func Celebrate(format string, args ...interface{}) {
 	fmt.Println()
 }
 
+// Pluralise returns a string with
+// the number and the pluralised term.
+func Pluralise(term string, number int) string {
+	if number != 1 {
+		term += "s"
+	}
+	return fmt.Sprintf("%d %s", number, term)
+}
+
 func repeatChar(char string, count int) string {
 	result := ""
 	for i := 0; i < count; i++ {

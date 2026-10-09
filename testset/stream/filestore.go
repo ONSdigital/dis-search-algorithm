@@ -19,6 +19,12 @@ const (
 	itemFileMode = 0o644 // rw-r--r-- - individual test-data files
 )
 
+var (
+	// ErrItemNotFound is returned when a requested item
+	// cannot be found in the store.
+	ErrItemNotFound = errors.New("item not found")
+)
+
 // Codec maps a stored item of type T to and from the raw bytes of its file.
 //
 // It lets a single [FileStore] serve entities whose file representation
@@ -100,6 +106,9 @@ func (s *FileStore[T]) Get(_ context.Context, id string) (T, error) {
 
 	fileBytes, err := fs.ReadFile(s.readFS, path.Join(s.readDir, id+".json"))
 	if err != nil {
+		if errors.Is(err, fs.ErrNotExist) {
+			return zero, ErrItemNotFound
+		}
 		return zero, errors.Wrapf(err, "failed to read item %q", id)
 	}
 

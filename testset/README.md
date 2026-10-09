@@ -14,7 +14,7 @@ relevant … 4 = perfect match).
 
 ## Layout
 
-```
+```txt
 testset/
   documents/
     cpi-latest.json                       # one file per document; filename == document id
@@ -39,9 +39,9 @@ testset/
 `Judgement` is the link between a `Term` and a `Document`. Relevance is a property
 of the **pair**, not of either side alone — so it lives on the judgement.
 
-```
+```txt
   TERM   ──< judged by >──  JUDGEMENT  ──< about >──  DOCUMENT
-  (what      query_id ────────┘    └──────── doc_id    (what was
+  (what      term_id ────────┘    └──────── doc_id    (what was
    we                                                    returned)
    searched)
 ```
@@ -49,18 +49,20 @@ of the **pair**, not of either side alone — so it lives on the judgement.
 - A **term** can have many judgements (one per document scored for it).
 - A **document** can appear in many terms' judgements (it's a shared pool —
   stored once, referenced by id).
-- A **judgement** points at exactly one term (`query_id`) and one document
+- A **judgement** points at exactly one term (`term_id`) and one document
   (`doc_id`) and carries the `relevance` grade.
 
 Join keys:
+
 - `judgements[*].doc_id`   → `documents[*].id`
-- a judgement file's `query_id` → `terms[*].id`
+- a judgement file's `term_id` → `terms[*].id`
 
 ### What each file shows
 
 **`documents/<id>.json`** — one searchable page, mirroring our prod search index
 schema (`EsModel`). `id` is a field used as the filename and join key;
 the prod index itself identifies items by `uri`.
+
 ```json
 {
   "id": "cpi-latest",
@@ -91,6 +93,7 @@ the prod index itself identifies items by `uri`.
 **`terms/<id>.json`** — one search we evaluate. Describes the user's intent.
 `id` is a plain slug used as the filename and as the join key. `query` is the
 raw search term(s) as a user would type them into `ons.gov.uk/search`.
+
 ```json
 {
   "id": "cpi-latest",
@@ -117,6 +120,7 @@ by `term_id`; each entry references a document and its grade.
 ## Adding to the test set
 
 ### Add a document
+
 1. Create `documents/<id>.json` matching the prod index schema (`EsModel` —
    `type`, `uri`, `keywords`, `summary`, `title`, `topics`, `release_date`, etc.),
    plus a top-level `id` used as the join key.
@@ -125,12 +129,14 @@ by `term_id`; each entry references a document and its grade.
    references it.
 
 ### Add a term
+
 1. Create `terms/<id>.json` with `id`, `term`, `description`. `term` is the
    raw search term(s) (e.g. `cpi latest`); `id` is a plain slug.
 2. Create the matching `judgements/<id>.json` (see below). A term with no
    judgements cannot be scored.
 
 ### Add / change a judgement
+
 1. Open the term's file in `judgements/` (or create it: `{ "term_id": "...", "judgements": [] }`).
 2. Add `{ "doc_id": "<existing document id>", "relevance": <0-4> }`.
 3. The `doc_id` **must** already exist in `documents/` — no dangling references.

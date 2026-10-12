@@ -24,7 +24,7 @@ const (
 )
 
 // importSummary counts the outcome of an import, for logging.
-type judgementImportSummary struct {
+type importSummary struct {
 	Skipped int // rows skipped because they are not valid judgements
 	Updated int // judgement files whose contents changed
 }
@@ -47,6 +47,22 @@ type TermJudgement struct {
 	Judgement Judgement
 	Document  Document
 	Term      Term
+}
+
+// GetTermJudgements retrieves all judgements for a
+// given term ID from the store.
+// It returns the term judgements and any error encountered.
+func (a *App) GetTermJudgements(ctx context.Context, id string) (TermJudgements, error) {
+	var judgement TermJudgements
+	rawJudgement, err := a.Judgements.Get(ctx, id)
+	if err != nil {
+		return TermJudgements{}, err
+	}
+	err = json.Unmarshal(rawJudgement.Body, &judgement)
+	if err != nil {
+		return TermJudgements{}, err
+	}
+	return judgement, nil
 }
 
 // ImportJudgements reads re-scored relevance judgements
@@ -109,7 +125,7 @@ func (a *App) ExportJudgements(ctx context.Context, outputPath string) error {
 // importCSV is the io.Reader core of Import (mirrors writeEvaluationsCSV). It
 // is split out so the import can be tested without a file on disk.
 func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []TermJudgement) error {
-	var summary judgementImportSummary
+	var summary importSummary
 
 	existingJudgements, err := a.existingJudgements(ctx)
 	if err != nil {

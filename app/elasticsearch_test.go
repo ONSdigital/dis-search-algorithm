@@ -32,6 +32,9 @@ func TestLoadStore(t *testing.T) {
 					AddDocumentFunc: func(ctx context.Context, indexName, documentID string, document []byte, opts *dpEsClient.AddDocumentOptions) error {
 						return nil
 					},
+					CountIndicesFunc: func(ctx context.Context, indices []string) ([]byte, error) {
+						return []byte(`{"count":2}`), nil
+					},
 				}
 
 				fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
@@ -118,6 +121,9 @@ func TestLoadStores(t *testing.T) {
 			AddDocumentFunc: func(ctx context.Context, indexName, documentID string, document []byte, opts *dpEsClient.AddDocumentOptions) error {
 				return nil
 			},
+			CountIndicesFunc: func(ctx context.Context, indices []string) ([]byte, error) {
+				return []byte(`{"count":2}`), nil
+			},
 		}
 
 		Convey("When loadStores is called", func() {
@@ -177,6 +183,9 @@ func TestLoadIndexes(t *testing.T) {
 		mockClient := &dpEsClientMock.ClientMock{
 			CreateIndexFunc: func(ctx context.Context, indexName string, indexSettings []byte) error {
 				return nil
+			},
+			CountIndicesFunc: func(ctx context.Context, indices []string) ([]byte, error) {
+				return []byte(`{"count":2}`), nil
 			},
 		}
 		app := &App{}

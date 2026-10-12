@@ -119,5 +119,9 @@ func (a *App) loadStore(ctx context.Context, esClient dpEsClient.Client, store s
 	}
 
 	ui.Info("loaded %d %ss into index %s", len(items), label, indexName)
+
+	if err := a.waitForSearchable(ctx, esClient, indexName, len(items)); err != nil {
+		return err
+	}
 	return nil
 }

@@ -66,6 +66,12 @@ Outputs the stored judgements for updates to relevancy.
 go run . export judgements -o results.csv
 ```
 
+We can also export the current 'terms':
+
+```sh
+go run . export terms -o terms.csv
+```
+
 ### import
 
 Read a re-scored CSV in the export format and replace the stored judgements with it. Judgement files for terms omitted from the CSV are deleted. The input path is required:

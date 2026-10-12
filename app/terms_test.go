@@ -83,3 +83,72 @@ func TestGetTerm(t *testing.T) {
 		})
 	})
 }
+
+func TestGetTerms(t *testing.T) {
+	Convey("Given a term store containing valid term JSON", t, func() {
+		ctx := context.Background()
+		items := []stream.Item{
+			{Name: "employment", Body: []byte(`{"id":"employment","term":"jobs","description":"Employment data"}`)},
+			{Name: "prices", Body: []byte(`{"id":"prices","term":"inflation","description":"Price data"}`)},
+		}
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(_ context.Context) ([]stream.Item, error) {
+				return items, nil
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When GetTerms is called", func() {
+			got, err := app.GetTerms(ctx)
+
+			Convey("Then it should return every decoded term", func() {
+				So(err, ShouldBeNil)
+				So(got, ShouldResemble, []Term{
+					{ID: "employment", Value: "jobs", Description: "Employment data"},
+					{ID: "prices", Value: "inflation", Description: "Price data"},
+				})
+				So(store.ListCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
+
+	Convey("Given the term store fails to list", t, func() {
+		storeErr := errors.New("term store unavailable")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) {
+				return nil, storeErr
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When GetTerms is called", func() {
+			got, err := app.GetTerms(context.Background())
+
+			Convey("Then it should return a wrapped list error", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, "failed to list terms")
+				So(err.Error(), ShouldContainSubstring, storeErr.Error())
+				So(got, ShouldBeNil)
+			})
+		})
+	})
+
+	Convey("Given the term store contains malformed JSON", t, func() {
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) {
+				return []stream.Item{{Name: "broken-term", Body: []byte(`{"id":`)}}, nil
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When GetTerms is called", func() {
+			got, err := app.GetTerms(context.Background())
+
+			Convey("Then it should report which term could not be parsed", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, `failed to parse term "broken-term"`)
+				So(got, ShouldBeNil)
+			})
+		})
+	})
+}

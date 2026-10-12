@@ -68,7 +68,7 @@ go run . export judgements -o results.csv
 
 ### import
 
-Read a re-scored CSV in the export format. The input path is required:
+Read a re-scored CSV in the export format and replace the stored judgements with it. Judgement files for terms omitted from the CSV are deleted. The input path is required:
 
 ```sh
 go run . import judgements -i results.csv

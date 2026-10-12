@@ -18,7 +18,6 @@ const (
 	minRelevance = 0
 	maxRelevance = 4
 
-	csvColumnDocumentID       = "doc_id"
 	csvColumnCurrentRelevance = "current_relevance"
 	csvColumnTitle            = "title"
 	csvColumnURI              = "uri"

@@ -72,6 +72,12 @@ We can also export the current 'terms':
 go run . export terms -o terms.csv
 ```
 
+We can also export the current 'documents':
+
+```sh
+go run . export documents -o documents.csv
+```
+
 ### import
 
 Read a re-scored CSV in the export format and replace the stored judgements with it. Judgement files for terms omitted from the CSV are deleted. The input path is required:

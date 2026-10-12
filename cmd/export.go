@@ -22,6 +22,7 @@ func exportCommand() (*cobra.Command, error) {
 	}
 	exportCmd.AddCommand(exportJudgementsCommand(&outputPath))
 	exportCmd.AddCommand(exportTermsCommand(&outputPath))
+	exportCmd.AddCommand(exportDocumentsCommand(&outputPath))
 
 	return exportCmd, nil
 }
@@ -44,6 +45,17 @@ func exportTermsCommand(outputPath *string) *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			return app.New().ExportTerms(cmd.Context(), *outputPath)
+		},
+	}
+}
+
+func exportDocumentsCommand(outputPath *string) *cobra.Command {
+	return &cobra.Command{
+		Use:   "documents",
+		Short: "Export documents and their metadata",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			return app.New().ExportDocuments(cmd.Context(), *outputPath)
 		},
 	}
 }

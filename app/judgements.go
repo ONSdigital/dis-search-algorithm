@@ -116,12 +116,6 @@ func (a *App) ExportJudgements(ctx context.Context, outputPath string) error {
 func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []TermJudgement) error {
 	var summary judgementImportSummary
 
-	knownDocIDs, err := a.knownDocumentIDs(ctx)
-	if err != nil {
-		return err
-	}
-	ui.Info("loaded %s from the store", ui.Pluralise("document", len(knownDocIDs)))
-
 	existingJudgements, err := a.existingJudgements(ctx)
 	if err != nil {
 		return err
@@ -246,36 +240,27 @@ func (a *App) buildTermJudgementRows(ctx context.Context, termJudgement TermJudg
 }
 
 func (a *App) validateTermJudgement(ctx context.Context, judgement TermJudgement) (bool, error) {
-	knownDocumentIDs, err := a.knownDocumentIDs(ctx)
+	_, err := a.GetDocument(ctx, judgement.Document.ID)
 	if err != nil {
+		if errors.Is(err, stream.ErrItemNotFound) {
+			return false, nil
+		}
 		return false, err
-	}
-	_, exists := knownDocumentIDs[judgement.Document.ID]
-	if !exists {
-		return false, nil
 	}
 
 	if judgement.Judgement.Relevance < minRelevance || judgement.Judgement.Relevance > maxRelevance {
 		return false, nil
 	}
 
-	// TODO: This should validate the term too.
+	_, err = a.GetTerm(ctx, judgement.Term.ID)
+	if err != nil {
+		if errors.Is(err, stream.ErrItemNotFound) {
+			return false, nil
+		}
+		return false, err
+	}
 
 	return true, nil
-}
-
-// knownDocumentIDs returns the set of document ids in the corpus, used to
-// reject judgements that reference a document not in the data set.
-func (a *App) knownDocumentIDs(ctx context.Context) (map[string]struct{}, error) {
-	documents, err := a.Documents.List(ctx)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to list documents")
-	}
-	known := make(map[string]struct{}, len(documents))
-	for _, item := range documents {
-		known[item.Name] = struct{}{}
-	}
-	return known, nil
 }
 
 // existingJudgements loads the current judgements

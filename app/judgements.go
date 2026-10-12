@@ -18,8 +18,6 @@ const (
 	minRelevance = 0
 	maxRelevance = 4
 
-	csvColumnTermID           = "term_id"
-	csvColumnTerm             = "term"
 	csvColumnDocumentID       = "doc_id"
 	csvColumnCurrentRelevance = "current_relevance"
 	csvColumnTitle            = "title"

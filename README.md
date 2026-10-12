@@ -66,6 +66,12 @@ Run the same evaluation with the baseline algorithm and write each ranked result
 go run . export judgements -o results.csv
 ```
 
+We can also export the current 'terms':
+
+```sh
+go run . export terms -o terms.csv
+```
+
 ### import
 
 Read a re-scored CSV in the export format and merge the new grades back into the judgements (no Docker). The input path is required:

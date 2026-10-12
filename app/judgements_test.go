@@ -39,6 +39,75 @@ func judgementItem(termID string, entries ...Judgement) stream.Item {
 	return stream.Item{Name: termID, Body: body}
 }
 
+func TestGetTermJudgements(t *testing.T) {
+	Convey("Given a term's judgements stored as JSON", t, func() {
+		ctx := context.Background()
+		const termID = "term-employment"
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(gotCtx context.Context, gotID string) (stream.Item, error) {
+				return stream.Item{
+					Name: termID,
+					Body: []byte(`{"term_id":"term-employment","judgements":[{"doc_id":"document-123","relevance":4},{"doc_id":"document-456","relevance":2}]}`),
+				}, nil
+			},
+		}
+		app := &App{Judgements: store}
+
+		Convey("When GetTermJudgements is called", func() {
+			got, err := app.GetTermJudgements(ctx, termID)
+
+			Convey("Then it should return the decoded term and all its judgements", func() {
+				So(err, ShouldBeNil)
+				So(got, ShouldResemble, TermJudgements{
+					TermID: termID,
+					Judgements: []Judgement{
+						{DocID: "document-123", Relevance: 4},
+						{DocID: "document-456", Relevance: 2},
+					},
+				})
+				So(store.GetCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
+
+	Convey("Given the judgement store returns an error", t, func() {
+		storeErr := errors.New("judgement store unavailable")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, storeErr
+			},
+		}
+		app := &App{Judgements: store}
+
+		Convey("When GetTermJudgements is called", func() {
+			got, err := app.GetTermJudgements(context.Background(), "term-employment")
+
+			Convey("Then it should return the store error", func() {
+				So(err, ShouldEqual, storeErr)
+				So(got, ShouldResemble, TermJudgements{})
+			})
+		})
+	})
+
+	Convey("Given the judgement store returns malformed JSON", t, func() {
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Body: []byte(`{"doc_id":`)}, nil
+			},
+		}
+		app := &App{Judgements: store}
+
+		Convey("When GetTermJudgements is called", func() {
+			got, err := app.GetTermJudgements(context.Background(), "term-employment")
+
+			Convey("Then it should return a JSON decoding error", func() {
+				So(err, ShouldNotBeNil)
+				So(got, ShouldResemble, TermJudgements{})
+			})
+		})
+	})
+}
+
 func TestBuildTermJudgements(t *testing.T) {
 	Convey("Given items that mix documents", t, func() {
 		termJudgements := []TermJudgement{

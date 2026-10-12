@@ -16,6 +16,13 @@ const (
 	testExportQuery = "cpi, latest"
 )
 
+var (
+	testTerms = []stream.Item{
+		{Name: termIDCPI, Body: []byte(`{"id":"cpi-latest"}`)},
+		{Name: termIDGrowth, Body: []byte(`{"id":"growth-dataset"}`)},
+	}
+)
+
 func TestGetTerm(t *testing.T) {
 	Convey("Given a term stored as JSON", t, func() {
 		ctx := context.Background()

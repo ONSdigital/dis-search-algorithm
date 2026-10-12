@@ -29,16 +29,6 @@ const (
 	csvHeader          = "term_id,query,doc_id,current_relevance,title,uri"
 )
 
-// documentItems builds a corpus of documents identified only by id (import only
-// reads the ids).
-func documentItems(ids ...string) []stream.Item {
-	items := make([]stream.Item, 0, len(ids))
-	for _, id := range ids {
-		items = append(items, stream.Item{Name: id, Body: []byte(`{}`)})
-	}
-	return items
-}
-
 // judgementItem builds a stored judgement item for the Judgements fake store,
 // serialised independently of the code under test.
 func judgementItem(termID string, entries ...Judgement) stream.Item {
@@ -113,16 +103,21 @@ func TestBuildTermJudgements(t *testing.T) {
 
 func TestValidateJudgements(t *testing.T) {
 	Convey("Given a valid judgement", t, func() {
-		existingDocuments := documentItems(docNameCPI)
-
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
-			ListFunc: func(context.Context) ([]stream.Item, error) {
-				return existingDocuments, nil
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return testDocuments[0], nil
+			},
+		}
+
+		fakeTermStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return testTerms[0], nil
 			},
 		}
 
 		app := &App{
 			Documents: fakeDocStore,
+			Terms:     fakeTermStore,
 		}
 
 		validJudgement := TermJudgement{
@@ -142,11 +137,9 @@ func TestValidateJudgements(t *testing.T) {
 	})
 
 	Convey("Given a judgement with an invalid relevance", t, func() {
-		existingDocuments := documentItems(docNameCPI)
-
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
-			ListFunc: func(context.Context) ([]stream.Item, error) {
-				return existingDocuments, nil
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return testDocuments[0], nil
 			},
 		}
 
@@ -171,16 +164,55 @@ func TestValidateJudgements(t *testing.T) {
 	})
 
 	Convey("Given a judgement with an invalid document", t, func() {
-		existingDocuments := documentItems(docNameCPI)
-
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
-			ListFunc: func(context.Context) ([]stream.Item, error) {
-				return existingDocuments, nil
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+		}
+
+		fakeTermStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return testTerms[0], nil
 			},
 		}
 
 		app := &App{
 			Documents: fakeDocStore,
+			Terms:     fakeTermStore,
+		}
+
+		invalidJudgement := TermJudgement{
+			Term:      Term{ID: termIDCPI},
+			Document:  Document{ID: "invalid-doc"},
+			Judgement: Judgement{DocID: "invalid-doc", Relevance: 3},
+		}
+
+		Convey("When the judgement is validated", func() {
+			isValid, err := app.validateTermJudgement(context.Background(), invalidJudgement)
+
+			Convey("Then the judgement is invalid", func() {
+				So(err, ShouldBeNil)
+				So(isValid, ShouldBeFalse)
+			})
+		})
+	})
+
+	Convey("Given a judgement with an invalid term ID", t, func() {
+		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return testDocuments[0], nil
+			},
+		}
+
+		fakeTermStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+		}
+
+		app := &App{
+			Documents: fakeDocStore,
+			Terms:     fakeTermStore,
 		}
 
 		invalidJudgement := TermJudgement{
@@ -202,8 +234,6 @@ func TestValidateJudgements(t *testing.T) {
 
 func TestImportJudgementsToStore(t *testing.T) {
 	Convey("Given there are existing documents and a judgement", t, func() {
-		existingDocuments := documentItems(docNameCPI, docNameGrowth, docNameAccountancy)
-
 		existingJudgement := judgementItem(termIDCPI,
 			Judgement{DocID: docNameCPI, Relevance: 4},
 			Judgement{DocID: docNameAccountancy, Relevance: 1},
@@ -211,8 +241,11 @@ func TestImportJudgementsToStore(t *testing.T) {
 		)
 
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
-			ListFunc: func(context.Context) ([]stream.Item, error) {
-				return existingDocuments, nil
+			GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+				if id == orphanDocID {
+					return stream.Item{}, stream.ErrItemNotFound
+				}
+				return testDocuments[0], nil
 			},
 		}
 
@@ -228,9 +261,19 @@ func TestImportJudgementsToStore(t *testing.T) {
 			},
 		}
 
+		fakeTermStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+				if id == orphanDocID {
+					return stream.Item{}, stream.ErrItemNotFound
+				}
+				return testTerms[0], nil
+			},
+		}
+
 		app := &App{
 			Documents:  fakeDocStore,
 			Judgements: fakeJudgementStore,
+			Terms:      fakeTermStore,
 		}
 
 		Convey("When a matching judgements are imported", func() {
@@ -317,7 +360,7 @@ func TestImportJudgementsToStore(t *testing.T) {
 			})
 		})
 
-		Convey("When a judgement references a document not in the corpus", func() {
+		Convey("When a judgement references a document not in the store", func() {
 			err := app.importJudgementsToStore(context.Background(), []TermJudgement{
 				{
 					Judgement: Judgement{
@@ -328,20 +371,20 @@ func TestImportJudgementsToStore(t *testing.T) {
 						ID: docNameCPI,
 					},
 					Term: Term{
-						ID:    "cpi-latest",
+						ID:    termIDCPI,
 						Value: "cpi latest",
 					},
 				},
 				{
 					Judgement: Judgement{
-						DocID:     "unknown-doc",
+						DocID:     orphanDocID,
 						Relevance: 4,
 					},
 					Document: Document{
-						ID: "unknown-doc",
+						ID: orphanDocID,
 					},
 					Term: Term{
-						ID:    "cpi-latest",
+						ID:    termIDCPI,
 						Value: "cpi latest",
 					},
 				},
@@ -365,7 +408,7 @@ func TestImportJudgementsToStore(t *testing.T) {
 						ID: docNameCPI,
 					},
 					Term: Term{
-						ID:    "cpi-latest",
+						ID:    termIDCPI,
 						Value: "cpi latest",
 					},
 				},
@@ -381,12 +424,56 @@ func TestImportJudgementsToStore(t *testing.T) {
 		})
 	})
 
-	Convey("Given the judgement store fails to write", t, func() {
-		existingDocuments := documentItems(docNameCPI, docNameGrowth, docNameAccountancy)
-
+	Convey("Given the document store fails to get a document", t, func() {
 		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
-			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
-				return existingDocuments, nil
+			GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+				return stream.Item{}, errors.New(errDiskError)
+			},
+		}
+
+		existingJudgement := judgementItem(termIDCPI,
+			Judgement{DocID: docNameCPI, Relevance: 4},
+			Judgement{DocID: docNameAccountancy, Relevance: 1},
+			Judgement{DocID: docNameGrowth, Relevance: 2},
+		)
+
+		app := &App{
+			Documents: fakeDocumentStore,
+			Judgements: &fileStoreMocks.StreamMock[stream.Item]{
+				ListFunc: func(ctx context.Context) ([]stream.Item, error) {
+					return []stream.Item{existingJudgement}, nil
+				},
+			},
+		}
+
+		Convey("When judgements are imported", func() {
+			err := app.importJudgementsToStore(context.Background(), []TermJudgement{
+				{
+					Judgement: Judgement{
+						DocID:     orphanDocID,
+						Relevance: 4,
+					},
+					Document: Document{
+						ID: orphanDocID,
+					},
+					Term: Term{
+						ID:    termIDCPI,
+						Value: "cpi latest",
+					},
+				},
+			})
+
+			Convey("Then the error is wrapped and surfaced", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, errDiskError)
+			})
+		})
+	})
+
+	Convey("Given the judgement store fails to write", t, func() {
+		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+				return testDocuments[0], nil
 			},
 		}
 
@@ -402,23 +489,30 @@ func TestImportJudgementsToStore(t *testing.T) {
 			},
 		}
 
+		fakeTermStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
+				return testTerms[0], nil
+			},
+		}
+
 		app := &App{
 			Documents:  fakeDocumentStore,
 			Judgements: fakeJudgementStore,
+			Terms:      fakeTermStore,
 		}
 
 		Convey("When an import would change a judgement", func() {
 			err := app.importJudgementsToStore(context.Background(), []TermJudgement{
 				{
 					Judgement: Judgement{
-						DocID:     "cpi-latest",
+						DocID:     docNameCPI,
 						Relevance: 3,
 					},
 					Document: Document{
-						ID: "cpi-latest",
+						ID: docNameCPI,
 					},
 					Term: Term{
-						ID:    "cpi-latest",
+						ID:    termIDCPI,
 						Value: "cpi latest",
 					},
 				},

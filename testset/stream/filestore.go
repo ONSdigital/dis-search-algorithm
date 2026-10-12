@@ -107,7 +107,7 @@ func (s *FileStore[T]) Get(_ context.Context, id string) (T, error) {
 	fileBytes, err := fs.ReadFile(s.readFS, path.Join(s.readDir, id+".json"))
 	if err != nil {
 		if errors.Is(err, fs.ErrNotExist) {
-			return zero, ErrItemNotFound
+			return zero, errors.Wrapf(ErrItemNotFound, "item %q", id)
 		}
 		return zero, errors.Wrapf(err, "failed to read item %q", id)
 	}

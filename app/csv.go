@@ -41,9 +41,14 @@ func (c *CSV[T]) WriteCSV(path string, records []T) error {
 	if err != nil {
 		return err
 	}
-	defer file.Close()
-
-	return c.writeCSVData(file, records)
+	if err := c.writeCSVData(file, records); err != nil {
+		_ = file.Close()
+		return err
+	}
+	if err := file.Close(); err != nil {
+		return errors.Wrap(err, "failed to close export file")
+	}
+	return nil
 }
 
 // ReadCSV reads the CSV file at the specified
@@ -101,12 +106,14 @@ func (c *CSV[T]) readFile(path string) ([][]string, error) {
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to open CSV file")
 	}
-	defer file.Close()
 
 	reader := csv.NewReader(file)
 	records, err := reader.ReadAll()
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to read CSV file")
+	}
+	if err := file.Close(); err != nil {
+		return nil, errors.Wrap(err, "failed to close CSV file")
 	}
 	return records, nil
 }

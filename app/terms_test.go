@@ -11,9 +11,8 @@ import (
 )
 
 const (
-	termIDCPI       = "cpi-latest"
-	termIDGrowth    = "growth-dataset"
-	testExportQuery = "cpi, latest"
+	termIDCPI    = "cpi-latest"
+	termIDGrowth = "growth-dataset"
 )
 
 func TestGetTerm(t *testing.T) {

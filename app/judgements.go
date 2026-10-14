@@ -25,8 +25,8 @@ const (
 
 // importSummary counts the outcome of an import, for logging.
 type importSummary struct {
-	Skipped int // rows skipped because they are not valid judgements
-	Updated int // judgement files whose contents changed
+	Skipped int // rows skipped because they are not valid
+	Updated int // rows that have caused an update
 }
 
 // TermJudgements groups all judgements for a single term.

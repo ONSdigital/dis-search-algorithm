@@ -101,38 +101,42 @@ func (a *App) getMatchingDocumentsForTerm(ctx context.Context, esClient dpEsClie
 		return nil, errors.Wrapf(err, "failed to get request builder for algorithm %q", algo)
 	}
 
-	searches, err := builder.BuildRequest(ctx, &algorithm.SearchParameters{
-		Term:  term.Value,
-		Index: indexNameDocuments,
-		From:  0,
-		Size:  100, // default corpus size, replace with actual value if needed
-	})
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to build search request for term %q with algorithm %q", term.ID, algo)
-	}
-
-	raw, err := esClient.MultiSearch(ctx, searches, nil)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to query term %q with algorithm %q", term.ID, algo)
-	}
-
-	rankedIDs, err := parseRankedIDs(raw)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to parse response for term %q with algorithm %q", term.ID, algo)
-	}
-
-	ui.Info("retrieved %d documents for term %q", len(rankedIDs), term.ID)
-
+	const pageSize = 50
 	var docsForTerm []Document
-
-	for _, id := range rankedIDs {
-		document, err := a.GetDocument(ctx, id)
+	for from := 0; ; from += pageSize {
+		searches, err := builder.BuildRequest(ctx, &algorithm.SearchParameters{
+			Term:  term.Value,
+			Index: indexNameDocuments,
+			From:  from,
+			Size:  pageSize,
+		})
 		if err != nil {
-			return nil, err
+			return nil, errors.Wrapf(err, "failed to build search request for term %q with algorithm %q", term.ID, algo)
 		}
-		docsForTerm = append(docsForTerm, document)
+
+		raw, err := esClient.MultiSearch(ctx, searches, nil)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to query term %q with algorithm %q", term.ID, algo)
+		}
+
+		rankedIDs, err := parseRankedIDs(raw)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to parse response for term %q with algorithm %q", term.ID, algo)
+		}
+
+		for _, id := range rankedIDs {
+			document, err := a.GetDocument(ctx, id)
+			if err != nil {
+				return nil, err
+			}
+			docsForTerm = append(docsForTerm, document)
+		}
+		if len(rankedIDs) < pageSize {
+			break
+		}
 	}
 
+	ui.Info("retrieved %d documents for term %q", len(docsForTerm), term.ID)
 	return docsForTerm, nil
 }
 

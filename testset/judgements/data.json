@@ -1,8 +1,0 @@
-{
-  "term_id": "data",
-  "judgements": [
-    { "doc_id": "accountancy-services-timeseries", "relevance": 2 },
-    { "doc_id": "cpi-latest", "relevance": 1 },
-    { "doc_id": "growth-dataset", "relevance": 3 }
-  ]
-}

@@ -2,11 +2,14 @@ package app
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"testing"
 
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	fileStoreMocks "github.com/ONSdigital/dis-search-algorithm/testset/stream/mocks"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
+	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -148,6 +151,343 @@ func TestGetTerms(t *testing.T) {
 				So(err, ShouldNotBeNil)
 				So(err.Error(), ShouldContainSubstring, `failed to parse term "broken-term"`)
 				So(got, ShouldBeNil)
+			})
+		})
+	})
+}
+
+func TestPutTerm(t *testing.T) {
+	Convey("Given a term that is not yet in the store", t, func() {
+		ctx := context.Background()
+		term := Term{ID: "employment", Value: "jobs", Description: "Employment data"}
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(gotCtx context.Context, gotID string, item stream.Item) error {
+				So(gotCtx, ShouldEqual, ctx)
+				So(gotID, ShouldEqual, term.ID)
+				So(item.Name, ShouldEqual, term.ID)
+				var gotTerm Term
+				So(json.Unmarshal(item.Body, &gotTerm), ShouldBeNil)
+				So(gotTerm, ShouldResemble, term)
+				return nil
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When PutTerm is called", func() {
+			updated, err := app.PutTerm(ctx, term)
+
+			Convey("Then it should create the term", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeTrue)
+				So(store.PutCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
+
+	Convey("Given the same term is already in the store", t, func() {
+		term := Term{ID: "employment", Value: "jobs", Description: "Employment data"}
+		body, err := json.MarshalIndent(term, "", "  ")
+		So(err, ShouldBeNil)
+		body = append(body, '\n')
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Name: term.ID, Body: body}, nil
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When PutTerm is called", func() {
+			updated, err := app.PutTerm(context.Background(), term)
+
+			Convey("Then it should not write the unchanged term", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeFalse)
+				So(store.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given a different term with the same ID is in the store", t, func() {
+		term := Term{ID: "employment", Value: "new jobs", Description: "Updated description"}
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{
+					Body: []byte(`{"id":"employment","term":"old jobs","description":"Old description"}`),
+				}, nil
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		app := &App{Terms: store}
+
+		Convey("When PutTerm is called", func() {
+			updated, err := app.PutTerm(context.Background(), term)
+
+			Convey("Then it should replace the stored term", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeTrue)
+				So(store.PutCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
+
+	Convey("Given the term store returns an unexpected read error", t, func() {
+		storeErr := errors.New("term store unavailable")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, storeErr
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When PutTerm is called", func() {
+			updated, err := app.PutTerm(context.Background(), Term{ID: "employment"})
+
+			Convey("Then it should return the read error without writing", func() {
+				So(updated, ShouldBeFalse)
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, `failed to check existing term "employment"`)
+				So(err.Error(), ShouldContainSubstring, storeErr.Error())
+				So(store.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given the term store fails to write", t, func() {
+		writeErr := errors.New("disk full")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return writeErr },
+		}
+		app := &App{Terms: store}
+
+		Convey("When PutTerm is called", func() {
+			updated, err := app.PutTerm(context.Background(), Term{ID: "employment", Value: "jobs"})
+
+			Convey("Then it should return the write error", func() {
+				So(updated, ShouldBeFalse)
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, `failed to write term "employment"`)
+				So(err.Error(), ShouldContainSubstring, writeErr.Error())
+			})
+		})
+	})
+}
+
+func TestDeleteTerm(t *testing.T) {
+	Convey("Given a term store", t, func() {
+		ctx := context.Background()
+		const termID = "employment"
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			DeleteFunc: func(gotCtx context.Context, gotID string) error {
+				So(gotCtx, ShouldEqual, ctx)
+				So(gotID, ShouldEqual, termID)
+				return nil
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When DeleteTerm is called", func() {
+			err := app.DeleteTerm(ctx, termID)
+
+			Convey("Then it should delete the term", func() {
+				So(err, ShouldBeNil)
+				So(store.DeleteCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
+
+	Convey("Given the term store fails to delete", t, func() {
+		storeErr := errors.New("term store unavailable")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			DeleteFunc: func(context.Context, string) error {
+				return storeErr
+			},
+		}
+		app := &App{Terms: store}
+
+		Convey("When DeleteTerm is called", func() {
+			err := app.DeleteTerm(context.Background(), "employment")
+
+			Convey("Then it should return the store error", func() {
+				So(err, ShouldEqual, storeErr)
+			})
+		})
+	})
+}
+
+func TestImportTermsToStore(t *testing.T) {
+	Convey("Given the term store fails to list existing terms", t, func() {
+		listErr := errors.New("term store unavailable")
+		termStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) {
+				return nil, listErr
+			},
+		}
+		app := &App{Terms: termStore}
+
+		Convey("When terms are imported", func() {
+			err := app.importTermsToStore(context.Background(), []Term{{ID: "employment"}}, nil)
+
+			Convey("Then the list error should be returned", func() {
+				So(err, ShouldNotBeNil)
+				So(err.Error(), ShouldContainSubstring, "failed to list terms")
+				So(err.Error(), ShouldContainSubstring, listErr.Error())
+				So(termStore.GetCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given the imported term and its judgement already exist", t, func() {
+		term := Term{ID: "employment", Value: "jobs", Description: "Employment data"}
+		termBody, err := json.MarshalIndent(term, "", "  ")
+		So(err, ShouldBeNil)
+		termBody = append(termBody, '\n')
+		termStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) {
+				return []stream.Item{{Name: term.ID, Body: termBody}}, nil
+			},
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Name: term.ID, Body: termBody}, nil
+			},
+		}
+		judgementStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return judgementItem(term.ID, Judgement{DocID: "document-123", Relevance: 3}), nil
+			},
+		}
+		app := &App{Terms: termStore, Judgements: judgementStore}
+
+		Convey("When that term is imported", func() {
+			err := app.importTermsToStore(context.Background(), []Term{term}, nil)
+
+			Convey("Then it should preserve the existing data without writing or deleting", func() {
+				So(err, ShouldBeNil)
+				So(termStore.PutCalls(), ShouldBeEmpty)
+				So(termStore.DeleteCalls(), ShouldBeEmpty)
+				So(judgementStore.PutCalls(), ShouldBeEmpty)
+				So(judgementStore.DeleteCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given two imported terms without judgements", t, func() {
+		terms := []Term{{ID: "employment", Value: "jobs"}, {ID: "prices", Value: "inflation"}}
+		termStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) { return nil, nil },
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		judgementStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		documentStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Body: []byte(`{"id":"document-123"}`)}, nil
+			},
+		}
+		client := &dpEsClientMock.ClientMock{
+			MultiSearchFunc: func(context.Context, []dpEsClient.Search, *dpEsClient.QueryParams) ([]byte, error) {
+				return []byte(`{"responses":[{"hits":{"hits":[{"_id":"document-123"}]}}]}`), nil
+			},
+		}
+		app := &App{Terms: termStore, Judgements: judgementStore, Documents: documentStore}
+
+		Convey("When both terms are imported with the same search client", func() {
+			err := app.importTermsToStore(context.Background(), terms, client)
+
+			Convey("Then both terms are searched and receive default judgements", func() {
+				So(err, ShouldBeNil)
+				So(client.MultiSearchCalls(), ShouldHaveLength, 2)
+				So(judgementStore.PutCalls(), ShouldHaveLength, 2)
+				for i, call := range judgementStore.PutCalls() {
+					So(call.ID, ShouldEqual, terms[i].ID)
+					var got TermJudgements
+					So(json.Unmarshal(call.Item.Body, &got), ShouldBeNil)
+					So(got, ShouldResemble, TermJudgements{
+						TermID:     terms[i].ID,
+						Judgements: []Judgement{{DocID: "document-123", Relevance: 0}},
+					})
+				}
+			})
+		})
+	})
+
+	Convey("Given the judgement store returns an unexpected read error", t, func() {
+		term := Term{ID: "employment", Value: "jobs"}
+		termBody, err := json.MarshalIndent(term, "", "  ")
+		So(err, ShouldBeNil)
+		termBody = append(termBody, '\n')
+		termStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) {
+				return []stream.Item{{Name: term.ID, Body: termBody}}, nil
+			},
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Name: term.ID, Body: termBody}, nil
+			},
+		}
+		judgementErr := errors.New("judgement store unavailable")
+		judgementStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, judgementErr
+			},
+		}
+		app := &App{Terms: termStore, Judgements: judgementStore}
+
+		Convey("When that term is imported", func() {
+			err := app.importTermsToStore(context.Background(), []Term{term}, nil)
+
+			Convey("Then the judgement read error should stop the import", func() {
+				So(err, ShouldEqual, judgementErr)
+				So(termStore.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given a stored term is absent from the import", t, func() {
+		importedTerm := Term{ID: "employment", Value: "jobs"}
+		staleTerm := Term{ID: "obsolete", Value: "old query"}
+		importedBody, err := json.MarshalIndent(importedTerm, "", "  ")
+		So(err, ShouldBeNil)
+		importedBody = append(importedBody, '\n')
+		staleBody, err := json.MarshalIndent(staleTerm, "", "  ")
+		So(err, ShouldBeNil)
+		staleBody = append(staleBody, '\n')
+		termStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) {
+				return []stream.Item{{Name: staleTerm.ID, Body: staleBody}}, nil
+			},
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Name: importedTerm.ID, Body: importedBody}, nil
+			},
+			DeleteFunc: func(context.Context, string) error { return nil },
+		}
+		judgementStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return judgementItem(importedTerm.ID), nil
+			},
+			DeleteFunc: func(context.Context, string) error { return nil },
+		}
+		app := &App{Terms: termStore, Judgements: judgementStore}
+
+		Convey("When the new terms are imported", func() {
+			err := app.importTermsToStore(context.Background(), []Term{importedTerm}, nil)
+
+			Convey("Then the stale term and its judgement should be deleted", func() {
+				So(err, ShouldBeNil)
+				So(termStore.DeleteCalls(), ShouldHaveLength, 1)
+				So(termStore.DeleteCalls()[0].ID, ShouldEqual, staleTerm.ID)
+				So(judgementStore.DeleteCalls(), ShouldHaveLength, 1)
+				So(judgementStore.DeleteCalls()[0].ID, ShouldEqual, staleTerm.ID)
 			})
 		})
 	})

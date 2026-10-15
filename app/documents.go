@@ -56,19 +56,8 @@ func (a *App) GetDocuments(ctx context.Context) ([]Document, error) {
 }
 
 // GetDocumentsForTerm retrieves all documents matching a given term.
-// TODO: implement a methods whereby we don't create elasticsearch every time.
-func (a *App) GetDocumentsForTerm(ctx context.Context, term Term) ([]Document, error) {
-	var docs []Document
-
-	err := a.withElasticsearch(ctx, func(ctx context.Context, esClient dpEsClient.Client) error {
-		var err error
-		docs, err = a.getMatchingDocumentsForTerm(ctx, esClient, term)
-		return err
-	})
-	if err != nil {
-		return nil, err
-	}
-	return docs, nil
+func (a *App) GetDocumentsForTerm(ctx context.Context, term Term, esClient dpEsClient.Client) ([]Document, error) {
+	return a.getMatchingDocumentsForTerm(ctx, esClient, term)
 }
 
 // ExportDocuments exports the current documents to a
@@ -101,38 +90,42 @@ func (a *App) getMatchingDocumentsForTerm(ctx context.Context, esClient dpEsClie
 		return nil, errors.Wrapf(err, "failed to get request builder for algorithm %q", algo)
 	}
 
-	searches, err := builder.BuildRequest(ctx, &algorithm.SearchParameters{
-		Term:  term.Value,
-		Index: indexNameDocuments,
-		From:  0,
-		Size:  100, // default corpus size, replace with actual value if needed
-	})
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to build search request for term %q with algorithm %q", term.ID, algo)
-	}
-
-	raw, err := esClient.MultiSearch(ctx, searches, nil)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to query term %q with algorithm %q", term.ID, algo)
-	}
-
-	rankedIDs, err := parseRankedIDs(raw)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to parse response for term %q with algorithm %q", term.ID, algo)
-	}
-
-	ui.Info("retrieved %d documents for term %q", len(rankedIDs), term.ID)
-
+	const pageSize = 50
 	var docsForTerm []Document
-
-	for _, id := range rankedIDs {
-		document, err := a.GetDocument(ctx, id)
+	for from := 0; ; from += pageSize {
+		searches, err := builder.BuildRequest(ctx, &algorithm.SearchParameters{
+			Term:  term.Value,
+			Index: indexNameDocuments,
+			From:  from,
+			Size:  pageSize,
+		})
 		if err != nil {
-			return nil, err
+			return nil, errors.Wrapf(err, "failed to build search request for term %q with algorithm %q", term.ID, algo)
 		}
-		docsForTerm = append(docsForTerm, document)
+
+		raw, err := esClient.MultiSearch(ctx, searches, nil)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to query term %q with algorithm %q", term.ID, algo)
+		}
+
+		rankedIDs, err := parseRankedIDs(raw)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to parse response for term %q with algorithm %q", term.ID, algo)
+		}
+
+		for _, id := range rankedIDs {
+			document, err := a.GetDocument(ctx, id)
+			if err != nil {
+				return nil, err
+			}
+			docsForTerm = append(docsForTerm, document)
+		}
+		if len(rankedIDs) < pageSize {
+			break
+		}
 	}
 
+	ui.Info("retrieved %d documents for term %q", len(docsForTerm), term.ID)
 	return docsForTerm, nil
 }
 

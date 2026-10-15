@@ -9,6 +9,7 @@ import (
 
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	"github.com/ONSdigital/dis-search-algorithm/ui"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	"github.com/pkg/errors"
 )
 
@@ -145,11 +146,12 @@ func (a *App) ImportTerms(ctx context.Context, inputPath string) error {
 	if len(terms) == 0 {
 		return errors.New("no terms to import")
 	}
-
-	return a.importTermsToStore(ctx, terms)
+	return a.withElasticsearch(ctx, func(ctx context.Context, esClient dpEsClient.Client) error {
+		return a.importTermsToStore(ctx, terms, esClient)
+	})
 }
 
-func (a *App) importTermsToStore(ctx context.Context, terms []Term) error {
+func (a *App) importTermsToStore(ctx context.Context, terms []Term, esClient dpEsClient.Client) error {
 	var termSummary importSummary
 
 	ui.Info("getting existing terms from the store for term")
@@ -179,7 +181,7 @@ func (a *App) importTermsToStore(ctx context.Context, terms []Term) error {
 			if errors.Is(err, stream.ErrItemNotFound) {
 				ui.Info("no pre-existing judgement found for term %q, creating default judgements", term.ID)
 
-				matchingDocs, err := a.GetDocumentsForTerm(ctx, term)
+				matchingDocs, err := a.GetDocumentsForTerm(ctx, term, esClient)
 				if err != nil {
 					return err
 				}

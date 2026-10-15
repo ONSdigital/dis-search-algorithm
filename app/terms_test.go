@@ -8,6 +8,8 @@ import (
 
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	fileStoreMocks "github.com/ONSdigital/dis-search-algorithm/testset/stream/mocks"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
+	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -328,7 +330,7 @@ func TestImportTermsToStore(t *testing.T) {
 		app := &App{Terms: termStore}
 
 		Convey("When terms are imported", func() {
-			err := app.importTermsToStore(context.Background(), []Term{{ID: "employment"}})
+			err := app.importTermsToStore(context.Background(), []Term{{ID: "employment"}}, nil)
 
 			Convey("Then the list error should be returned", func() {
 				So(err, ShouldNotBeNil)
@@ -359,7 +361,7 @@ func TestImportTermsToStore(t *testing.T) {
 		app := &App{Terms: termStore, Judgements: judgementStore}
 
 		Convey("When that term is imported", func() {
-			err := app.importTermsToStore(context.Background(), []Term{term})
+			err := app.importTermsToStore(context.Background(), []Term{term}, nil)
 
 			Convey("Then it should preserve the existing data without writing or deleting", func() {
 				So(err, ShouldBeNil)
@@ -367,6 +369,53 @@ func TestImportTermsToStore(t *testing.T) {
 				So(termStore.DeleteCalls(), ShouldBeEmpty)
 				So(judgementStore.PutCalls(), ShouldBeEmpty)
 				So(judgementStore.DeleteCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given two imported terms without judgements", t, func() {
+		terms := []Term{{ID: "employment", Value: "jobs"}, {ID: "prices", Value: "inflation"}}
+		termStore := &fileStoreMocks.StreamMock[stream.Item]{
+			ListFunc: func(context.Context) ([]stream.Item, error) { return nil, nil },
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		judgementStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		documentStore := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Body: []byte(`{"id":"document-123"}`)}, nil
+			},
+		}
+		client := &dpEsClientMock.ClientMock{
+			MultiSearchFunc: func(context.Context, []dpEsClient.Search, *dpEsClient.QueryParams) ([]byte, error) {
+				return []byte(`{"responses":[{"hits":{"hits":[{"_id":"document-123"}]}}]}`), nil
+			},
+		}
+		app := &App{Terms: termStore, Judgements: judgementStore, Documents: documentStore}
+
+		Convey("When both terms are imported with the same search client", func() {
+			err := app.importTermsToStore(context.Background(), terms, client)
+
+			Convey("Then both terms are searched and receive default judgements", func() {
+				So(err, ShouldBeNil)
+				So(client.MultiSearchCalls(), ShouldHaveLength, 2)
+				So(judgementStore.PutCalls(), ShouldHaveLength, 2)
+				for i, call := range judgementStore.PutCalls() {
+					So(call.ID, ShouldEqual, terms[i].ID)
+					var got TermJudgements
+					So(json.Unmarshal(call.Item.Body, &got), ShouldBeNil)
+					So(got, ShouldResemble, TermJudgements{
+						TermID:     terms[i].ID,
+						Judgements: []Judgement{{DocID: "document-123", Relevance: 0}},
+					})
+				}
 			})
 		})
 	})
@@ -392,7 +441,7 @@ func TestImportTermsToStore(t *testing.T) {
 		app := &App{Terms: termStore, Judgements: judgementStore}
 
 		Convey("When that term is imported", func() {
-			err := app.importTermsToStore(context.Background(), []Term{term})
+			err := app.importTermsToStore(context.Background(), []Term{term}, nil)
 
 			Convey("Then the judgement read error should stop the import", func() {
 				So(err, ShouldEqual, judgementErr)
@@ -426,7 +475,7 @@ func TestImportTermsToStore(t *testing.T) {
 		app := &App{Terms: termStore, Judgements: judgementStore}
 
 		Convey("When the new terms are imported", func() {
-			err := app.importTermsToStore(context.Background(), []Term{importedTerm})
+			err := app.importTermsToStore(context.Background(), []Term{importedTerm}, nil)
 
 			Convey("Then the stale term and its judgement should be deleted", func() {
 				So(err, ShouldBeNil)

@@ -56,19 +56,8 @@ func (a *App) GetDocuments(ctx context.Context) ([]Document, error) {
 }
 
 // GetDocumentsForTerm retrieves all documents matching a given term.
-// TODO: implement a methods whereby we don't create elasticsearch every time.
-func (a *App) GetDocumentsForTerm(ctx context.Context, term Term) ([]Document, error) {
-	var docs []Document
-
-	err := a.withElasticsearch(ctx, func(ctx context.Context, esClient dpEsClient.Client) error {
-		var err error
-		docs, err = a.getMatchingDocumentsForTerm(ctx, esClient, term)
-		return err
-	})
-	if err != nil {
-		return nil, err
-	}
-	return docs, nil
+func (a *App) GetDocumentsForTerm(ctx context.Context, term Term, esClient dpEsClient.Client) ([]Document, error) {
+	return a.getMatchingDocumentsForTerm(ctx, esClient, term)
 }
 
 // ExportDocuments exports the current documents to a

@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"slices"
 	"strings"
 
@@ -74,10 +73,12 @@ func (a *App) PutTerm(ctx context.Context, t Term) (bool, error) {
 		return false, nil
 	}
 
-	body, err := marshalTerm(t)
+	body, err := json.MarshalIndent(t, "", "  ")
 	if err != nil {
-		return false, errors.Wrapf(err, "failed to encode term %q", t.ID)
+		return false, errors.Wrapf(err, "failed to encode document %q", t.ID)
 	}
+	body = append(body, '\n')
+
 	if err := a.Terms.Put(ctx, t.ID, stream.Item{Name: t.ID, Body: body}); err != nil {
 		return false, errors.Wrapf(err, "failed to write term %q", t.ID)
 	}
@@ -87,23 +88,6 @@ func (a *App) PutTerm(ctx context.Context, t Term) (bool, error) {
 // DeleteTerm deletes a term from the store by its ID.
 func (a *App) DeleteTerm(ctx context.Context, termID string) error {
 	return a.Terms.Delete(ctx, termID)
-}
-
-// marshalTerm renders a term in the fixture style:
-// 2-space indentation, one inline entry object per line, and a trailing
-// newline.
-// I'm not sure this should be responsible for
-// JSON encoding, but it currently is. TODO: move formatting to the store.
-func marshalTerm(t Term) ([]byte, error) {
-	body := fmt.Sprintf(
-		`{
-  "id": %q,
-  "term": %q,
-  "description": %q
-}
-`, t.ID, t.Value, t.Description)
-
-	return []byte(body), nil
 }
 
 // ExportTerms exports the current terms to a

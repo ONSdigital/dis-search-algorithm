@@ -189,8 +189,9 @@ func TestPutTerm(t *testing.T) {
 
 	Convey("Given the same term is already in the store", t, func() {
 		term := Term{ID: "employment", Value: "jobs", Description: "Employment data"}
-		body, err := marshalTerm(term)
+		body, err := json.MarshalIndent(term, "", "  ")
 		So(err, ShouldBeNil)
+		body = append(body, '\n')
 		store := &fileStoreMocks.StreamMock[stream.Item]{
 			GetFunc: func(context.Context, string) (stream.Item, error) {
 				return stream.Item{Name: term.ID, Body: body}, nil
@@ -343,8 +344,9 @@ func TestImportTermsToStore(t *testing.T) {
 
 	Convey("Given the imported term and its judgement already exist", t, func() {
 		term := Term{ID: "employment", Value: "jobs", Description: "Employment data"}
-		termBody, err := marshalTerm(term)
+		termBody, err := json.MarshalIndent(term, "", "  ")
 		So(err, ShouldBeNil)
+		termBody = append(termBody, '\n')
 		termStore := &fileStoreMocks.StreamMock[stream.Item]{
 			ListFunc: func(context.Context) ([]stream.Item, error) {
 				return []stream.Item{{Name: term.ID, Body: termBody}}, nil
@@ -422,8 +424,9 @@ func TestImportTermsToStore(t *testing.T) {
 
 	Convey("Given the judgement store returns an unexpected read error", t, func() {
 		term := Term{ID: "employment", Value: "jobs"}
-		termBody, err := marshalTerm(term)
+		termBody, err := json.MarshalIndent(term, "", "  ")
 		So(err, ShouldBeNil)
+		termBody = append(termBody, '\n')
 		termStore := &fileStoreMocks.StreamMock[stream.Item]{
 			ListFunc: func(context.Context) ([]stream.Item, error) {
 				return []stream.Item{{Name: term.ID, Body: termBody}}, nil
@@ -453,10 +456,12 @@ func TestImportTermsToStore(t *testing.T) {
 	Convey("Given a stored term is absent from the import", t, func() {
 		importedTerm := Term{ID: "employment", Value: "jobs"}
 		staleTerm := Term{ID: "obsolete", Value: "old query"}
-		importedBody, err := marshalTerm(importedTerm)
+		importedBody, err := json.MarshalIndent(importedTerm, "", "  ")
 		So(err, ShouldBeNil)
-		staleBody, err := marshalTerm(staleTerm)
+		importedBody = append(importedBody, '\n')
+		staleBody, err := json.MarshalIndent(staleTerm, "", "  ")
 		So(err, ShouldBeNil)
+		staleBody = append(staleBody, '\n')
 		termStore := &fileStoreMocks.StreamMock[stream.Item]{
 			ListFunc: func(context.Context) ([]stream.Item, error) {
 				return []stream.Item{{Name: staleTerm.ID, Body: staleBody}}, nil
@@ -483,37 +488,6 @@ func TestImportTermsToStore(t *testing.T) {
 				So(termStore.DeleteCalls()[0].ID, ShouldEqual, staleTerm.ID)
 				So(judgementStore.DeleteCalls(), ShouldHaveLength, 1)
 				So(judgementStore.DeleteCalls()[0].ID, ShouldEqual, staleTerm.ID)
-			})
-		})
-	})
-}
-
-func TestMarshalTerm(t *testing.T) {
-	Convey("Given a term with all fields populated", t, func() {
-		term := Term{
-			ID:          "employment",
-			Value:       "jobs",
-			Description: "Employment data",
-		}
-
-		Convey("When marshalTerm encodes the term", func() {
-			body, err := marshalTerm(term)
-
-			Convey("Then it should render fixture-style JSON with a trailing newline", func() {
-				So(err, ShouldBeNil)
-				So(string(body), ShouldEqual, "{\n"+
-					"  \"id\": \"employment\",\n"+
-					"  \"term\": \"jobs\",\n"+
-					"  \"description\": \"Employment data\"\n"+
-					"}\n")
-			})
-
-			Convey("Then the output should be valid JSON that decodes to the original term", func() {
-				var decoded Term
-				unmarshalErr := json.Unmarshal(body, &decoded)
-				So(err, ShouldBeNil)
-				So(unmarshalErr, ShouldBeNil)
-				So(decoded, ShouldResemble, term)
 			})
 		})
 	})

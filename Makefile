@@ -108,6 +108,21 @@ check: fmt vet audit lint test ## Run all checks
 compare: build 
 	@./$(BIN_DIR)/$(BINARY_NAME) compare
 
+import-terms:
+	go run main.go import terms -i terms.csv
+
+import-judgements:
+	go run main.go import judgements -i judgements.csv
+
+export-terms:
+	go run main.go export terms -o terms.csv
+
+export-judgements:
+	go run main.go export judgements -o judgements.csv
+
+export-documents:
+	go run main.go export documents -o documents.csv
+
 ##############################
 ## Utilities
 ##############################

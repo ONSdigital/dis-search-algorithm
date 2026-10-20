@@ -88,6 +88,12 @@ go run . import judgements -i results.csv
 
 The usual loop is: `export judgements` to a CSV, edit the `current_relevance` column, then `import judgements` from it. Add `-v`/`--verbose` to any command for extra output.
 
+We can also import the current 'tems':
+
+```sh
+go run . import terms -i terms.csv
+```
+
 ## Development
 
 ### Running Tests

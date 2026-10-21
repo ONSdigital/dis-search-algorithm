@@ -198,7 +198,7 @@ func evaluateTerm(ctx context.Context, esClient dpEsClient.Client, builder algor
 			Rank:       rank + 1,
 			Relevance:  relevance,
 			Judged:     judged,
-			Title:      document.Title,
+			Title:      document.Item.Title,
 			URI:        document.URI,
 		})
 	}

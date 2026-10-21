@@ -114,6 +114,9 @@ import-terms:
 import-judgements:
 	go run main.go import judgements -i judgements.csv
 
+import-documents:
+	go run main.go import documents -i documents.csv
+
 export-terms:
 	go run main.go export terms -o terms.csv
 

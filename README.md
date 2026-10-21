@@ -94,6 +94,34 @@ We can also import the current 'tems':
 go run . import terms -i terms.csv
 ```
 
+We can also import the current 'documents':
+
+```sh
+go run . import documents -i documents.csv
+```
+
+For inputting new documents:
+
+- `doc_id` needs to be unique amongst the stored dataset
+- `title` is not needed for import and is the title of the actual search document
+- `uri` is the uri to retrieve from the search service on import
+
+### rebuild
+
+The rebuild command will rebuild all the judgements from the terms and documents.
+
+This loads the current documents into elasticsearch, then for each term it will:
+
+- check to see which documents match
+- if a document does not have a judgement it will create new judgement with a 0 score
+- if a document no longer matches, it will remove the judgement from the term
+
+Run this via
+
+```sh
+go run . rebuild judgements
+```
+
 ## Development
 
 ### Running Tests

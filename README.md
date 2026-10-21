@@ -94,6 +94,22 @@ We can also import the current 'tems':
 go run . import terms -i terms.csv
 ```
 
+### rebuild
+
+The rebuild command will rebuild all the judgements from the terms and documents.
+
+This loads the current documents into elasticsearch, then for each term it will:
+
+- check to see which documents match
+- if a document does not have a judgement it will create new judgement with a 0 score
+- if a document no longer matches, it will remove the judgement from the term
+
+Run this via
+
+```sh
+go run . rebuild judgements
+```
+
 ## Development
 
 ### Running Tests

@@ -8,6 +8,8 @@ import (
 
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	fileStoreMocks "github.com/ONSdigital/dis-search-algorithm/testset/stream/mocks"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
+	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
 	"github.com/pkg/errors"
 	. "github.com/smartystreets/goconvey/convey"
 )
@@ -37,6 +39,150 @@ func judgementItem(termID string, entries ...Judgement) stream.Item {
 		panic(err)
 	}
 	return stream.Item{Name: termID, Body: body}
+}
+
+func TestRebuildTermJudgement(t *testing.T) {
+	Convey("Given an existing score, a stale judgement, and a new search match", t, func() {
+		ctx := context.Background()
+		term := Term{ID: "employment", Value: "jobs"}
+		existing := judgementItem(term.ID,
+			Judgement{DocID: "kept", Relevance: 4},
+			Judgement{DocID: "stale", Relevance: 2},
+		)
+		judgements := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) { return existing, nil },
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		documents := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(_ context.Context, id string) (stream.Item, error) {
+				body, err := json.Marshal(Document{ID: id})
+				return stream.Item{Name: id, Body: body}, err
+			},
+		}
+		client := &dpEsClientMock.ClientMock{
+			MultiSearchFunc: func(context.Context, []dpEsClient.Search, *dpEsClient.QueryParams) ([]byte, error) {
+				return []byte(`{"responses":[{"hits":{"hits":[{"_id":"new"},{"_id":"kept"}]}}]}`), nil
+			},
+		}
+		app := &App{Judgements: judgements, Documents: documents}
+
+		Convey("When the term judgements are rebuilt", func() {
+			updated, err := app.rebuildTermJudgement(ctx, term, client)
+
+			Convey("Then only current matches are saved with existing relevance preserved", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeTrue)
+				So(client.MultiSearchCalls(), ShouldHaveLength, 1)
+				So(judgements.PutCalls(), ShouldHaveLength, 1)
+				So(judgements.PutCalls()[0].ID, ShouldEqual, term.ID)
+				var saved TermJudgements
+				So(json.Unmarshal(judgements.PutCalls()[0].Item.Body, &saved), ShouldBeNil)
+				So(saved, ShouldResemble, TermJudgements{
+					TermID: term.ID,
+					Judgements: []Judgement{
+						{DocID: "kept", Relevance: 4},
+						{DocID: "new", Relevance: 0},
+					},
+				})
+			})
+		})
+	})
+
+	Convey("Given a judgement that still matches the search", t, func() {
+		term := Term{ID: "employment", Value: "jobs"}
+		judgements := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return judgementItem(term.ID, Judgement{DocID: "kept", Relevance: 3}), nil
+			},
+		}
+		documents := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Body: []byte(`{"id":"kept"}`)}, nil
+			},
+		}
+		client := &dpEsClientMock.ClientMock{
+			MultiSearchFunc: func(context.Context, []dpEsClient.Search, *dpEsClient.QueryParams) ([]byte, error) {
+				return []byte(`{"responses":[{"hits":{"hits":[{"_id":"kept"}]}}]}`), nil
+			},
+		}
+
+		Convey("When the term judgements are rebuilt", func() {
+			updated, err := (&App{Judgements: judgements, Documents: documents}).rebuildTermJudgement(context.Background(), term, client)
+
+			Convey("Then the existing score is left untouched", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeFalse)
+				So(judgements.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given the judgement store fails to read", t, func() {
+		readErr := errors.New("read failed")
+		judgements := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) { return stream.Item{}, readErr },
+		}
+		client := &dpEsClientMock.ClientMock{}
+
+		Convey("When the term judgements are rebuilt", func() {
+			updated, err := (&App{Judgements: judgements}).rebuildTermJudgement(context.Background(), Term{ID: "employment"}, client)
+
+			Convey("Then the error stops the search", func() {
+				So(updated, ShouldBeFalse)
+				So(errors.Is(err, readErr), ShouldBeTrue)
+				So(client.MultiSearchCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given Elasticsearch fails to search", t, func() {
+		searchErr := errors.New("search failed")
+		judgements := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return judgementItem("employment", Judgement{DocID: "kept", Relevance: 3}), nil
+			},
+		}
+		client := &dpEsClientMock.ClientMock{
+			MultiSearchFunc: func(context.Context, []dpEsClient.Search, *dpEsClient.QueryParams) ([]byte, error) {
+				return nil, searchErr
+			},
+		}
+
+		Convey("When the term judgements are rebuilt", func() {
+			updated, err := (&App{Judgements: judgements}).rebuildTermJudgement(context.Background(), Term{ID: "employment"}, client)
+
+			Convey("Then the search error is returned without writing", func() {
+				So(updated, ShouldBeFalse)
+				So(errors.Is(err, searchErr), ShouldBeTrue)
+				So(judgements.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given the judgement store fails to save a changed ranking", t, func() {
+		writeErr := errors.New("write failed")
+		judgements := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return judgementItem("employment", Judgement{DocID: "stale", Relevance: 2}), nil
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return writeErr },
+		}
+		client := &dpEsClientMock.ClientMock{
+			MultiSearchFunc: func(context.Context, []dpEsClient.Search, *dpEsClient.QueryParams) ([]byte, error) {
+				return []byte(`{"responses":[{"hits":{"hits":[]}}]}`), nil
+			},
+		}
+
+		Convey("When the term judgements are rebuilt", func() {
+			updated, err := (&App{Judgements: judgements}).rebuildTermJudgement(context.Background(), Term{ID: "employment"}, client)
+
+			Convey("Then the write error is returned", func() {
+				So(updated, ShouldBeFalse)
+				So(errors.Is(err, writeErr), ShouldBeTrue)
+				So(judgements.PutCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
 }
 
 func TestGetTermJudgements(t *testing.T) {

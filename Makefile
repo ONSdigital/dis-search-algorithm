@@ -114,6 +114,8 @@ export-documents:
 import-documents:
 	go run main.go import documents -i documents.csv
 
+rebuild-judgements:
+	go run main.go rebuild judgements
 
 ##############################
 ## Utilities

@@ -38,9 +38,15 @@ func getSubCommands() ([]*cobra.Command, error) {
 		return nil, err
 	}
 
+	rebuildCmd, err := rebuildCommand()
+	if err != nil {
+		return nil, err
+	}
+
 	return []*cobra.Command{
 		compareCommand(),
 		exportCmd,
 		importCmd,
+		rebuildCmd,
 	}, nil
 }

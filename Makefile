@@ -64,6 +64,9 @@ install: build ## Install binary to $GOPATH/bin
 test: ## Run tests
 	@$(GOTEST) ./...
 
+test-unit: ## Just run unit tests not involving docker
+	@$(GOTEST) ./... -short
+
 test-coverage: ## Run tests with coverage
 	@$(GOTEST) -v -coverprofile=coverage.out ./...
 	@$(GOCMD) tool cover -html=coverage.out -o coverage.html

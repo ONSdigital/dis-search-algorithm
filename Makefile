@@ -108,6 +108,13 @@ check: fmt vet audit lint test ## Run all checks
 compare: build 
 	@./$(BIN_DIR)/$(BINARY_NAME) compare
 
+export-documents:
+	go run main.go export documents -o documents.csv
+
+import-documents:
+	go run main.go import documents -i documents.csv
+
+
 ##############################
 ## Utilities
 ##############################

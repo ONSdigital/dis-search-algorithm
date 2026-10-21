@@ -39,7 +39,7 @@ func TestLoadStore(t *testing.T) {
 
 				fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
 					ListFunc: func(ctx context.Context) ([]stream.Item, error) {
-						return testDocuments, nil
+						return getTestDocumentsAsStream(), nil
 					},
 				}
 
@@ -90,7 +90,7 @@ func TestLoadStore(t *testing.T) {
 
 				fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
 					ListFunc: func(ctx context.Context) ([]stream.Item, error) {
-						return testDocuments, nil
+						return getTestDocumentsAsStream(), nil
 					},
 				}
 				err := app.loadStore(context.Background(), mockClient, fakeDocumentStore, tc.indexName, tc.label)
@@ -111,7 +111,7 @@ func TestLoadStores(t *testing.T) {
 	Convey("Given an App with its document store populated", t, func() {
 		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
 			ListFunc: func(ctx context.Context) ([]stream.Item, error) {
-				return testDocuments, nil
+				return getTestDocumentsAsStream(), nil
 			},
 		}
 		app := &App{

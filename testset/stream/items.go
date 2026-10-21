@@ -2,6 +2,7 @@ package stream
 
 import (
 	"encoding/json"
+	"io/fs"
 
 	"github.com/ONSdigital/dis-search-algorithm/algorithm"
 	"github.com/ONSdigital/dis-search-algorithm/testset"
@@ -72,9 +73,10 @@ var itemCodec = Codec[Item]{
 // [documentWriteDir]; such writes are only visible to Get and List once
 // re-embedded on the next build. For a database-backed store later, provide
 // another [Stream] implementation.
-func NewDocumentStore() Stream[Item] {
+func NewDocumentStore(filestore fs.FS) Stream[Item] {
 	return NewFileStore(
-		testset.DocumentFixturesFS(),
+		// Using file store rather than embedded to do write then reads
+		filestore,
 		testset.DocumentFixturesDir,
 		documentWriteDir,
 		itemCodec,

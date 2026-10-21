@@ -17,10 +17,7 @@ import (
 
 func TestEvaluateTermsFullStore(t *testing.T) {
 	Convey("Given two documents, one term, and one stored judgement", t, func() {
-		documents := []stream.Item{
-			{Name: docNameCPI, Body: []byte(`{"title":"CPI","uri":"/cpi"}`)},
-			{Name: docNameGrowth, Body: []byte(`{"title":"Growth","uri":"/growth"}`)},
-		}
+		documents := getTestDocumentsAsStream()
 		terms := []stream.Item{
 			{Name: termIDCPI, Body: []byte(`{"id":"cpi-latest","term":"cpi"}`)},
 		}

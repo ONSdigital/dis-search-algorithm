@@ -174,7 +174,7 @@ func TestValidateJudgements(t *testing.T) {
 	Convey("Given a valid judgement", t, func() {
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
 			GetFunc: func(context.Context, string) (stream.Item, error) {
-				return testDocuments[0], nil
+				return getTestDocumentsAsStream()[0], nil
 			},
 		}
 
@@ -208,7 +208,7 @@ func TestValidateJudgements(t *testing.T) {
 	Convey("Given a judgement with an invalid relevance", t, func() {
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
 			GetFunc: func(context.Context, string) (stream.Item, error) {
-				return testDocuments[0], nil
+				return getTestDocumentsAsStream()[0], nil
 			},
 		}
 
@@ -269,7 +269,7 @@ func TestValidateJudgements(t *testing.T) {
 	Convey("Given a judgement with an invalid term ID", t, func() {
 		fakeDocStore := &fileStoreMocks.StreamMock[stream.Item]{
 			GetFunc: func(context.Context, string) (stream.Item, error) {
-				return testDocuments[0], nil
+				return getTestDocumentsAsStream()[0], nil
 			},
 		}
 
@@ -314,7 +314,7 @@ func TestImportJudgementsToStore(t *testing.T) {
 				if id == orphanDocID {
 					return stream.Item{}, stream.ErrItemNotFound
 				}
-				return testDocuments[0], nil
+				return getTestDocumentsAsStream()[0], nil
 			},
 		}
 
@@ -542,7 +542,7 @@ func TestImportJudgementsToStore(t *testing.T) {
 	Convey("Given the judgement store fails to write", t, func() {
 		fakeDocumentStore := &fileStoreMocks.StreamMock[stream.Item]{
 			GetFunc: func(ctx context.Context, id string) (stream.Item, error) {
-				return testDocuments[0], nil
+				return getTestDocumentsAsStream()[0], nil
 			},
 		}
 

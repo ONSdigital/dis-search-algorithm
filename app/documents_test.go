@@ -11,6 +11,7 @@ import (
 	fileStoreMocks "github.com/ONSdigital/dis-search-algorithm/testset/stream/mocks"
 	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	dpEsClientMock "github.com/ONSdigital/dp-elasticsearch/v4/client/mocks"
+	searchModel "github.com/ONSdigital/dp-search-api/models"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -24,18 +25,38 @@ const (
 )
 
 var (
-	testDocuments = []stream.Item{
-		{Name: docNameCPI, Body: []byte(`{"title":"CPI"}`)},
-		{Name: docNameGrowth, Body: []byte(`{"title":"Growth"}`)},
+	testDocuments = []Document{
+		Document{
+			ID:  docNameCPI,
+			URI: testShortCPIURI,
+			Item: searchModel.Item{
+				Title: testShortCPITitle,
+			},
+		},
+		Document{
+			ID:  docNameGrowth,
+			URI: testShortGrowthURI,
+			Item: searchModel.Item{
+				Title: testGrowthTitle,
+			},
+		},
 	}
 )
+
+func getTestDocumentsAsStream() []stream.Item {
+	items := make([]stream.Item, len(testDocuments))
+	for i, doc := range testDocuments {
+		items[i] = stream.Item{Name: doc.ID, Body: []byte(fmt.Sprintf(`{"id":%q, "uri":%q, "item":{"title":%q}}`, doc.ID, doc.URI, doc.Item.Title))}
+	}
+	return items
+}
 
 func TestGetDocuments(t *testing.T) {
 	Convey("Given a document store containing valid document JSON", t, func() {
 		ctx := context.Background()
 		items := []stream.Item{
-			{Name: "document-1", Body: []byte(`{"id":"document-1","uri":"/one","title":"One"}`)},
-			{Name: "document-2", Body: []byte(`{"id":"document-2","uri":"/two","title":"Two"}`)},
+			{Name: "document-1", Body: []byte(`{"id":"document-1","uri":"/one","item":{"title":"One"}}`)},
+			{Name: "document-2", Body: []byte(`{"id":"document-2","uri":"/two","item":{"title":"Two"}}`)},
 		}
 		store := &fileStoreMocks.StreamMock[stream.Item]{
 			ListFunc: func(gotCtx context.Context) ([]stream.Item, error) {
@@ -51,8 +72,8 @@ func TestGetDocuments(t *testing.T) {
 			Convey("Then it should return every decoded document", func() {
 				So(err, ShouldBeNil)
 				So(got, ShouldResemble, []Document{
-					{ID: "document-1", URI: "/one", Title: "One"},
-					{ID: "document-2", URI: "/two", Title: "Two"},
+					{ID: "document-1", URI: "/one", Item: searchModel.Item{Title: "One"}},
+					{ID: "document-2", URI: "/two", Item: searchModel.Item{Title: "Two"}},
 				})
 				So(store.ListCalls(), ShouldHaveLength, 1)
 			})
@@ -169,4 +190,118 @@ func TestGetMatchingDocumentsForTermPagination(t *testing.T) {
 			})
 		})
 	}
+}
+
+func TestPutDocument(t *testing.T) {
+	Convey("Given a document missing from the store", t, func() {
+		ctx := context.Background()
+		document := Document{ID: "document-1", URI: "/one", Item: searchModel.Item{Title: "One", Topics: []string{"economy"}}}
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+		app := &App{Documents: store}
+
+		Convey("When PutDocument is called", func() {
+			updated, err := app.PutDocument(ctx, document)
+
+			Convey("Then it stores the document as indented JSON with a trailing newline", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeTrue)
+				calls := store.PutCalls()
+				So(calls, ShouldHaveLength, 1)
+				So(calls[0].Ctx, ShouldEqual, ctx)
+				So(calls[0].ID, ShouldEqual, document.ID)
+				So(calls[0].Item.Name, ShouldEqual, document.ID)
+				want, marshalErr := json.MarshalIndent(document, "", "  ")
+				So(marshalErr, ShouldBeNil)
+				So(string(calls[0].Item.Body), ShouldEqual, string(want)+"\n")
+			})
+		})
+	})
+
+	Convey("Given an unchanged document already in the store", t, func() {
+		document := Document{ID: "document-1", URI: "/one", Item: searchModel.Item{Topics: []string{"economy"}}}
+		body, err := json.Marshal(document)
+		So(err, ShouldBeNil)
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Body: body}, nil
+			},
+		}
+
+		Convey("When PutDocument is called", func() {
+			updated, err := (&App{Documents: store}).PutDocument(context.Background(), document)
+
+			Convey("Then it skips the write", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeFalse)
+				So(store.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given a document whose metadata has changed", t, func() {
+		document := Document{ID: "document-1", URI: "/one", Item: searchModel.Item{Topics: []string{"economy", "prices"}}}
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{Body: []byte(`{"id":"document-1","uri":"/one","item":{"topics":["economy"]}}`)}, nil
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return nil },
+		}
+
+		Convey("When PutDocument is called", func() {
+			updated, err := (&App{Documents: store}).PutDocument(context.Background(), document)
+
+			Convey("Then it replaces the stored metadata", func() {
+				So(err, ShouldBeNil)
+				So(updated, ShouldBeTrue)
+				So(store.PutCalls(), ShouldHaveLength, 1)
+				var saved Document
+				So(json.Unmarshal(store.PutCalls()[0].Item.Body, &saved), ShouldBeNil)
+				So(saved, ShouldResemble, document)
+			})
+		})
+	})
+
+	Convey("Given the store fails to read the existing document", t, func() {
+		readErr := errors.New("read failed")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, readErr
+			},
+		}
+
+		Convey("When PutDocument is called", func() {
+			updated, err := (&App{Documents: store}).PutDocument(context.Background(), Document{ID: "document-1"})
+
+			Convey("Then it returns the read error without writing", func() {
+				So(updated, ShouldBeFalse)
+				So(errors.Is(err, readErr), ShouldBeTrue)
+				So(store.PutCalls(), ShouldBeEmpty)
+			})
+		})
+	})
+
+	Convey("Given the store fails to write a new document", t, func() {
+		writeErr := errors.New("write failed")
+		store := &fileStoreMocks.StreamMock[stream.Item]{
+			GetFunc: func(context.Context, string) (stream.Item, error) {
+				return stream.Item{}, stream.ErrItemNotFound
+			},
+			PutFunc: func(context.Context, string, stream.Item) error { return writeErr },
+		}
+
+		Convey("When PutDocument is called", func() {
+			updated, err := (&App{Documents: store}).PutDocument(context.Background(), Document{ID: "document-1"})
+
+			Convey("Then it returns the write error", func() {
+				So(updated, ShouldBeFalse)
+				So(errors.Is(err, writeErr), ShouldBeTrue)
+				So(store.PutCalls(), ShouldHaveLength, 1)
+			})
+		})
+	})
 }

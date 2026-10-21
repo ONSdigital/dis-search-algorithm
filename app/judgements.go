@@ -10,6 +10,7 @@ import (
 
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	"github.com/ONSdigital/dis-search-algorithm/ui"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	"github.com/pkg/errors"
 )
 
@@ -26,7 +27,8 @@ const (
 // importSummary counts the outcome of an import, for logging.
 type importSummary struct {
 	Skipped int // rows skipped because they are not valid
-	Updated int // rows that have caused an update
+	Updated int // rows whose contents changed
+	Removed int // files that were removed
 }
 
 // TermJudgements groups all judgements for a single term.
@@ -415,9 +417,9 @@ func createJudgementCSVCodec() *CSV[TermJudgement] {
 		},
 		{
 			Header: csvColumnTitle,
-			Value:  func(t TermJudgement) string { return t.Document.Title },
+			Value:  func(t TermJudgement) string { return t.Document.Item.Title },
 			Set: func(t *TermJudgement, value string) error {
-				t.Document.Title = value
+				t.Document.Item.Title = value
 				return nil
 			},
 		},

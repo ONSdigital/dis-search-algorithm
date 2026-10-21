@@ -125,6 +125,8 @@ export-judgements:
 
 export-documents:
 	go run main.go export documents -o documents.csv
+rebuild-judgements:
+	go run main.go rebuild judgements
 
 ##############################
 ## Utilities

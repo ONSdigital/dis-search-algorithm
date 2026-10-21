@@ -124,6 +124,90 @@ func (a *App) ExportJudgements(ctx context.Context, outputPath string) error {
 	return codec.WriteCSV(outputPath, rows)
 }
 
+// RebuildAllTermJudgements rebuilds the
+// judgements for all terms in the store.
+func (a *App) RebuildAllTermJudgements(ctx context.Context) error {
+	terms, err := a.GetTerms(ctx)
+	if err != nil {
+		return err
+	}
+
+	var summary importSummary
+
+	err = a.withElasticsearch(ctx, func(ctx context.Context, esClient dpEsClient.Client) error {
+		for _, term := range terms {
+			updated, err := a.rebuildTermJudgement(ctx, term, esClient)
+			if err != nil {
+				return err
+			}
+			if updated {
+				summary.Updated++
+			} else {
+				summary.Skipped++
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	ui.Info("rebuild summary: %d updated, %d skipped", summary.Updated, summary.Skipped)
+	return nil
+}
+
+func (a *App) rebuildTermJudgement(ctx context.Context, term Term, esClient dpEsClient.Client) (bool, error) {
+	ui.Info("rebuilding term judgements for term ID %q", term.ID)
+
+	termJudgements, err := a.GetTermJudgements(ctx, term.ID)
+	if err != nil {
+		return false, err
+	}
+
+	matchingDocuments, err := a.GetDocumentsForTerm(ctx, term, esClient)
+	if err != nil {
+		return false, err
+	}
+
+	// Check to see if any new documents
+	for i := range matchingDocuments {
+		if slices.ContainsFunc(termJudgements.Judgements, func(j Judgement) bool {
+			return matchingDocuments[i].ID == j.DocID
+		}) {
+			ui.Info("judged document %q still matches term %q", matchingDocuments[i].ID, term.ID)
+		} else {
+			ui.Celebrate("new document %q matches for term %q", matchingDocuments[i].ID, term.ID)
+			termJudgements.Judgements = append(termJudgements.Judgements, Judgement{
+				DocID:     matchingDocuments[i].ID,
+				Relevance: 0, // default relevance for new documents
+			})
+		}
+	}
+
+	// Check to see if any documents should be removed from the judgements
+	termJudgements.Judgements = slices.DeleteFunc(termJudgements.Judgements, func(judgement Judgement) bool {
+		missing := !slices.ContainsFunc(matchingDocuments, func(document Document) bool {
+			return document.ID == judgement.DocID
+		})
+		if missing {
+			ui.Warning("judged document %q no longer matches term %q", judgement.DocID, term.ID)
+		}
+		return missing
+	})
+
+	// Update the judgements
+	updated, err := a.putJudgement(ctx, termJudgements)
+	if err != nil {
+		return false, err
+	}
+	if updated {
+		ui.Info("updated judgement %q (%d entries)", termJudgements.TermID, len(termJudgements.Judgements))
+		return true, nil
+	} else {
+		ui.Info("skipped judgement %q (%d entries)", termJudgements.TermID, len(termJudgements.Judgements))
+		return false, nil
+	}
+}
+
 // importCSV is the io.Reader core of Import (mirrors writeEvaluationsCSV). It
 // is split out so the import can be tested without a file on disk.
 func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []TermJudgement) error {

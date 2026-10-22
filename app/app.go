@@ -6,6 +6,8 @@
 package app
 
 import (
+	"os"
+
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 )
 
@@ -19,7 +21,8 @@ type App struct {
 // New wires the App to the embedded fixture stores.
 func New() *App {
 	return &App{
-		Documents:  stream.NewDocumentStore(),
+		// passing os FS for write then read functionality.
+		Documents:  stream.NewDocumentStore(os.DirFS("testset")),
 		Terms:      stream.NewTermStore(),
 		Judgements: stream.NewJudgementStore(),
 	}

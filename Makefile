@@ -62,7 +62,10 @@ install: build ## Install binary to $GOPATH/bin
 ## Testing
 ####################################
 test: ## Run tests
-	@$(GOTEST) ./...
+	@$(GOTEST) ./... -cover
+
+test-unit: ## Just run unit tests not involving docker
+	@$(GOTEST) ./... -cover -short
 
 test-coverage: ## Run tests with coverage
 	@$(GOTEST) -v -coverprofile=coverage.out ./...
@@ -107,6 +110,15 @@ check: fmt vet audit lint test ## Run all checks
 # Run comparisons
 compare: build 
 	@./$(BIN_DIR)/$(BINARY_NAME) compare
+
+export-documents:
+	go run main.go export documents -o documents.csv
+
+import-documents:
+	go run main.go import documents -i documents.csv
+
+rebuild-judgements:
+	go run main.go rebuild judgements
 
 ##############################
 ## Utilities

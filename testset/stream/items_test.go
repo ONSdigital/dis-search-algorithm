@@ -80,7 +80,7 @@ func TestStores(t *testing.T) {
 	}{
 		{
 			name:  "document",
-			store: NewDocumentStore(),
+			store: NewDocumentStore(testset.DocumentFixturesFS()),
 		},
 		{
 			name:  "judgement",

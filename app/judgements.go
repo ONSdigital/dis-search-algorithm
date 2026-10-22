@@ -10,6 +10,7 @@ import (
 
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
 	"github.com/ONSdigital/dis-search-algorithm/ui"
+	dpEsClient "github.com/ONSdigital/dp-elasticsearch/v4/client"
 	"github.com/pkg/errors"
 )
 
@@ -26,7 +27,8 @@ const (
 // importSummary counts the outcome of an import, for logging.
 type importSummary struct {
 	Skipped int // rows skipped because they are not valid
-	Updated int // rows that have caused an update
+	Updated int // rows whose contents changed
+	Removed int // files that were removed
 }
 
 // TermJudgements groups all judgements for a single term.
@@ -122,6 +124,90 @@ func (a *App) ExportJudgements(ctx context.Context, outputPath string) error {
 	return codec.WriteCSV(outputPath, rows)
 }
 
+// RebuildAllTermJudgements rebuilds the
+// judgements for all terms in the store.
+func (a *App) RebuildAllTermJudgements(ctx context.Context) error {
+	terms, err := a.GetTerms(ctx)
+	if err != nil {
+		return err
+	}
+
+	var summary importSummary
+
+	err = a.withElasticsearch(ctx, func(ctx context.Context, esClient dpEsClient.Client) error {
+		for _, term := range terms {
+			updated, err := a.rebuildTermJudgement(ctx, term, esClient)
+			if err != nil {
+				return err
+			}
+			if updated {
+				summary.Updated++
+			} else {
+				summary.Skipped++
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	ui.Info("rebuild summary: %d updated, %d skipped", summary.Updated, summary.Skipped)
+	return nil
+}
+
+func (a *App) rebuildTermJudgement(ctx context.Context, term Term, esClient dpEsClient.Client) (bool, error) {
+	ui.Info("rebuilding term judgements for term ID %q", term.ID)
+
+	termJudgements, err := a.GetTermJudgements(ctx, term.ID)
+	if err != nil {
+		return false, err
+	}
+
+	matchingDocuments, err := a.GetDocumentsForTerm(ctx, term, esClient)
+	if err != nil {
+		return false, err
+	}
+
+	// Check to see if any new documents
+	for i := range matchingDocuments {
+		if slices.ContainsFunc(termJudgements.Judgements, func(j Judgement) bool {
+			return matchingDocuments[i].ID == j.DocID
+		}) {
+			ui.Info("judged document %q still matches term %q", matchingDocuments[i].ID, term.ID)
+		} else {
+			ui.Celebrate("new document %q matches for term %q", matchingDocuments[i].ID, term.ID)
+			termJudgements.Judgements = append(termJudgements.Judgements, Judgement{
+				DocID:     matchingDocuments[i].ID,
+				Relevance: 0, // default relevance for new documents
+			})
+		}
+	}
+
+	// Check to see if any documents should be removed from the judgements
+	termJudgements.Judgements = slices.DeleteFunc(termJudgements.Judgements, func(judgement Judgement) bool {
+		missing := !slices.ContainsFunc(matchingDocuments, func(document Document) bool {
+			return document.ID == judgement.DocID
+		})
+		if missing {
+			ui.Warning("judged document %q no longer matches term %q", judgement.DocID, term.ID)
+		}
+		return missing
+	})
+
+	// Update the judgements
+	updated, err := a.putJudgement(ctx, termJudgements)
+	if err != nil {
+		return false, err
+	}
+	if updated {
+		ui.Info("updated judgement %q (%d entries)", termJudgements.TermID, len(termJudgements.Judgements))
+		return true, nil
+	} else {
+		ui.Info("skipped judgement %q (%d entries)", termJudgements.TermID, len(termJudgements.Judgements))
+		return false, nil
+	}
+}
+
 // importCSV is the io.Reader core of Import (mirrors writeEvaluationsCSV). It
 // is split out so the import can be tested without a file on disk.
 func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []TermJudgement) error {
@@ -136,7 +222,8 @@ func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []Term
 
 	var validatedJudgements []TermJudgement
 
-	for _, judgement := range termJudgements {
+	for i := range termJudgements {
+		judgement := termJudgements[i]
 		valid, err := a.validateTermJudgement(ctx, judgement)
 		if err != nil {
 			return err
@@ -184,7 +271,8 @@ func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []Term
 func (a *App) removeJudgementsFromStore(ctx context.Context, existingJudgements, newJudgements []TermJudgements) (int, error) {
 	count := 0
 
-	for _, judgement := range existingJudgements {
+	for i := range existingJudgements {
+		judgement := existingJudgements[i]
 		// Check if this existing judgement is in the new judgements
 		index := slices.IndexFunc(newJudgements, func(item TermJudgements) bool {
 			return item.TermID == judgement.TermID
@@ -208,7 +296,8 @@ func (a *App) removeJudgementsFromStore(ctx context.Context, existingJudgements,
 func buildTermJudgements(judgements []TermJudgement) ([]TermJudgements, error) {
 	var composite []TermJudgements
 
-	for _, judgement := range judgements {
+	for i := range judgements {
+		judgement := judgements[i]
 		// Check if we have one already by index
 		index := slices.IndexFunc(composite, func(item TermJudgements) bool {
 			return item.TermID == judgement.Term.ID
@@ -415,9 +504,9 @@ func createJudgementCSVCodec() *CSV[TermJudgement] {
 		},
 		{
 			Header: csvColumnTitle,
-			Value:  func(t TermJudgement) string { return t.Document.Title },
+			Value:  func(t TermJudgement) string { return t.Document.Item.Title },
 			Set: func(t *TermJudgement, value string) error {
-				t.Document.Title = value
+				t.Document.Item.Title = value
 				return nil
 			},
 		},

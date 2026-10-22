@@ -22,6 +22,7 @@ func importCommand() (*cobra.Command, error) {
 	}
 	importCmd.AddCommand(importJudgementsCommand(&inputPath))
 	importCmd.AddCommand(importTermsCommand(&inputPath))
+	importCmd.AddCommand(importDocumentsCommand(&inputPath))
 
 	return importCmd, nil
 }
@@ -44,6 +45,17 @@ func importTermsCommand(inputPath *string) *cobra.Command {
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			return app.New().ImportTerms(cmd.Context(), *inputPath)
+		},
+	}
+}
+
+func importDocumentsCommand(inputPath *string) *cobra.Command {
+	return &cobra.Command{
+		Use:   "documents",
+		Short: "Import documents from an export-format CSV",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			return app.New().ImportDocuments(cmd.Context(), *inputPath)
 		},
 	}
 }

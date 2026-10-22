@@ -232,8 +232,8 @@ func (a *App) getDocumentMetadataBatch(ctx context.Context, docs []Document, sea
 	ui.Info("getting metadata for batch of %s", ui.Pluralise("document", len(docs)))
 
 	uris := make([]string, 0, len(docs))
-	for _, doc := range docs {
-		uris = append(uris, doc.URI)
+	for i := range docs {
+		uris = append(uris, docs[i].URI)
 	}
 
 	// Ensure we return all the results for the batch.
@@ -247,11 +247,12 @@ func (a *App) getDocumentMetadataBatch(ctx context.Context, docs []Document, sea
 		return nil, errors.Wrap(err, "failed to retrieve document metadata")
 	}
 	itemsByURI := make(map[string]searchModels.Item, len(response.Items))
-	for _, item := range response.Items {
-		itemsByURI[item.URI] = item
+	for i := range response.Items {
+		itemsByURI[response.Items[i].URI] = response.Items[i]
 	}
 	enriched := make([]Document, 0, len(docs))
-	for _, doc := range docs {
+	for i := range docs {
+		doc := docs[i]
 		item, ok := itemsByURI[doc.URI]
 		if !ok {
 			ui.Warning("metadata not returned for document %q (URI %q)", doc.ID, doc.URI)

@@ -222,7 +222,8 @@ func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []Term
 
 	var validatedJudgements []TermJudgement
 
-	for _, judgement := range termJudgements {
+	for i := range termJudgements {
+		judgement := termJudgements[i]
 		valid, err := a.validateTermJudgement(ctx, judgement)
 		if err != nil {
 			return err
@@ -270,7 +271,8 @@ func (a *App) importJudgementsToStore(ctx context.Context, termJudgements []Term
 func (a *App) removeJudgementsFromStore(ctx context.Context, existingJudgements, newJudgements []TermJudgements) (int, error) {
 	count := 0
 
-	for _, judgement := range existingJudgements {
+	for i := range existingJudgements {
+		judgement := existingJudgements[i]
 		// Check if this existing judgement is in the new judgements
 		index := slices.IndexFunc(newJudgements, func(item TermJudgements) bool {
 			return item.TermID == judgement.TermID
@@ -294,7 +296,8 @@ func (a *App) removeJudgementsFromStore(ctx context.Context, existingJudgements,
 func buildTermJudgements(judgements []TermJudgement) ([]TermJudgements, error) {
 	var composite []TermJudgements
 
-	for _, judgement := range judgements {
+	for i := range judgements {
+		judgement := judgements[i]
 		// Check if we have one already by index
 		index := slices.IndexFunc(composite, func(item TermJudgements) bool {
 			return item.TermID == judgement.Term.ID

@@ -171,7 +171,8 @@ func (a *App) importTermsToStore(ctx context.Context, terms []Term, esClient dpE
 				}
 
 				judgements := make([]Judgement, len(matchingDocs))
-				for i, doc := range matchingDocs {
+				for i := range matchingDocs {
+					doc := matchingDocs[i]
 					judgements[i] = Judgement{
 						DocID:     doc.ID,
 						Relevance: 0, // default relevance

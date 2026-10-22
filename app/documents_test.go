@@ -45,7 +45,8 @@ var (
 
 func getTestDocumentsAsStream() []stream.Item {
 	items := make([]stream.Item, len(testDocuments))
-	for i, doc := range testDocuments {
+	for i := range testDocuments {
+		doc := testDocuments[i]
 		items[i] = stream.Item{Name: doc.ID, Body: []byte(fmt.Sprintf(`{"id":%q, "uri":%q, "item":{"title":%q}}`, doc.ID, doc.URI, doc.Item.Title))}
 	}
 	return items

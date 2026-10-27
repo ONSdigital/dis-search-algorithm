@@ -1,6 +1,4 @@
 {
   "term_id": "inflation",
-  "judgements": [
-    { "doc_id": "cpi-latest", "relevance": 0 }
-  ]
+  "judgements": [{ "doc_id": "cpi-latest", "relevance": 0 }]
 }

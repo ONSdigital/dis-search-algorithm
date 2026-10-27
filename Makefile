@@ -111,13 +111,19 @@ check: fmt vet audit lint test ## Run all checks
 compare: build 
 	@./$(BIN_DIR)/$(BINARY_NAME) compare
 
-import-terms:
+import-terms: import-terms-unformatted lint-json-fix
+
+import-terms-unformatted:
 	go run main.go import terms -i terms.csv
 
-import-judgements:
+import-judgements: import-judgements-unformatted lint-json-fix
+
+import-judgements-unformatted: 
 	go run main.go import judgements -i judgements.csv
 
-import-documents:
+import-documents: import-documents-unformatted lint-json-fix
+
+import-documents-unformatted:
 	go run main.go import documents -i documents.csv
 
 export-terms:
@@ -128,6 +134,7 @@ export-judgements:
 
 export-documents:
 	go run main.go export documents -o documents.csv
+
 rebuild-judgements:
 	go run main.go rebuild judgements
 

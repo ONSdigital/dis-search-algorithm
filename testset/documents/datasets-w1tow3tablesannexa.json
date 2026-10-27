@@ -1,0 +1,27 @@
+{
+  "id": "datasets-w1tow3tablesannexa",
+  "uri": "/economy/inflationandpriceindices/datasets/w1tow3tablesannexa",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "CPIH",
+      "expenditure shares",
+      "indices",
+      "imputed rents",
+      "basket"
+    ],
+    "meta_description": "The latest annual update of consumer price inflation weights",
+    "release_date": "2018-03-19T00:00:00.000Z",
+    "summary": "The latest annual update of consumer price inflation weights.",
+    "title": "Consumer price inflation, updating weights: Tables W1 to W3",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/datasets/w1tow3tablesannexa",
+    "canonical_topic": ""
+  }
+}

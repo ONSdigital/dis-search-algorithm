@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-j2z3-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/j2z3/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "J2Z3",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "CPIH INDEX 12.3.2.2 Articles for babies 2015=100",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/j2z3/mm23",
+    "canonical_topic": ""
+  }
+}

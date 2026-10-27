@@ -1,0 +1,28 @@
+{
+  "id": "datasets-longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "international migration",
+      "administrative data",
+      "immigration",
+      "emigration",
+      "net migration"
+    ],
+    "meta_description": "Estimates for UK immigration, emigration and net migration, year ending June 2012 to year ending December 2025. These are official statistics in development. To access the most up-to-date data for each time period, please use the most recently published dataset.",
+    "release_date": "2026-05-20T23:00:00.000Z",
+    "summary": "Estimates for UK immigration, emigration and net migration, year ending June 2012 to year ending December 2025. These are official statistics in development. To access the most up-to-date data for each time period, please use the most recently published dataset.",
+    "title": "Long-term international immigration, emigration and net migration flows, provisional",
+    "topics": [
+      "9581",
+      "2425",
+      "1227"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+    "canonical_topic": ""
+  }
+}

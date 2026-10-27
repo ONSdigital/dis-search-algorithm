@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-czbh-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/czbh/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "CZBH",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "RPI All Items: Percentage change over 12 months: Jan 1987=100",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/czbh/mm23",
+    "canonical_topic": ""
+  }
+}

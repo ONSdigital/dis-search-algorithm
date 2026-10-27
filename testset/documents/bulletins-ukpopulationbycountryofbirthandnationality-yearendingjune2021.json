@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-ukpopulationbycountryofbirthandnationality-yearendingjune2021",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/ukpopulationbycountryofbirthandnationality/yearendingjune2021",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "year ending June 2021",
+    "keywords": [
+      "UK resident migrants",
+      "nation of birth",
+      "citizenship",
+      "region",
+      "local authority"
+    ],
+    "meta_description": "Latest population estimates for the UK by country of birth and nationality, covering the period from 2004 to the year ending June 2021.",
+    "release_date": "2021-11-25T00:00:00.000Z",
+    "summary": "Latest population estimates for the UK by country of birth and nationality, covering the period from 2004 to the year ending June 2021.",
+    "title": "Population of the UK by country of birth and nationality",
+    "topics": [
+      "9581",
+      "2425",
+      "1227"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/ukpopulationbycountryofbirthandnationality/yearendingjune2021",
+    "canonical_topic": ""
+  }
+}

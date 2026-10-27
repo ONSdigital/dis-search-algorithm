@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-crimeinenglandandwales-yearendingdecember2025",
+  "uri": "/peoplepopulationandcommunity/crimeandjustice/bulletins/crimeinenglandandwales/yearendingdecember2025",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "year ending December 2025",
+    "keywords": [
+      "criminal activity",
+      "victims",
+      "offences",
+      "personal experience",
+      "knife crime"
+    ],
+    "meta_description": "Crime against households and people aged 16 years and over, using data from police recorded crime and the Crime Survey for England and Wales (CSEW).",
+    "release_date": "2026-04-22T23:00:00.000Z",
+    "summary": "Accredited official statistics using data from the Crime Survey for England and Wales (CSEW) and official statistics using data from police recorded crime.",
+    "title": "Crime in England and Wales",
+    "topics": [
+      "9581",
+      "2668"
+    ],
+    "uri": "/peoplepopulationandcommunity/crimeandjustice/bulletins/crimeinenglandandwales/yearendingdecember2025",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-businessdemographyquarterlyexperimentalstatisticsuk-januarytomarch2026",
+  "uri": "/businessindustryandtrade/business/activitysizeandlocation/bulletins/businessdemographyquarterlyexperimentalstatisticsuk/januarytomarch2026",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "January to March 2026",
+    "keywords": [
+      "creation",
+      "removal",
+      "closure",
+      "birth",
+      "death"
+    ],
+    "meta_description": "Business creations or births and closures or deaths from the Inter-Departmental Business Register (IDBR) with high-level breakdowns by industry and region. Official statistics in development.  ",
+    "release_date": "2026-04-23T23:00:00.000Z",
+    "summary": "Business creations or births and closures or deaths from the Inter-Departmental Business Register (IDBR) with high-level breakdowns by industry and region. Official statistics in development.  ",
+    "title": "Business demography, quarterly, UK",
+    "topics": [
+      "9658",
+      "5132",
+      "7651"
+    ],
+    "uri": "/businessindustryandtrade/business/activitysizeandlocation/bulletins/businessdemographyquarterlyexperimentalstatisticsuk/januarytomarch2026",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "timeseries-j8q7-pusf",
+  "uri": "/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/j8q7/pusf",
+  "item": {
+    "type": "timeseries",
+    "cdid": "J8Q7",
+    "dataset_id": "PUSF",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "Public Sector: Liability: Life Insurance and Annuity Entitlements: (AF.62): £m: CP: NSA",
+    "topics": [
+      "1245",
+      "9828",
+      "3863"
+    ],
+    "uri": "/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/j8q7/pusf",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-annualsmallareapopulationestimates-rebasedmid2012tomid2020",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualsmallareapopulationestimates/rebasedmid2012tomid2020",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "rebased mid-2012 to mid-2020, revised mid-2022",
+    "keywords": [
+      "SAPE",
+      "Lower layer Super Output Areas",
+      "Middle layer Super Output Areas",
+      "small area population estimates",
+      "local authority"
+    ],
+    "meta_description": "National population estimates broken down into small geographical areas (Super Output Areas, health geographies, electoral wards, Parliamentary constituencies and National Parks).",
+    "release_date": "2024-11-25T00:00:00.000Z",
+    "summary": "National population estimates broken down into small geographical areas (Super Output Areas, health geographies, electoral wards, Parliamentary constituencies and National Parks). Revised estimates for mid-2022 in this release have since been further revised.",
+    "title": "Population estimates by output areas, electoral, health and other geographies, England and Wales",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualsmallareapopulationestimates/rebasedmid2012tomid2020",
+    "canonical_topic": ""
+  }
+}

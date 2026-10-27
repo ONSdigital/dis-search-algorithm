@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-householdcostsindicesforukhouseholdgroups-januarytomarch2026",
+  "uri": "/economy/inflationandpriceindices/bulletins/householdcostsindicesforukhouseholdgroups/januarytomarch2026",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": " January to March 2026",
+    "keywords": [
+      "inflation",
+      "prices",
+      "income",
+      "subgroups",
+      "owner occupier"
+    ],
+    "meta_description": "Household Costs Indices, 12-month growth rates, expenditure shares, and contributions for UK household groups and all households. ",
+    "release_date": "2026-05-27T23:00:00.000Z",
+    "summary": "Household Costs Indices, 12-month growth rates, expenditure shares, and contributions for UK household groups and all households. ",
+    "title": "Household Costs Indices for UK household groups",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/bulletins/householdcostsindicesforukhouseholdgroups/januarytomarch2026",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "timeseries-ukpop-pop",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/ukpop/pop",
+  "item": {
+    "type": "timeseries",
+    "cdid": "UKPOP",
+    "dataset_id": "pop",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-09-30T23:00:00.000Z",
+    "summary": "",
+    "title": "United Kingdom population mid-year estimate",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/ukpop/pop",
+    "canonical_topic": ""
+  }
+}

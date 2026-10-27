@@ -1,0 +1,26 @@
+{
+  "id": "datasets-crimeinenglandandwalesappendixtables",
+  "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "criminal activity",
+      "personal experience",
+      "victims",
+      "offence"
+    ],
+    "meta_description": "Trends in Crime Survey for England and Wales (CSEW) crime and Home Office police recorded crime for England and Wales, by offence type.",
+    "release_date": "2026-10-21T23:00:00.000Z",
+    "summary": "Trends in Crime Survey for England and Wales (CSEW) crime (accredited official statistics) and Home Office police recorded crime (official statistics) for England and Wales, by offence type. Also includes more detailed data on crime such as violence, fraud and anti-social behaviour.",
+    "title": "Crime in England and Wales: Appendix tables",
+    "topics": [
+      "9581",
+      "2668"
+    ],
+    "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesappendixtables",
+    "canonical_topic": ""
+  }
+}

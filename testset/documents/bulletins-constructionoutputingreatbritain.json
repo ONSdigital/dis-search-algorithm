@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-constructionoutputingreatbritain",
+  "uri": "/businessindustryandtrade/constructionindustry/bulletins/constructionoutputingreatbritain/may2026",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "May 2026",
+    "keywords": [
+      "housing",
+      "non-housing",
+      "infrastructure",
+      "new work",
+      "repair and maintenance"
+    ],
+    "meta_description": "Short-term measures of output by the construction industry in May 2026.",
+    "release_date": "2026-07-15T23:00:00.000Z",
+    "summary": "Short-term measures of output by the construction industry in May 2026.",
+    "title": "Construction output in Great Britain",
+    "topics": [
+      "9658",
+      "1346"
+    ],
+    "uri": "/businessindustryandtrade/constructionindustry/bulletins/constructionoutputingreatbritain/may2026",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "bulletins-annualmidyearpopulationestimates-mid2023",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2023",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "mid-2023",
+    "keywords": [
+      "migration",
+      "age structure",
+      "natural change"
+    ],
+    "meta_description": "National mid-year population estimates for the UK and its constituent countries, by age and sex.",
+    "release_date": "2024-10-07T23:00:00.000Z",
+    "summary": "National mid-year population estimates for the UK and its constituent countries, by age and sex.",
+    "title": "Population estimates for the UK, England, Wales, Scotland and Northern Ireland",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2023",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "datasets-revisionstrianglesformonthlygdp",
+  "uri": "/economy/grossdomesticproductgdp/datasets/revisionstrianglesformonthlygdp",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "GDP",
+      "UK economy",
+      "national accounts",
+      "economic growth"
+    ],
+    "meta_description": "Revisions triangles for month on month and three-month on three-month GDP growth.",
+    "release_date": "2026-10-14T23:00:00.000Z",
+    "summary": "Comparison of gross domestic product (GDP) first estimates against estimates published later. ",
+    "title": "Revisions triangles",
+    "topics": [
+      "1245",
+      "9691"
+    ],
+    "uri": "/economy/grossdomesticproductgdp/datasets/revisionstrianglesformonthlygdp",
+    "canonical_topic": ""
+  }
+}

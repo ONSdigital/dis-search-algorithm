@@ -1,0 +1,29 @@
+{
+  "id": "bulletins-welshlanguagewales-census2021",
+  "uri": "/peoplepopulationandcommunity/culturalidentity/language/bulletins/welshlanguagewales/census2021",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "Census 2021",
+    "keywords": [
+      "welsh",
+      "language",
+      "welsh speakers",
+      "cymraeg",
+      "iaith"
+    ],
+    "meta_description": "The ability of usual residents aged three years and over living in Wales to understand spoken Welsh, and to speak, read or write Welsh, Census 2021 data.",
+    "release_date": "2022-12-06T00:00:00.000Z",
+    "summary": "The ability of usual residents aged three years and over living in Wales to understand spoken Welsh, and to speak, read or write Welsh, Census 2021 data.",
+    "title": "Welsh language, Wales",
+    "topics": [
+      "4931",
+      "5974",
+      "9497",
+      "9581"
+    ],
+    "uri": "/peoplepopulationandcommunity/culturalidentity/language/bulletins/welshlanguagewales/census2021",
+    "canonical_topic": ""
+  }
+}

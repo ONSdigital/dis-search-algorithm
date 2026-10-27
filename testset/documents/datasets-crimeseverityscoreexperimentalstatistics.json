@@ -1,0 +1,27 @@
+{
+  "id": "datasets-crimeseverityscoreexperimentalstatistics",
+  "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "offence",
+      "harm",
+      "police",
+      "criminal activity",
+      "victims"
+    ],
+    "meta_description": "Crime Severity Score (CSS) data for police force areas and community safety partnerships, which equate in the majority of instances to local authorities. Includes a data tool to enable production of summary charts on trends and comparisons between areas.",
+    "release_date": "2025-12-09T00:00:00.000Z",
+    "summary": "Crime Severity Score (CSS) data for police force areas and community safety partnerships, which equate in the majority of instances to local authorities. Includes a data tool to enable production of summary charts on trends and comparisons between areas.",
+    "title": "Crime Severity Score: Year ending March 2025",
+    "topics": [
+      "9581",
+      "2668"
+    ],
+    "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/crimeseverityscoreexperimentalstatistics",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-l5nv-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/l5nv/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "L5NV",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "CPIH wts: Electricity, gas \u0026 misc. energy GOODS",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/l5nv/mm23",
+    "canonical_topic": ""
+  }
+}

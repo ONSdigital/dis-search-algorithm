@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-nationalpopulationprojections-2024based",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationprojections/bulletins/nationalpopulationprojections/2024based",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "2024-based",
+    "keywords": [
+      "migration",
+      "forecast",
+      "variant",
+      "population growth",
+      "future births and deaths"
+    ],
+    "meta_description": "The potential future population size of the UK and its constituent countries. These statistics are widely used in planning, including fiscal projections, health, education and pensions.",
+    "release_date": "2026-04-27T23:00:00.000Z",
+    "summary": "The potential future population size of the UK and its constituent countries. These statistics are widely used in planning, including fiscal projections, health, education and pensions. ",
+    "title": "National population projections",
+    "topics": [
+      "9581",
+      "2425",
+      "4544"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationprojections/bulletins/nationalpopulationprojections/2024based",
+    "canonical_topic": ""
+  }
+}

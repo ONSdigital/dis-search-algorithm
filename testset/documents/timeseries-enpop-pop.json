@@ -1,0 +1,22 @@
+{
+  "id": "timeseries-enpop-pop",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/enpop/pop",
+  "item": {
+    "type": "timeseries",
+    "cdid": "ENPOP",
+    "dataset_id": "pop",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-09-30T23:00:00.000Z",
+    "summary": "",
+    "title": "England population mid-year estimate",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/enpop/pop",
+    "canonical_topic": ""
+  }
+}

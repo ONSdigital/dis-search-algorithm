@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-a9fp-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/a9fp/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "A9FP",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "CPI wts: Miscellaneous services SERVICES",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/a9fp/mm23",
+    "canonical_topic": ""
+  }
+}

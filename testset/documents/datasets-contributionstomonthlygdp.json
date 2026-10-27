@@ -1,0 +1,26 @@
+{
+  "id": "datasets-contributionstomonthlygdp",
+  "uri": "/economy/grossdomesticproductgdp/datasets/contributionstomonthlygdp",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "UK economy",
+      "National Accounts",
+      "economic growth",
+      "GDP"
+    ],
+    "meta_description": "Contributions to growth within monthly gross domestic product (GDP), UK.",
+    "release_date": "2026-10-14T23:00:00.000Z",
+    "summary": "Contributions to growth within monthly gross domestic product (GDP), UK",
+    "title": "Contributions to monthly GDP",
+    "topics": [
+      "1245",
+      "9691"
+    ],
+    "uri": "/economy/grossdomesticproductgdp/datasets/contributionstomonthlygdp",
+    "canonical_topic": ""
+  }
+}

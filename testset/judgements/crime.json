@@ -1,4 +1,20 @@
 {
   "term_id": "crime",
-  "judgements": []
+  "judgements": [
+    { "doc_id": "bulletins-crimeinenglandandwales-yearendingmarch2026", "relevance": 0 },
+    { "doc_id": "bulletins-crimeinenglandandwales-yearendingseptember2025", "relevance": 0 },
+    { "doc_id": "datasets-natureofcrimebicycletheft", "relevance": 0 },
+    { "doc_id": "bulletins-crimeinenglandandwales-yearendingdecember2022", "relevance": 0 },
+    { "doc_id": "bulletins-crimeinenglandandwales-yearendingdecember2025", "relevance": 0 },
+    { "doc_id": "bulletins-crimeinenglandandwales-yearendingjune2025", "relevance": 0 },
+    { "doc_id": "datasets-crimeinenglandandwalesappendixtables", "relevance": 0 },
+    { "doc_id": "datasets-natureofcrimefraudandcomputermisuse", "relevance": 0 },
+    { "doc_id": "datasets-natureofcrimeburglary", "relevance": 0 },
+    { "doc_id": "datasets-natureofcrimepersonalandothertheft", "relevance": 0 },
+    { "doc_id": "datasets-crimeinenglandandwalesannualsupplementarytables", "relevance": 0 },
+    { "doc_id": "datasets-crimeseverityscoreexperimentalstatistics", "relevance": 0 },
+    { "doc_id": "methodologies-exploringdivergingtrendsbetweenthecrimesurveyforenglandandwalesandpolicerecordedcrime", "relevance": 0 },
+    { "doc_id": "articles-improvingcrimestatisticsforenglandandwalesprogressupdate", "relevance": 0 },
+    { "doc_id": "methodologies-anevaluationofthecrimesurveyforenglandandwalespaneldesigntest", "relevance": 0 }
+  ]
 }

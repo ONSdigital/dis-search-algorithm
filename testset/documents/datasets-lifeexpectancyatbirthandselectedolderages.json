@@ -1,0 +1,28 @@
+{
+  "id": "datasets-lifeexpectancyatbirthandselectedolderages",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/lifeexpectancyatbirthandselectedolderages",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "ageing",
+      "dementia and Alzheimer’s disease",
+      "life expectancy",
+      "mortality rate",
+      "cause of death"
+    ],
+    "meta_description": "Annual data on life expectancy at birth and selected older ages for England, broken down by sex. ",
+    "release_date": "2020-03-03T00:00:00.000Z",
+    "summary": "Annual data on life expectancy at birth and selected older ages for England, broken down by sex. ",
+    "title": "Life expectancy at birth and selected older ages",
+    "topics": [
+      "9581",
+      "7131",
+      "2998"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/lifeexpectancyatbirthandselectedolderages",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-nationallifetablesunitedkingdom-2016to2018",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2016to2018",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "2016 to 2018",
+    "keywords": [
+      "mortality",
+      "expectancy",
+      "ageing",
+      "survival",
+      "longevity"
+    ],
+    "meta_description": "Trends in the average number of years people will live beyond their current age measured by period life expectancy, analysed by age and sex for the UK and its constituent countries.",
+    "release_date": "2019-09-24T23:00:00.000Z",
+    "summary": "Trends in the average number of years people will live beyond their current age measured by period life expectancy, analysed by age and sex for the UK and its constituent countries.",
+    "title": "National life tables, UK",
+    "topics": [
+      "9581",
+      "7131",
+      "6788"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2016to2018",
+    "canonical_topic": ""
+  }
+}

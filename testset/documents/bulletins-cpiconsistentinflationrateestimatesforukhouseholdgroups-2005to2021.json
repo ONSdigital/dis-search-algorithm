@@ -1,0 +1,23 @@
+{
+  "id": "bulletins-cpiconsistentinflationrateestimatesforukhouseholdgroups-2005to2021",
+  "uri": "/economy/inflationandpriceindices/bulletins/cpiconsistentinflationrateestimatesforukhouseholdgroups/2005to2021",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "2005 to 2021",
+    "keywords": [
+      ""
+    ],
+    "meta_description": "Estimates of Consumer Prices Index (CPI) inflation rates for different types of households in the UK 2005 to 2021.",
+    "release_date": "2022-01-28T00:00:00.000Z",
+    "summary": "Estimates of Consumer Prices Index (CPI) inflation rates for different types of households in the UK 2005 to 2021.",
+    "title": "CPI-consistent inflation rate estimates for UK household groups",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/bulletins/cpiconsistentinflationrateestimatesforukhouseholdgroups/2005to2021",
+    "canonical_topic": ""
+  }
+}

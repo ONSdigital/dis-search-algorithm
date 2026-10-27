@@ -1,0 +1,26 @@
+{
+  "id": "datasets-expectationoflifelowlifeexpectancyvariantunitedkingdom",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/datasets/expectationoflifelowlifeexpectancyvariantunitedkingdom",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "life expectancy",
+      "period",
+      "cohort"
+    ],
+    "meta_description": "Period and cohort expectation of life using the low life expectancy variant, by single year of age 0 to 100",
+    "release_date": "2026-05-14T23:00:00.000Z",
+    "summary": "Period and cohort expectation of life in the UK using the low life expectancy variant, by single year of age 0 to 100.",
+    "title": "Expectation of life, low life expectancy variant, UK",
+    "topics": [
+      "9581",
+      "7131",
+      "6788"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/datasets/expectationoflifelowlifeexpectancyvariantunitedkingdom",
+    "canonical_topic": ""
+  }
+}

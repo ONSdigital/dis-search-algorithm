@@ -1,4 +1,10 @@
 {
   "term_id": "immigration",
-  "judgements": []
+  "judgements": [
+    { "doc_id": "datasets-internationalimmigrationandthelabourmarketukregionaldata", "relevance": 0 },
+    { "doc_id": "datasets-longterminternationalimmigrationemigrationandnetmigrationflowsprovisional", "relevance": 0 },
+    { "doc_id": "datasets-longterminternationalmigration", "relevance": 0 },
+    { "doc_id": "articles-migrationandthelabourmarketuk-2016", "relevance": 0 },
+    { "doc_id": "methodologies-homeofficeimmigrationdataexcludingasylumseekersqualityassuranceofadministrativedatausedinpopulationstatisticsfeb2017", "relevance": 0 }
+  ]
 }

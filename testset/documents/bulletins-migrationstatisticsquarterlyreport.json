@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-migrationstatisticsquarterlyreport",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/migrationstatisticsquarterlyreport/august2020",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "August 2020",
+    "keywords": [
+      "Asylum",
+      "MSQR",
+      "LTIM",
+      "immigration",
+      "emigration"
+    ],
+    "meta_description": "A summary of the latest long-term international migration estimates for the UK for the year ending March 2020.",
+    "release_date": "2020-08-26T23:00:00.000Z",
+    "summary": "A summary of the latest long-term international migration estimates for the UK for the year ending March 2020. Data from the Home Office, Department for Work and Pensions (DWP) and Higher Education Statistics Agency (HESA) are also included. ",
+    "title": "Migration Statistics Quarterly Report",
+    "topics": [
+      "9581",
+      "2425"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/migrationstatisticsquarterlyreport/august2020",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-cdsi-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/cdsi/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "CDSI",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "Retail Prices Index: Long run series: annual percentage change",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/cdsi/mm23",
+    "canonical_topic": ""
+  }
+}

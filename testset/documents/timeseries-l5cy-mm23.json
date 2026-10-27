@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-l5cy-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/l5cy/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "L5CY",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "CPIH WEIGHTS 00 : Overall index",
+    "topics": [
+      "4972",
+      "1245"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/l5cy/mm23",
+    "canonical_topic": ""
+  }
+}

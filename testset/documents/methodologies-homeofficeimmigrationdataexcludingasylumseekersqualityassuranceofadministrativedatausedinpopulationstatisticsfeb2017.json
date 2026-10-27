@@ -1,0 +1,28 @@
+{
+  "id": "methodologies-homeofficeimmigrationdataexcludingasylumseekersqualityassuranceofadministrativedatausedinpopulationstatisticsfeb2017",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/methodologies/homeofficeimmigrationdataexcludingasylumseekersqualityassuranceofadministrativedatausedinpopulationstatisticsfeb2017",
+  "item": {
+    "type": "static_methodology",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "registration",
+      "national",
+      "datasets",
+      "process",
+      "QAAD"
+    ],
+    "meta_description": "Report detailing the quality assurance undertaken on administrative data for Home Office Immigration data data used within Population Statistics Division (PSD) publications.",
+    "release_date": "2017-02-10T00:00:00.000Z",
+    "summary": "Quality assurance undertaken on administrative data for Home Office Immigration data used within Population Statistics Division (PSD) publications.",
+    "title": "Home Office immigration data excluding asylum seekers: quality assurance of administrative data used in population statistics, Feb 2017",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/methodologies/homeofficeimmigrationdataexcludingasylumseekersqualityassuranceofadministrativedatausedinpopulationstatisticsfeb2017",
+    "canonical_topic": ""
+  }
+}

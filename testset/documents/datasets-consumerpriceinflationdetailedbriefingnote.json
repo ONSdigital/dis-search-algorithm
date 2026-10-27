@@ -1,0 +1,27 @@
+{
+  "id": "datasets-consumerpriceinflationdetailedbriefingnote",
+  "uri": "/economy/inflationandpriceindices/datasets/consumerpriceinflationdetailedbriefingnote",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "Economy",
+      "weights",
+      "retail",
+      "index",
+      "indicies"
+    ],
+    "meta_description": "Price indices, percentage changes and weights for the different measures of consumer price inflation.",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "The consumer price inflation detailed briefing note contains details of the items contributing to the changes in the CPIH (and RPI), details of any notable movements, a summary of the reconciliation of CPIH and RPI, and the outlook, which looks ahead to next month’s release.",
+    "title": "Consumer price inflation detailed briefing note",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/datasets/consumerpriceinflationdetailedbriefingnote",
+    "canonical_topic": ""
+  }
+}

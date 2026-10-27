@@ -1,0 +1,25 @@
+{
+  "id": "datasets-consumerpriceinflationbasketofgoodsandservices",
+  "uri": "/economy/inflationandpriceindices/datasets/consumerpriceinflationbasketofgoodsandservices",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "CPIH",
+      "CPI",
+      "RPI"
+    ],
+    "meta_description": "Representative items within the Consumer Prices Index including owner occupiers' housing costs, Consumer Prices Index and Retail Prices Index for the basket of goods and services.",
+    "release_date": "2026-03-16T00:00:00.000Z",
+    "summary": "Representative items within the Consumer Prices Index including owner occupiers' housing costs, Consumer Prices Index and Retail Prices Index for the basket of goods and services.",
+    "title": "Consumer price inflation basket of goods and services",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/datasets/consumerpriceinflationbasketofgoodsandservices",
+    "canonical_topic": ""
+  }
+}

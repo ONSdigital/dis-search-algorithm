@@ -1,0 +1,29 @@
+{
+  "id": "methodologies-regionalaccountsmethodologyguidejune2019",
+  "uri": "/economy/regionalaccounts/grossdisposablehouseholdincome/methodologies/regionalaccountsmethodologyguidejune2019",
+  "item": {
+    "type": "static_methodology",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "GVA",
+      "GDHI",
+      "GFCF",
+      "production",
+      "income",
+      "balanced"
+    ],
+    "meta_description": "What comprises the UK regional accounts, how various regional estimates are compiled, the different data used in compilation and concepts underpinning the process.",
+    "release_date": "2019-06-12T23:00:00.000Z",
+    "summary": "What comprises the UK regional accounts, how various regional estimates are compiled, the different data used in compilation and concepts underpinning the process.",
+    "title": "Regional accounts methodology guide: June 2019",
+    "topics": [
+      "2724",
+      "9831",
+      "1245"
+    ],
+    "uri": "/economy/regionalaccounts/grossdisposablehouseholdincome/methodologies/regionalaccountsmethodologyguidejune2019",
+    "canonical_topic": ""
+  }
+}

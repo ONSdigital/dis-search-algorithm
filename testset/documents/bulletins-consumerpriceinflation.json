@@ -1,0 +1,26 @@
+{
+  "id": "bulletins-consumerpriceinflation",
+  "uri": "/economy/inflationandpriceindices/bulletins/consumerpriceinflation/june2026",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "June 2026",
+    "keywords": [
+      "Economy",
+      "Retail",
+      "CPIH",
+      "CPI"
+    ],
+    "meta_description": "Price indices, percentage changes, and weights for the different measures of consumer price inflation.",
+    "release_date": "2026-07-21T23:00:00.000Z",
+    "summary": "Price indices, percentage changes, and weights for the different measures of consumer price inflation.",
+    "title": "Consumer price inflation, UK",
+    "topics": [
+      "4972",
+      "1245"
+    ],
+    "uri": "/economy/inflationandpriceindices/bulletins/consumerpriceinflation/june2026",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-consumertrends-januarytomarch2026",
+  "uri": "/economy/nationalaccounts/satelliteaccounts/bulletins/consumertrends/januarytomarch2026",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "January to March 2026",
+    "keywords": [
+      "household spending",
+      "personal expenditure",
+      "spending per head",
+      "classification of individual consumption by purpose",
+      "COICOP"
+    ],
+    "meta_description": "Household final consumption expenditure (HHFCE) for the UK, as a measure of economic growth. Includes spending on goods and services by UK households. ",
+    "release_date": "2026-06-29T23:00:00.000Z",
+    "summary": "Household final consumption expenditure (HHFCE) for the UK, as a measure of economic growth. Includes spending on goods and services by UK households as defined in the National Accounts.",
+    "title": "Consumer trends, UK",
+    "topics": [
+      "1245",
+      "2735",
+      "4176"
+    ],
+    "uri": "/economy/nationalaccounts/satelliteaccounts/bulletins/consumertrends/januarytomarch2026",
+    "canonical_topic": ""
+  }
+}

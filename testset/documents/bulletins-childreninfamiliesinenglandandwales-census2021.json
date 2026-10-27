@@ -1,0 +1,29 @@
+{
+  "id": "bulletins-childreninfamiliesinenglandandwales-census2021",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/families/bulletins/childreninfamiliesinenglandandwales/census2021",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "Census 2021",
+    "keywords": [
+      "step family",
+      "reformed families",
+      "large families",
+      "step parent",
+      "step-parent"
+    ],
+    "meta_description": "Dependent children in households including in step-families and blended families, multi-generational households, and households with three or more children.",
+    "release_date": "2024-03-05T00:00:00.000Z",
+    "summary": "Dependent children in households including in step-families and blended families, multi-generational households, and households with three or more children.",
+    "title": "Children in families in England and Wales",
+    "topics": [
+      "6646",
+      "9581",
+      "7131",
+      "1426"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/families/bulletins/childreninfamiliesinenglandandwales/census2021",
+    "canonical_topic": ""
+  }
+}

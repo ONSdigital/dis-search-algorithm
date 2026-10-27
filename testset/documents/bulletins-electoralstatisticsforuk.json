@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-electoralstatisticsforuk",
+  "uri": "/peoplepopulationandcommunity/elections/electoralregistration/bulletins/electoralstatisticsforuk/december2021",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "December 2021",
+    "keywords": [
+      "electors",
+      "voters",
+      "Parliamentary constituencies",
+      "local government"
+    ],
+    "meta_description": "Electoral registrations for Parliamentary and local government elections as recorded in the electoral registers published on 1 December 2021 for England, Wales, Scotland and Northern Ireland.",
+    "release_date": "2022-04-04T23:00:00.000Z",
+    "summary": "Electoral registrations for Parliamentary and local government elections as recorded in the electoral registers published on 1 December 2021 for England, Wales, Scotland and Northern Ireland.",
+    "title": "Electoral statistics, UK",
+    "topics": [
+      "9581",
+      "9421",
+      "4629"
+    ],
+    "uri": "/peoplepopulationandcommunity/elections/electoralregistration/bulletins/electoralstatisticsforuk/december2021",
+    "canonical_topic": ""
+  }
+}

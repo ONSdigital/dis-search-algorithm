@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-l59c-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/l59c/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "L59C",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "CPIH MONTHLY RATE 00: ALL ITEMS 2015=100",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/l59c/mm23",
+    "canonical_topic": ""
+  }
+}

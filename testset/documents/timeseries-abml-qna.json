@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-abml-qna",
+  "uri": "/economy/grossvalueaddedgva/timeseries/abml/qna",
+  "item": {
+    "type": "timeseries",
+    "cdid": "ABML",
+    "dataset_id": "QNA",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-09-29T23:00:00.000Z",
+    "summary": "",
+    "title": "Gross Value Added (Average) at basic prices: CP SA £m",
+    "topics": [
+      "1245",
+      "7521"
+    ],
+    "uri": "/economy/grossvalueaddedgva/timeseries/abml/qna",
+    "canonical_topic": ""
+  }
+}

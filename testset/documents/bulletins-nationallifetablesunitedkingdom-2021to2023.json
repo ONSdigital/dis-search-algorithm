@@ -1,0 +1,30 @@
+{
+  "id": "bulletins-nationallifetablesunitedkingdom-2021to2023",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2021to2023",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "2021 to 2023",
+    "keywords": [
+      "mortality",
+      "how long do people live",
+      "expectancy at birth",
+      "lifespan",
+      "pandemic",
+      "deaths",
+      "ageing"
+    ],
+    "meta_description": "Trends in period life expectancy, a measure of the average number of years people will live beyond their current age, analysed by age and sex for England and Wales.",
+    "release_date": "2024-10-22T23:00:00.000Z",
+    "summary": "Trends in period life expectancy, a measure of the average number of years people will live beyond their current age, analysed by age and sex for England and Wales",
+    "title": "National life tables – life expectancy in England and Wales",
+    "topics": [
+      "9581",
+      "7131",
+      "6788"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2021to2023",
+    "canonical_topic": ""
+  }
+}

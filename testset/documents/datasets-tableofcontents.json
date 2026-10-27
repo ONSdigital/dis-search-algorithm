@@ -1,0 +1,28 @@
+{
+  "id": "datasets-tableofcontents",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/tableofcontents",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "International Passenger Survey",
+      "Immigration",
+      "Emigration",
+      "Net Migration",
+      "LTIM"
+    ],
+    "meta_description": "Tool to locate the datasets of Long-Term International Migration and International Passenger Survey estimates.",
+    "release_date": "2022-11-24T00:00:00.000Z",
+    "summary": "Tool to locate the datasets of Long-Term International Migration and International Passenger Survey estimates.",
+    "title": "International migration – table of contents",
+    "topics": [
+      "9581",
+      "2425",
+      "1227"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/tableofcontents",
+    "canonical_topic": ""
+  }
+}

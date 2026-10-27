@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-crimeinenglandandwales-yearendingdecember2022",
+  "uri": "/peoplepopulationandcommunity/crimeandjustice/bulletins/crimeinenglandandwales/yearendingdecember2022",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "year ending December 2022",
+    "keywords": [
+      "criminal activity",
+      "victims",
+      "offences",
+      "personal experience",
+      "knife crime"
+    ],
+    "meta_description": "Crime against households and adults using data from police recorded crime and the Crime Survey for England and Wales (CSEW). ",
+    "release_date": "2023-04-26T23:00:00.000Z",
+    "summary": "Crime against households and adults using data from police recorded crime and the Crime Survey for England and Wales (CSEW). ",
+    "title": "Crime in England and Wales",
+    "topics": [
+      "9581",
+      "2668"
+    ],
+    "uri": "/peoplepopulationandcommunity/crimeandjustice/bulletins/crimeinenglandandwales/yearendingdecember2022",
+    "canonical_topic": ""
+  }
+}

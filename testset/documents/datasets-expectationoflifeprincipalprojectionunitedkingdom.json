@@ -1,0 +1,26 @@
+{
+  "id": "datasets-expectationoflifeprincipalprojectionunitedkingdom",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/datasets/expectationoflifeprincipalprojectionunitedkingdom",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "life expectancy",
+      "period",
+      "cohort"
+    ],
+    "meta_description": "Period and cohort expectation of life using the principal projection, by single year of age 0 to 100",
+    "release_date": "2026-05-14T23:00:00.000Z",
+    "summary": "Period and cohort expectation of life in the UK using the principal projection, by single year of age 0 to 100.",
+    "title": "Expectation of life, principal projection, UK",
+    "topics": [
+      "9581",
+      "7131",
+      "6788"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/datasets/expectationoflifeprincipalprojectionunitedkingdom",
+    "canonical_topic": ""
+  }
+}

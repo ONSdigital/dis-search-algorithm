@@ -1,4 +1,23 @@
 {
   "term_id": "baby-names",
-  "judgements": []
+  "judgements": [
+    { "doc_id": "bulletins-babynamesenglandandwales-2019", "relevance": 0 },
+    { "doc_id": "datasets-babynamesenglandandwalesbabynamesstatisticsgirls", "relevance": 0 },
+    { "doc_id": "bulletins-babynamesenglandandwales-2023", "relevance": 0 },
+    { "doc_id": "datasets-babynamesenglandandwalesbabynamesstatisticsboys", "relevance": 0 },
+    { "doc_id": "datasets-babynamesinenglandandwalesfrom1996", "relevance": 0 },
+    { "doc_id": "datasets-babynamesenglandandwalestop100babynameshistoricaldata", "relevance": 0 },
+    { "doc_id": "adhocs-10659top10babynamesinthe2019censusrehearsallocalauthorities2018", "relevance": 0 },
+    { "doc_id": "adhocs-3212numberoflivebirthsbyparitysexandethnicityofthebabyenglandandwalesbirthsregistered2021to2025adjustedforfinancialyearsapril2021tomarch2025", "relevance": 0 },
+    { "doc_id": "articles-babynamesexplorer", "relevance": 0 },
+    { "doc_id": "methodologies-babynamesqmi", "relevance": 0 },
+    { "doc_id": "articles-babynamessince1904howhasyoursperformed", "relevance": 0 },
+    { "doc_id": "articles-10popcultureinfluencesonbabynamesgameofthronesmarvelfrozenandmore", "relevance": 0 },
+    { "doc_id": "articles-fromstarwarstothekardashianstheculturalinfluencesthatcouldbedrivingbabynametrends", "relevance": 0 },
+    { "doc_id": "freedomofinformationfoi-babygirlsnamedbellatrixinenglandandwalesin2011", "relevance": 0 },
+    { "doc_id": "articles-babynameswhereyoulivecouldshapewhatyoucallyourbaby", "relevance": 0 },
+    { "doc_id": "timeseries-j2z3-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-j4y9-mm23", "relevance": 0 },
+    { "doc_id": "articles-howdothepostworldwarbabyboomgenerationscompare", "relevance": 0 }
+  ]
 }

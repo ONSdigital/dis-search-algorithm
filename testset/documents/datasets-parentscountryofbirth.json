@@ -1,0 +1,28 @@
+{
+  "id": "datasets-parentscountryofbirth",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/parentscountryofbirth",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "birthplace",
+      "live births",
+      "mother",
+      "father",
+      "geography"
+    ],
+    "meta_description": "Annual data on live births in England and Wales by parents' country of birth.",
+    "release_date": "2026-05-26T23:00:00.000Z",
+    "summary": "Annual data on live births in England and Wales by parents' country of birth.",
+    "title": "Parents’ country of birth",
+    "topics": [
+      "9581",
+      "7131",
+      "2919"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/parentscountryofbirth",
+    "canonical_topic": ""
+  }
+}

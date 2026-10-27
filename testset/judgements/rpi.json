@@ -1,4 +1,18 @@
 {
   "term_id": "rpi",
-  "judgements": []
+  "judgements": [
+    { "doc_id": "timeseries-czmv-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-chaw-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-doge-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-choo-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-d7g2-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-sgon-mm23", "relevance": 0 },
+    { "doc_id": "timeseries-czbh-mm23", "relevance": 0 },
+    { "doc_id": "datasets-consumerpriceinflationdetailedbriefingnote", "relevance": 0 },
+    { "doc_id": "datasets-consumerpriceindices", "relevance": 0 },
+    { "doc_id": "datasets-consumerpriceinflation", "relevance": 0 },
+    { "doc_id": "methodologies-consumerpriceinflationincludesall3indicescpihcpiandrpiqmi", "relevance": 0 },
+    { "doc_id": "articles-clarificationofpublicationarrangementsfortheretailpricesindexandrelatedindices", "relevance": 0 },
+    { "doc_id": "articles-shortcomingsoftheretailpricesindexasameasureofinflation", "relevance": 0 }
+  ]
 }

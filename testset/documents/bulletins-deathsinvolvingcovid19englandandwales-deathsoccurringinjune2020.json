@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-deathsinvolvingcovid19englandandwales-deathsoccurringinjune2020",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/deathsinvolvingcovid19englandandwales/deathsoccurringinjune2020",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "deaths occurring in June 2020",
+    "keywords": [
+      "corona virus",
+      "COVID 19",
+      "cause of death",
+      "death registrations",
+      "mortality"
+    ],
+    "meta_description": "Number of deaths registered each month in England and Wales, including deaths involving the coronavirus (COVID-19), by age, sex and region.",
+    "release_date": "2020-07-16T23:00:00.000Z",
+    "summary": "Number of deaths involving the coronavirus (COVID-19) that occurred in each month in England and Wales, by country, age, sex and place of death.",
+    "title": "Deaths involving COVID-19, England and Wales",
+    "topics": [
+      "7131",
+      "2998",
+      "9581"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/bulletins/deathsinvolvingcovid19englandandwales/deathsoccurringinjune2020",
+    "canonical_topic": ""
+  }
+}

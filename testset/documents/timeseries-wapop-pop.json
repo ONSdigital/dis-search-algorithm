@@ -1,0 +1,22 @@
+{
+  "id": "timeseries-wapop-pop",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/wapop/pop",
+  "item": {
+    "type": "timeseries",
+    "cdid": "WAPOP",
+    "dataset_id": "pop",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-09-30T23:00:00.000Z",
+    "summary": "",
+    "title": "Wales population mid-year estimate",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/wapop/pop",
+    "canonical_topic": ""
+  }
+}

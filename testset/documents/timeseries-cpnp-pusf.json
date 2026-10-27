@@ -1,0 +1,22 @@
+{
+  "id": "timeseries-cpnp-pusf",
+  "uri": "/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/cpnp/pusf",
+  "item": {
+    "type": "timeseries",
+    "cdid": "CPNP",
+    "dataset_id": "PUSF",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "Public Sector: Liabilities: Non-life insurance tech reserves (AF.61) :NSA: £m",
+    "topics": [
+      "1245",
+      "9828",
+      "3863"
+    ],
+    "uri": "/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/cpnp/pusf",
+    "canonical_topic": ""
+  }
+}

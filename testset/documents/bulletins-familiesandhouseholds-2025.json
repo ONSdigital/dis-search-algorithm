@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-familiesandhouseholds-2025",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/families/bulletins/familiesandhouseholds/2025",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "2025",
+    "keywords": [
+      "parents",
+      "married",
+      "living alone",
+      "lone parent",
+      "adults"
+    ],
+    "meta_description": "Estimates of families (with and without children) and household types, including people living alone in the UK in 2025.",
+    "release_date": "2026-04-16T23:00:00.000Z",
+    "summary": "Estimates of families (with and without children) and household types, including people living alone in the UK in 2025.",
+    "title": "Families and households in the UK",
+    "topics": [
+      "7131",
+      "9581",
+      "1426"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/families/bulletins/familiesandhouseholds/2025",
+    "canonical_topic": ""
+  }
+}

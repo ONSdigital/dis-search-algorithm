@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-j4y9-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/j4y9/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "J4Y9",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "CPIH WEIGHTS 12.3.2.2 Articles for babies",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/j4y9/mm23",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "bulletins-businessinvestment-janaurytomarch2026revisedresults",
+  "uri": "/economy/grossdomesticproductgdp/bulletins/businessinvestment/janaurytomarch2026revisedresults",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "January to March 2026 revised results",
+    "keywords": [
+      "GFCF",
+      "buildings",
+      "transport equipment",
+      "machinery",
+      "intellectual property"
+    ],
+    "meta_description": "Estimates of short‑term investment in non‑financial assets, including business investment and asset and sector breakdowns of total gross fixed capital formation. ",
+    "release_date": "2026-06-29T23:00:00.000Z",
+    "summary": "Estimates of short‑term investment in non‑financial assets, including business investment and asset and sector breakdowns of total gross fixed capital formation. ",
+    "title": "Business investment in the UK",
+    "topics": [
+      "1245",
+      "9691"
+    ],
+    "uri": "/economy/grossdomesticproductgdp/bulletins/businessinvestment/janaurytomarch2026revisedresults",
+    "canonical_topic": ""
+  }
+}

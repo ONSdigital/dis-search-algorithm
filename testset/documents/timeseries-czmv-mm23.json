@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-czmv-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/czmv/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "CZMV",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-20T23:00:00.000Z",
+    "summary": "",
+    "title": "RPI: Ave price - Bananas, per Kg,",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/czmv/mm23",
+    "canonical_topic": ""
+  }
+}

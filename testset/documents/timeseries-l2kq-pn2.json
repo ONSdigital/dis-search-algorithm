@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-l2kq-pn2",
+  "uri": "/economy/grossdomesticproductgdp/timeseries/l2kq/pn2",
+  "item": {
+    "type": "timeseries",
+    "cdid": "L2KQ",
+    "dataset_id": "PN2",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-08-12T23:00:00.000Z",
+    "summary": "",
+    "title": "Total Production : Sections B, C, D and E (Index):CVM",
+    "topics": [
+      "1245",
+      "9691"
+    ],
+    "uri": "/economy/grossdomesticproductgdp/timeseries/l2kq/pn2",
+    "canonical_topic": ""
+  }
+}

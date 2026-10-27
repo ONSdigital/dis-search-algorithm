@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-youngpeoplenotineducationemploymentortrainingneet",
+  "uri": "/employmentandlabourmarket/peoplenotinwork/unemployment/bulletins/youngpeoplenotineducationemploymentortrainingneet/november2024",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "November 2024",
+    "keywords": [
+      "unemployment",
+      "inactivity",
+      "youth",
+      "teenagers",
+      "students"
+    ],
+    "meta_description": "Estimates of young people (aged 16 to 24 years) who are not in education, employment or training, by age and sex.",
+    "release_date": "2024-11-21T00:00:00.000Z",
+    "summary": "Estimates of young people (aged 16 to 24 years) who are not in education, employment or training, by age and sex. These are official statistics in development.",
+    "title": "Young people not in education, employment or training (NEET), UK",
+    "topics": [
+      "2268",
+      "5687",
+      "4361"
+    ],
+    "uri": "/employmentandlabourmarket/peoplenotinwork/unemployment/bulletins/youngpeoplenotineducationemploymentortrainingneet/november2024",
+    "canonical_topic": ""
+  }
+}

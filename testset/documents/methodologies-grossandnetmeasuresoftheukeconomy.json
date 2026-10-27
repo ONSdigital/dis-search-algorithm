@@ -1,0 +1,26 @@
+{
+  "id": "methodologies-grossandnetmeasuresoftheukeconomy",
+  "uri": "/economy/grossdomesticproductgdp/methodologies/grossandnetmeasuresoftheukeconomy",
+  "item": {
+    "type": "static_methodology",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "GDP",
+      "NDP",
+      "grossdomesticproduct",
+      "netdomesticproduct"
+    ],
+    "meta_description": "Explains the concepts of gross domestic product and net domestic product in understanding production, welfare and sustainability.",
+    "release_date": "2023-10-23T23:00:00.000Z",
+    "summary": "Explains the concepts of gross domestic product and net domestic product in understanding production, welfare and sustainability.",
+    "title": "Gross and net measures of the UK economy",
+    "topics": [
+      "9691",
+      "1245"
+    ],
+    "uri": "/economy/grossdomesticproductgdp/methodologies/grossandnetmeasuresoftheukeconomy",
+    "canonical_topic": ""
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "timeseries-jn5u-lms",
+  "uri": "/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/timeseries/jn5u/lms",
+  "item": {
+    "type": "timeseries",
+    "cdid": "JN5U",
+    "dataset_id": "LMS",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2026-10-19T23:00:00.000Z",
+    "summary": "",
+    "title": "16-24 year old population: Males: 000s",
+    "topics": [
+      "5687",
+      "2114",
+      "9243"
+    ],
+    "uri": "/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/timeseries/jn5u/lms",
+    "canonical_topic": ""
+  }
+}

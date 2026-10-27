@@ -1,0 +1,28 @@
+{
+  "id": "bulletins-babynamesenglandandwales-2023",
+  "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/babynamesenglandandwales/2023",
+  "item": {
+    "type": "bulletin",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "2023",
+    "keywords": [
+      "babies",
+      "top names",
+      "baby name",
+      "children",
+      "registration"
+    ],
+    "meta_description": "Most popular first names for baby girls and boys in 2023 using birth registration data.",
+    "release_date": "2024-12-05T00:00:00.000Z",
+    "summary": "Most popular first names for baby girls and boys in 2023 using birth registration data.",
+    "title": "Baby names in England and Wales",
+    "topics": [
+      "9581",
+      "7131",
+      "2919"
+    ],
+    "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/babynamesenglandandwales/2023",
+    "canonical_topic": ""
+  }
+}

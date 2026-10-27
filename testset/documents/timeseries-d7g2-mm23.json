@@ -1,0 +1,21 @@
+{
+  "id": "timeseries-d7g2-mm23",
+  "uri": "/economy/inflationandpriceindices/timeseries/d7g2/mm23",
+  "item": {
+    "type": "timeseries",
+    "cdid": "D7G2",
+    "dataset_id": "MM23",
+    "edition": "",
+    "keywords": [],
+    "meta_description": "",
+    "release_date": "2017-05-15T23:00:00.000Z",
+    "summary": "",
+    "title": "Difference between CPI and RPI - rounded 2015=100",
+    "topics": [
+      "1245",
+      "4972"
+    ],
+    "uri": "/economy/inflationandpriceindices/timeseries/d7g2/mm23",
+    "canonical_topic": ""
+  }
+}

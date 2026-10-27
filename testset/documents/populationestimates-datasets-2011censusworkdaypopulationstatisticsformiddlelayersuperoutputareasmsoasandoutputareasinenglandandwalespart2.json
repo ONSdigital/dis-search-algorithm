@@ -1,0 +1,28 @@
+{
+  "id": "populationestimates-datasets-2011censusworkdaypopulationstatisticsformiddlelayersuperoutputareasmsoasandoutputareasinenglandandwalespart2",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/2011censusworkdaypopulationstatisticsformiddlelayersuperoutputareasmsoasandoutputareasinenglandandwalespart2",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "economic activity",
+      "occupation",
+      "industry",
+      "hours worked",
+      "travel to work"
+    ],
+    "meta_description": "Part two of new statistics about the characteristics of the workday population of England and Wales on census day, 27 March 2011.",
+    "release_date": "2014-05-22T23:00:00.000Z",
+    "summary": "Part two of new statistics about the characteristics of the workday population of England and Wales on census day, 27 March 2011.",
+    "title": "2011 Census: Workday population statistics for Middle Layer Super Output Areas (MSOAs) and Output Areas in England and Wales (Part 2)",
+    "topics": [
+      "9581",
+      "2425",
+      "5457"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/2011censusworkdaypopulationstatisticsformiddlelayersuperoutputareasmsoasandoutputareasinenglandandwalespart2",
+    "canonical_topic": ""
+  }
+}

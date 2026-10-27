@@ -1,0 +1,27 @@
+{
+  "id": "datasets-longterminternationalmigration",
+  "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration",
+  "item": {
+    "type": "dataset_landing_page",
+    "cdid": "",
+    "dataset_id": "",
+    "edition": "",
+    "keywords": [
+      "international migration",
+      "transformation",
+      "population change",
+      "rebasing"
+    ],
+    "meta_description": "Updated estimates of UK immigration, emigration and net migration year ending June 2012 to year ending June 2021.",
+    "release_date": "2023-11-23T00:00:00.000Z",
+    "summary": "Updated estimates of UK immigration, emigration and net migration year ending June 2012 to year ending June 2021.",
+    "title": "Long term international migration",
+    "topics": [
+      "9581",
+      "2425",
+      "1227"
+    ],
+    "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration",
+    "canonical_topic": ""
+  }
+}

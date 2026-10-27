@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"encoding/json"
 
 	testElasticsearch "github.com/ONSdigital/dis-search-algorithm/elasticsearch"
 	"github.com/ONSdigital/dis-search-algorithm/testset/stream"
@@ -61,7 +62,7 @@ func (a *App) withElasticsearch(ctx context.Context, run func(context.Context, d
 	}
 	ui.Info("index %s created", indexNameDocuments)
 
-	if err := a.loadStores(ctx, esClient); err != nil {
+	if err := a.loadDocumentStore(ctx, esClient, indexNameDocuments, labelDocument); err != nil {
 		return err
 	}
 
@@ -123,5 +124,37 @@ func (a *App) loadStore(ctx context.Context, esClient dpEsClient.Client, store s
 	if err := a.waitForSearchable(ctx, esClient, indexName, len(items)); err != nil {
 		return err
 	}
+	ui.Info("loaded %d %ss into index %s", len(items), label, indexName)
+	return nil
+}
+
+func (a *App) loadDocumentStore(ctx context.Context, esClient dpEsClient.Client, indexName, label string) error {
+	items, err := a.GetDocuments(ctx)
+	if err != nil {
+		return errors.Wrapf(err, "failed to list %ss", label)
+	}
+
+	ui.Info("loading %s into index %s", ui.Pluralise(label, len(items)), indexName)
+
+	for i := range items {
+		item := items[i]
+		indexDoc, err := json.Marshal(item.Item)
+		if err != nil {
+			return errors.Wrapf(err, "failed to marshal %s %q", label, item.ID)
+		}
+
+		ui.Info("loading document %s", item.ID)
+
+		if err := esClient.AddDocument(ctx, indexName, item.ID, indexDoc, nil); err != nil {
+			return errors.Wrapf(err, "failed to index %s %q", label, item.ID)
+		}
+	}
+
+	ui.Info("loaded %d %ss into index %s", len(items), label, indexName)
+
+	if err := a.waitForSearchable(ctx, esClient, indexName, len(items)); err != nil {
+		return err
+	}
+	ui.Info("loaded %d %ss into index %s", len(items), label, indexName)
 	return nil
 }

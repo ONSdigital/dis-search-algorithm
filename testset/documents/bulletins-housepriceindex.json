@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "May 2015",
-    "keywords": [
-      "Dwellings",
-      "Property",
-      "Home",
-      "First time buyers",
-      "HPI"
-    ],
+    "keywords": ["Dwellings", "Property", "Home", "First time buyers", "HPI"],
     "meta_description": "Monthly house price inflation in the UK, calculated using data from HM Land Registry, Registers of Scotland and Land and Property Services Northern Ireland.",
     "release_date": "2015-07-13T23:00:00.000Z",
     "summary": "Monthly house price inflation in the UK, calculated using data from HM Land Registry, Registers of Scotland and Land and Property Services Northern Ireland.",
     "title": "UK House Price Index",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/bulletins/housepriceindex/2015-07-14",
     "canonical_topic": ""
   }

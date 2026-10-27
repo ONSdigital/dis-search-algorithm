@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "July 2026",
-    "keywords": [
-      "rental",
-      "housing affordability",
-      "mortgage rates",
-      "stamp duty",
-      "inflation"
-    ],
+    "keywords": ["rental", "housing affordability", "mortgage rates", "stamp duty", "inflation"],
     "meta_description": "The Price Index of Private Rents (PIPR) measures private rent inflation for new and existing tenancies. The UK House Price Index (HPI) measures house price inflation.",
     "release_date": "2026-07-21T23:00:00.000Z",
     "summary": "The Price Index of Private Rents (PIPR) measures private rent inflation for new and existing tenancies. The UK House Price Index (HPI) measures house price inflation.",
     "title": "Private rent and house prices, UK",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/july2026",
     "canonical_topic": ""
   }

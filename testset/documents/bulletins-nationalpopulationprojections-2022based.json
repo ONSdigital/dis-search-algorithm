@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2022-based",
-    "keywords": [
-      "migration",
-      "forecast",
-      "variant",
-      "population growth",
-      "future births and deaths"
-    ],
+    "keywords": ["migration", "forecast", "variant", "population growth", "future births and deaths"],
     "meta_description": "The potential future population size of the UK and its constituent countries. These statistics are widely used in planning, including fiscal projections, health, education and pensions.",
     "release_date": "2025-01-28T00:00:00.000Z",
     "summary": "The potential future population size of the UK and its constituent countries. These statistics are widely used in planning, including fiscal projections, health, education and pensions.",
     "title": "National population projections",
-    "topics": [
-      "9581",
-      "2425",
-      "4544"
-    ],
+    "topics": ["9581", "2425", "4544"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/populationprojections/bulletins/nationalpopulationprojections/2022based",
     "canonical_topic": ""
   }

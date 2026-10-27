@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "GDP",
-      "Recession",
-      "Economy",
-      "Unemployment",
-      "Earnings",
-      "Productivity"
-    ],
+    "keywords": ["GDP", "Recession", "Economy", "Unemployment", "Earnings", "Productivity"],
     "meta_description": "",
     "release_date": "2018-04-29T23:00:00.000Z",
     "summary": "A decade after the beginning of the recession, how has the UK economy recovered?",
     "title": "The 2008 recession 10 years on",
-    "topics": [
-      "1245",
-      "9691"
-    ],
+    "topics": ["1245", "9691"],
     "uri": "/economy/grossdomesticproductgdp/articles/the2008recession10yearson/2018-04-30",
     "canonical_topic": ""
   }

@@ -16,7 +16,13 @@
     { "doc_id": "timeseries-d7g2-mm23", "relevance": 0 },
     { "doc_id": "time-series-versions-67", "relevance": 0 },
     { "doc_id": "methodologies-consumerpriceinflationincludesall3indicescpihcpiandrpiqmi", "relevance": 0 },
-    { "doc_id": "articles-cpihconsistentinflationrateestimatesforukhouseholdgroups20052017-novembertodecember2022", "relevance": 0 },
-    { "doc_id": "articles-consumerpricesindexincludingowneroccupiershousingcostshistoricalseries-1988to2004", "relevance": 0 }
+    {
+      "doc_id": "articles-cpihconsistentinflationrateestimatesforukhouseholdgroups20052017-novembertodecember2022",
+      "relevance": 0
+    },
+    {
+      "doc_id": "articles-consumerpricesindexincludingowneroccupiershousingcostshistoricalseries-1988to2004",
+      "relevance": 0
+    }
   ]
 }

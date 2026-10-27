@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "police",
-      "cirminal activity",
-      "victims",
-      "offences",
-      "personal experiences"
-    ],
+    "keywords": ["police", "cirminal activity", "victims", "offences", "personal experiences"],
     "meta_description": "Additional data from the Crime Survey for England and Wales (CSEW) on experience and perception of crime and antisocial behaviour.",
     "release_date": "2026-07-22T23:00:00.000Z",
     "summary": "Additional data from the Crime Survey for England and Wales (CSEW) on experience and perception of crime and antisocial behaviour.",
     "title": "Crime in England and Wales: Annual supplementary tables",
-    "topics": [
-      "9581",
-      "2668"
-    ],
+    "topics": ["9581", "2668"],
     "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/crimeinenglandandwalesannualsupplementarytables",
     "canonical_topic": ""
   }

@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2021 to 2022",
-    "keywords": [
-      "mortality",
-      "survival",
-      "life exspectancy",
-      "care residents",
-      "care home"
-    ],
+    "keywords": ["mortality", "survival", "life exspectancy", "care residents", "care home"],
     "meta_description": "The average number of years care home residents aged 65 years and over are expected to live beyond their current age in England and Wales. Classified as Experimental Statistics.",
     "release_date": "2023-03-16T00:00:00.000Z",
     "summary": "The average number of years care home residents aged 65 years and over are expected to live beyond their current age in England and Wales. Classified as Experimental Statistics.",
     "title": "Life expectancy in care homes, England and Wales",
-    "topics": [
-      "9581",
-      "7131",
-      "6788"
-    ],
+    "topics": ["9581", "7131", "6788"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/articles/lifeexpectancyincarehomesenglandandwales/2021to2022",
     "canonical_topic": ""
   }

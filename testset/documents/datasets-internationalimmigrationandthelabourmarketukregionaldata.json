@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "region",
-      "labour market",
-      "migration",
-      "immigration"
-    ],
+    "keywords": ["region", "labour market", "migration", "immigration"],
     "meta_description": "Data exploring the overview of migrants in the UK labour market by region. ",
     "release_date": "2017-04-11T23:00:00.000Z",
     "summary": "Data exploring the overview of migrants in the UK labour market by region. ",
     "title": "International immigration and the labour market, UK: regional data",
-    "topics": [
-      "9581",
-      "2425",
-      "1227"
-    ],
+    "topics": ["9581", "2425", "1227"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/internationalimmigrationandthelabourmarketukregionaldata",
     "canonical_topic": ""
   }

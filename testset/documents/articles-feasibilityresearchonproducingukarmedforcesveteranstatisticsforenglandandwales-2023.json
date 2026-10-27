@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2023",
-    "keywords": [
-      "Administrative data",
-      "Admin",
-      "Census data",
-      "SLD",
-      "Veterans"
-    ],
+    "keywords": ["Administrative data", "Admin", "Census data", "SLD", "Veterans"],
     "meta_description": "Research on producing statistics for those who have served in the UK armed forces in England and Wales, using the Service Leavers Database and Census 2021. ",
     "release_date": "2025-08-27T23:00:00.000Z",
     "summary": "Research on producing statistics for those who have served in the UK armed forces in England and Wales, using the Service Leavers Database and Census 2021. ",
     "title": "Producing UK armed forces veteran statistics for England and Wales, research update",
-    "topics": [
-      "9581",
-      "7345"
-    ],
+    "topics": ["9581", "7345"],
     "uri": "/peoplepopulationandcommunity/armedforcescommunity/articles/feasibilityresearchonproducingukarmedforcesveteranstatisticsforenglandandwales/2023",
     "canonical_topic": ""
   }

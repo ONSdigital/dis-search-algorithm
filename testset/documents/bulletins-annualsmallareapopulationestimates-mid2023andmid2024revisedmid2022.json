@@ -17,11 +17,7 @@
     "release_date": "2025-11-07T00:00:00.000Z",
     "summary": "National population estimates broken down into small geographical areas (Super Output Areas, health geographies, electoral wards, Parliamentary constituencies and National Parks).",
     "title": "Population estimates by output areas, electoral, health and other geographies, England and Wales",
-    "topics": [
-      "5457",
-      "9581",
-      "2425"
-    ],
+    "topics": ["5457", "9581", "2425"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualsmallareapopulationestimates/mid2023andmid2024revisedmid2022",
     "canonical_topic": ""
   }

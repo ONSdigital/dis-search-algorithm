@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2025",
-    "keywords": [
-      "IDBR",
-      "enterprises",
-      "local units",
-      "business counts",
-      "Inter-Departmental Business Register"
-    ],
+    "keywords": ["IDBR", "enterprises", "local units", "business counts", "Inter-Departmental Business Register"],
     "meta_description": "Business enterprises analysed by legal form, industry, region and employment size band.",
     "release_date": "2025-09-23T23:00:00.000Z",
     "summary": "UK businesses broken down by legal status, industry, region, employment and turnover size bands. ",
     "title": "UK business; activity, size and location",
-    "topics": [
-      "9658",
-      "5132",
-      "7651"
-    ],
+    "topics": ["9658", "5132", "7651"],
     "uri": "/businessindustryandtrade/business/activitysizeandlocation/bulletins/ukbusinessactivitysizeandlocation/2025",
     "canonical_topic": ""
   }

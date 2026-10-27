@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "productivity",
-      "UK cities",
-      "NUTS",
-      "GVA",
-      "local authority"
-    ],
+    "keywords": ["productivity", "UK cities", "NUTS", "GVA", "local authority"],
     "meta_description": "Annual estimates of UK regional gross value added, income approach (GVA(I)) for NUTS1, NUTS2 and NUTS3 regions. Current basic prices, growths and per head indices.",
     "release_date": "2018-12-12T00:00:00.000Z",
     "summary": "Annual estimates of UK regional gross value added, income approach (GVA(I)) for NUTS1, NUTS2 and NUTS3 regions. Current basic prices, growths and per head indices.",
     "title": "Regional gross value added (income approach)",
-    "topics": [
-      "1245",
-      "7521"
-    ],
+    "topics": ["1245", "7521"],
     "uri": "/economy/grossvalueaddedgva/datasets/regionalgrossvalueaddedincomeapproach",
     "canonical_topic": ""
   }

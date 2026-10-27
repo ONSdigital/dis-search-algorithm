@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "CPIH",
-      "expenditure shares",
-      "indices",
-      "imputed rents",
-      "basket"
-    ],
+    "keywords": ["CPIH", "expenditure shares", "indices", "imputed rents", "basket"],
     "meta_description": "The latest annual update of consumer price inflation weights, 2023.",
     "release_date": "2026-03-16T00:00:00.000Z",
     "summary": "The latest annual update of consumer price inflation weights.\n",
     "title": "Consumer price inflation, updating weights: Annex A, Tables W1 to W3 ",
-    "topics": [
-      "4972",
-      "1245"
-    ],
+    "topics": ["4972", "1245"],
     "uri": "/economy/inflationandpriceindices/datasets/consumerpriceinflationupdatingweightsannexatablesw1tow3",
     "canonical_topic": ""
   }

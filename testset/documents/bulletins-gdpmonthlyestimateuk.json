@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "February 2026",
-    "keywords": [
-      "UK economy",
-      "economic growth",
-      "production",
-      "manufacturing",
-      "national accounts"
-    ],
+    "keywords": ["UK economy", "economic growth", "production", "manufacturing", "national accounts"],
     "meta_description": "Gross domestic product (GDP) measures the value of goods and services produced in the UK. It estimates the size of the economy and its growth. ",
     "release_date": "2026-04-15T23:00:00.000Z",
     "summary": "Gross domestic product (GDP) measures the value of goods and services produced in the UK. It estimates the size of the economy and its growth. ",
     "title": "GDP monthly estimate, UK",
-    "topics": [
-      "9691",
-      "1245"
-    ],
+    "topics": ["9691", "1245"],
     "uri": "/economy/grossdomesticproductgdp/bulletins/gdpmonthlyestimateuk/february2026",
     "canonical_topic": ""
   }

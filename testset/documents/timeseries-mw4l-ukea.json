@@ -11,10 +11,7 @@
     "release_date": "2026-09-29T23:00:00.000Z",
     "summary": "",
     "title": "CG: D.71 Non-Life Insurance Premiums",
-    "topics": [
-      "1245",
-      "9691"
-    ],
+    "topics": ["1245", "9691"],
     "uri": "/economy/grossdomesticproductgdp/timeseries/mw4l/ukea",
     "canonical_topic": ""
   }

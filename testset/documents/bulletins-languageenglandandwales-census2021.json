@@ -11,12 +11,7 @@
     "release_date": "2022-11-29T00:00:00.000Z",
     "summary": "Main language, English language proficiency, and household language in England and Wales, Census 2021 data.",
     "title": "Language, England and Wales",
-    "topics": [
-      "9497",
-      "9581",
-      "4931",
-      "5974"
-    ],
+    "topics": ["9497", "9581", "4931", "5974"],
     "uri": "/peoplepopulationandcommunity/culturalidentity/language/bulletins/languageenglandandwales/census2021",
     "canonical_topic": ""
   }

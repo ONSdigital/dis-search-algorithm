@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "year ending September 2025",
-    "keywords": [
-      "criminal activity",
-      "victims",
-      "offences",
-      "personal experience",
-      "knife crime"
-    ],
+    "keywords": ["criminal activity", "victims", "offences", "personal experience", "knife crime"],
     "meta_description": "Crime against households and people aged 16 years and over, using data from police recorded crime and the Crime Survey for England and Wales (CSEW).",
     "release_date": "2026-01-29T00:00:00.000Z",
     "summary": "Crime against households and people aged 16 years and over, using data from the Crime Survey for England and Wales (CSEW) and police recorded crime. Police recorded crime data also include crimes against businesses, society and children.",
     "title": "Crime in England and Wales",
-    "topics": [
-      "9581",
-      "2668"
-    ],
+    "topics": ["9581", "2668"],
     "uri": "/peoplepopulationandcommunity/crimeandjustice/bulletins/crimeinenglandandwales/yearendingseptember2025",
     "canonical_topic": ""
   }

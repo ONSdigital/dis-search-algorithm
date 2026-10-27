@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "mortality",
-      "expectancy",
-      "ageing",
-      "survival",
-      "longevity"
-    ],
+    "keywords": ["mortality", "expectancy", "ageing", "survival", "longevity"],
     "meta_description": "Period life expectancy by age and sex for the UK. Each national life table is based on population estimates, births and deaths for a period of three consecutive years. Tables are published annually.",
     "release_date": "2025-12-10T00:00:00.000Z",
     "summary": "Period life expectancy by age and sex for the UK. Each national life table is based on population estimates, births and deaths for a period of three consecutive years. Tables are published annually.",
     "title": "National life tables: UK",
-    "topics": [
-      "9581",
-      "7131",
-      "6788"
-    ],
+    "topics": ["9581", "7131", "6788"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/datasets/nationallifetablesunitedkingdomreferencetables",
     "canonical_topic": ""
   }

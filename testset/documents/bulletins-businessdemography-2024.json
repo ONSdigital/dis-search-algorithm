@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2024",
-    "keywords": [
-      "births",
-      "deaths",
-      "active",
-      "survivals",
-      "high-growth"
-    ],
+    "keywords": ["births", "deaths", "active", "survivals", "high-growth"],
     "meta_description": "Annual data on births, deaths and survival of businesses in the UK, by geographical area and Standard Industrial Classification (SIC) 2007 groups.",
     "release_date": "2025-11-20T00:00:00.000Z",
     "summary": "Annual change in the number of UK businesses broken down by sector of the economy.",
     "title": "Business demography, UK",
-    "topics": [
-      "9658",
-      "5132",
-      "7651"
-    ],
+    "topics": ["9658", "5132", "7651"],
     "uri": "/businessindustryandtrade/business/activitysizeandlocation/bulletins/businessdemography/2024",
     "canonical_topic": ""
   }

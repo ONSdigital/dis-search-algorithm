@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "1998 to 2017",
-    "keywords": [
-      "productivity",
-      "UK cities",
-      "NUTS",
-      "GVA",
-      "local authority"
-    ],
+    "keywords": ["productivity", "UK cities", "NUTS", "GVA", "local authority"],
     "meta_description": "Annual estimates of economic activity by UK country, region and local area using balanced regional gross value added (GVA(B)). Estimates are available in current basic prices and in chained volume measures.",
     "release_date": "2018-12-12T00:00:00.000Z",
     "summary": "Annual estimates of economic activity by UK country, region and local area using balanced regional gross value added (GVA(B)). Estimates are available in current basic prices and in chained volume measures.",
     "title": "Regional economic activity by gross value added (balanced), UK",
-    "topics": [
-      "1245",
-      "7521"
-    ],
+    "topics": ["1245", "7521"],
     "uri": "/economy/grossvalueaddedgva/bulletins/regionalgrossvalueaddedbalanceduk/1998to2017",
     "canonical_topic": ""
   }

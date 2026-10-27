@@ -11,10 +11,7 @@
     "release_date": "2026-10-20T23:00:00.000Z",
     "summary": "",
     "title": "CPI WEIGHTS 01.1.5.3 Olive oil",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/timeseries/l84v/mm23",
     "canonical_topic": ""
   }

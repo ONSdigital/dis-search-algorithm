@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "Prices",
-      "economy",
-      "income",
-      "deciles",
-      "household spending"
-    ],
+    "keywords": ["Prices", "economy", "income", "deciles", "household spending"],
     "meta_description": "Consumer Prices Index including owner occupiers’ housing costs (CPIH)-consistent inflation rates calculated for different income groups in the UK, by category of spend. Data are for the period 2005 to 2018.",
     "release_date": "2018-08-14T23:00:00.000Z",
     "summary": "Consumer Prices Index including owner occupiers’ housing costs (CPIH)-consistent inflation rates calculated for different income groups in the UK, by category of spend. Data are for the period 2005 to 2018.",
     "title": "CPIH-consistent inflation rates for income groups by category of spend",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/datasets/cpihconsistentinflationratesforincomegroupsbycategoryofspend",
     "canonical_topic": ""
   }

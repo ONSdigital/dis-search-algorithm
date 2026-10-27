@@ -11,10 +11,7 @@
     "release_date": "2026-09-29T23:00:00.000Z",
     "summary": "",
     "title": "Gross Value Added (Average) at basic prices: CP SA £m",
-    "topics": [
-      "1245",
-      "7521"
-    ],
+    "topics": ["1245", "7521"],
     "uri": "/economy/grossvalueaddedgva/timeseries/abml/qna",
     "canonical_topic": ""
   }

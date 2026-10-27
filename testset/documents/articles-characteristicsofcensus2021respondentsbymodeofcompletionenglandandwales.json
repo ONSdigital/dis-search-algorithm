@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "household reference person",
-      "online",
-      "paper",
-      "responses",
-      "demographic"
-    ],
+    "keywords": ["household reference person", "online", "paper", "responses", "demographic"],
     "meta_description": "What the Census can tell us about who chose to complete their census questionnaire online or by paper.",
     "release_date": "2023-10-22T23:00:00.000Z",
     "summary": "What the Census can tell us about who chose to complete their census questionnaire online or by paper. ",
     "title": "Characteristics of Census 2021 respondents by mode of completion, England and Wales",
-    "topics": [
-      "9581",
-      "2216",
-      "4612"
-    ],
+    "topics": ["9581", "2216", "4612"],
     "uri": "/peoplepopulationandcommunity/householdcharacteristics/homeinternetandsocialmediausage/articles/characteristicsofcensus2021respondentsbymodeofcompletionenglandandwales/2023-10-23",
     "canonical_topic": ""
   }

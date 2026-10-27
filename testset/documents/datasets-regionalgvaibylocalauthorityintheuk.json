@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "area",
-      "economy",
-      "economic",
-      "gdp",
-      "county"
-    ],
+    "keywords": ["area", "economy", "economic", "gdp", "county"],
     "meta_description": "Regional gross value added allocated to local authorities in the UK",
     "release_date": "2017-03-30T23:00:00.000Z",
     "summary": "These tables show gross value added allocated to local authorities in the UK. These data are not National Statistics, but have been produced in response to user need.",
     "title": "Regional GVA(I) by local authority in the UK",
-    "topics": [
-      "1245",
-      "7521"
-    ],
+    "topics": ["1245", "7521"],
     "uri": "/economy/grossvalueaddedgva/datasets/regionalgvaibylocalauthorityintheuk",
     "canonical_topic": ""
   }

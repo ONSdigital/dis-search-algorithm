@@ -7,7 +7,10 @@
     { "doc_id": "bulletins-annualmidyearpopulationestimates-mid2023", "relevance": 0 },
     { "doc_id": "bulletins-annualsmallareapopulationestimates-rebasedmid2012tomid2020", "relevance": 0 },
     { "doc_id": "bulletins-annualsmallareapopulationestimates-mid2023andmid2024revisedmid2022", "relevance": 0 },
-    { "doc_id": "populationestimates-datasets-2011censusworkdaypopulationstatisticsformiddlelayersuperoutputareasmsoasandoutputareasinenglandandwalespart2", "relevance": 0 },
+    {
+      "doc_id": "populationestimates-datasets-2011censusworkdaypopulationstatisticsformiddlelayersuperoutputareasmsoasandoutputareasinenglandandwalespart2",
+      "relevance": 0
+    },
     { "doc_id": "timeseries-enpop-pop", "relevance": 0 },
     { "doc_id": "timeseries-gbpop-pop", "relevance": 0 },
     { "doc_id": "timeseries-wapop-pop", "relevance": 0 },
@@ -15,15 +18,24 @@
     { "doc_id": "timeseries-jn5u-lms", "relevance": 0 },
     { "doc_id": "timeseries-jn5x-lms", "relevance": 0 },
     { "doc_id": "timeseries-ukpop-pop", "relevance": 0 },
-    { "doc_id": "bulletins-pastandprojecteddatafromtheperiodandcohortlifetables-2024baseduk1981to2074", "relevance": 0 },
+    {
+      "doc_id": "bulletins-pastandprojecteddatafromtheperiodandcohortlifetables-2024baseduk1981to2074",
+      "relevance": 0
+    },
     { "doc_id": "datasets-nationallifetablesunitedkingdomreferencetables", "relevance": 0 },
     { "doc_id": "articles-howwouldyousupportourageingpopulation", "relevance": 0 },
     { "doc_id": "articles-carehomesandestimatingtheselffundingpopulationengland-2022to2023", "relevance": 0 },
     { "doc_id": "articles-howthepopulationchangedwhereyoulivecensus2021", "relevance": 0 },
-    { "doc_id": "articles-theimpactofwinterpressuresondifferentpopulationgroupsingreatbritain-15to26february2023", "relevance": 0 },
+    {
+      "doc_id": "articles-theimpactofwinterpressuresondifferentpopulationgroupsingreatbritain-15to26february2023",
+      "relevance": 0
+    },
     { "doc_id": "articles-howbigwilltheukpopulationbein25yearstime", "relevance": 0 },
     { "doc_id": "articles-gypsyoririshtravellerpopulationsenglandandwales-census2021", "relevance": 0 },
-    { "doc_id": "methodologies-homeofficeimmigrationdataexcludingasylumseekersqualityassuranceofadministrativedatausedinpopulationstatisticsfeb2017", "relevance": 0 },
+    {
+      "doc_id": "methodologies-homeofficeimmigrationdataexcludingasylumseekersqualityassuranceofadministrativedatausedinpopulationstatisticsfeb2017",
+      "relevance": 0
+    },
     { "doc_id": "administrativedatacensusresearchoutputs", "relevance": 0 },
     { "doc_id": "articles-whatisinternationalmigrationandhowdoweestimateit", "relevance": 0 },
     { "doc_id": "articles-livinglongerisage70thenewage65", "relevance": 0 }

@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "LITM",
-      "administrative data",
-      "IPS",
-      "emigration",
-      "net migration"
-    ],
+    "keywords": ["LITM", "administrative data", "IPS", "emigration", "net migration"],
     "meta_description": "An explanation of the methods used to produce the latest provisional experimental statistics on migration flows into and out of the UK.",
     "release_date": "2026-05-20T23:00:00.000Z",
     "summary": "An explanation of the methods used to produce the latest provisional statistics on migration flows into and out of the UK.",
     "title": "Methods to produce provisional long-term international migration estimates",
-    "topics": [
-      "9581",
-      "2425",
-      "1227"
-    ],
+    "topics": ["9581", "2425", "1227"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/methodologies/methodstoproduceprovisionallongterminternationalmigrationestimates",
     "canonical_topic": ""
   }

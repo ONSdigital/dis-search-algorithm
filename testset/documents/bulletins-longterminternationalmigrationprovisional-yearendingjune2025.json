@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "year ending June 2025",
-    "keywords": [
-      "UK migration",
-      "administrative data",
-      "immigration",
-      "emigration",
-      "net migration"
-    ],
+    "keywords": ["UK migration", "administrative data", "immigration", "emigration", "net migration"],
     "meta_description": "Estimates of UK long-term international migration, year ending June 2012 to year ending December 2024. ",
     "release_date": "2025-11-27T00:00:00.000Z",
     "summary": "Estimates of UK long-term international migration, year ending June 2012 to year ending June 2025. These are official statistics in development. Long-term refers to people entering or leaving the UK for a period of at least 12 months. ",
     "title": "Long-term international migration, provisional",
-    "topics": [
-      "9581",
-      "2425",
-      "1227"
-    ],
+    "topics": ["9581", "2425", "1227"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingjune2025",
     "canonical_topic": ""
   }

@@ -11,10 +11,7 @@
     "release_date": "2026-10-20T23:00:00.000Z",
     "summary": "",
     "title": "RPI: Percentage change over 1 month - Wine \u0026 spirits on sales",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/timeseries/sgon/mm23",
     "canonical_topic": ""
   }

@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "Baby names",
-      "Girl",
-      "Boy",
-      "Births",
-      "interactivetool"
-    ],
+    "keywords": ["Baby names", "Girl", "Boy", "Births", "interactivetool"],
     "meta_description": "Use our interactive tool to compare changes in the top 100 baby names for boys and girls since 1904.",
     "release_date": "2026-07-08T23:00:00.000Z",
     "summary": "Use our interactive tool to compare changes in the top 100 baby names for boys and girls since 1996.",
     "title": "Baby names explorer",
-    "topics": [
-      "9581",
-      "7131",
-      "2919"
-    ],
+    "topics": ["9581", "7131", "2919"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/articles/babynamesexplorer/2019-06-07",
     "canonical_topic": ""
   }

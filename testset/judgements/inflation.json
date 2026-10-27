@@ -19,9 +19,15 @@
     { "doc_id": "bulletins-housepriceindex", "relevance": 0 },
     { "doc_id": "time-series-versions-67", "relevance": 0 },
     { "doc_id": "articles-shortcomingsoftheretailpricesindexasameasureofinflation", "relevance": 0 },
-    { "doc_id": "articles-cpihconsistentinflationrateestimatesforukhouseholdgroups20052017-novembertodecember2022", "relevance": 0 },
+    {
+      "doc_id": "articles-cpihconsistentinflationrateestimatesforukhouseholdgroups20052017-novembertodecember2022",
+      "relevance": 0
+    },
     { "doc_id": "methodologies-consumerpriceinflationincludesall3indicescpihcpiandrpiqmi", "relevance": 0 },
     { "doc_id": "articles-theimpactofshrinkflationoncpihuk-january2012tojune2017", "relevance": 0 },
-    { "doc_id": "articles-consumerpricesindexincludingowneroccupiershousingcostshistoricalseries-1988to2004", "relevance": 0 }
+    {
+      "doc_id": "articles-consumerpricesindexincludingowneroccupiershousingcostshistoricalseries-1988to2004",
+      "relevance": 0
+    }
   ]
 }

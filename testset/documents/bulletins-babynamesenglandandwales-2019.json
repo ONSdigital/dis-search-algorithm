@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2019",
-    "keywords": [
-      "babies",
-      "most popular",
-      "top names",
-      "baby name",
-      "children"
-    ],
+    "keywords": ["babies", "most popular", "top names", "baby name", "children"],
     "meta_description": "Most popular first names for baby boys and girls in 2019 using birth registration data.",
     "release_date": "2020-08-25T23:00:00.000Z",
     "summary": "Most popular first names for baby boys and girls in 2019 using birth registration data.",
     "title": "Baby names in England and Wales",
-    "topics": [
-      "9581",
-      "7131",
-      "2919"
-    ],
+    "topics": ["9581", "7131", "2919"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/babynamesenglandandwales/2019",
     "canonical_topic": ""
   }

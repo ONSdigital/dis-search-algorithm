@@ -11,10 +11,7 @@
     "release_date": "2026-03-25T00:00:00.000Z",
     "summary": "",
     "title": "Consumer Price Inflation (includes all 3 indices – CPIH, CPI and RPI) QMI",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/methodologies/consumerpriceinflationincludesall3indicescpihcpiandrpiqmi",
     "canonical_topic": ""
   }

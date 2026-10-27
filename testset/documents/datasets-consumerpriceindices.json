@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "MM23",
     "edition": "",
-    "keywords": [
-      "consumer prices",
-      "retail prices",
-      "OOH",
-      "owner occupiers' housing costs",
-      "historic data"
-    ],
+    "keywords": ["consumer prices", "retail prices", "OOH", "owner occupiers' housing costs", "historic data"],
     "meta_description": "Time series data gives access to a comprehensive database of time series from major national statistics and social economic and social economic releases.",
     "release_date": "2026-10-20T23:00:00.000Z",
     "summary": "Comprehensive database of time series covering measures of inflation data for the UK including CPIH, CPI and RPI.",
     "title": "Consumer price inflation time series",
-    "topics": [
-      "4972",
-      "1245"
-    ],
+    "topics": ["4972", "1245"],
     "uri": "/economy/inflationandpriceindices/datasets/consumerpriceindices",
     "canonical_topic": ""
   }

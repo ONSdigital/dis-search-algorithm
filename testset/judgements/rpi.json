@@ -12,7 +12,10 @@
     { "doc_id": "datasets-consumerpriceindices", "relevance": 0 },
     { "doc_id": "datasets-consumerpriceinflation", "relevance": 0 },
     { "doc_id": "methodologies-consumerpriceinflationincludesall3indicescpihcpiandrpiqmi", "relevance": 0 },
-    { "doc_id": "articles-clarificationofpublicationarrangementsfortheretailpricesindexandrelatedindices", "relevance": 0 },
+    {
+      "doc_id": "articles-clarificationofpublicationarrangementsfortheretailpricesindexandrelatedindices",
+      "relevance": 0
+    },
     { "doc_id": "articles-shortcomingsoftheretailpricesindexasameasureofinflation", "relevance": 0 }
   ]
 }

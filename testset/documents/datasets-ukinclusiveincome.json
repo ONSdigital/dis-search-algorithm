@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "inclusive",
-      "income",
-      "gdp",
-      "beyond",
-      "wealth"
-    ],
+    "keywords": ["inclusive", "income", "gdp", "beyond", "wealth"],
     "meta_description": "Estimates and analysis of economic progress, including a broader range of economic activities and assets than gross domestic product (GDP), like unpaid household services, ecosystem services, and more. ",
     "release_date": "2025-12-23T00:00:00.000Z",
     "summary": "Estimates and analysis of economic progress, including a broader range of economic activities and assets than gross domestic product (GDP), like unpaid household services, ecosystem services, and more. These are official statistics in development.",
     "title": "Inclusive wealth and income accounts, UK ",
-    "topics": [
-      "1245",
-      "2621",
-      "6625"
-    ],
+    "topics": ["1245", "2621", "6625"],
     "uri": "/economy/economicoutputandproductivity/output/datasets/ukinclusiveincome",
     "canonical_topic": ""
   }

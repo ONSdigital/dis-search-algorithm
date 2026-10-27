@@ -6,9 +6,7 @@
     "cdid": "",
     "dataset_id": "cpih01",
     "edition": "time-series",
-    "keywords": [
-      "Inflation"
-    ],
+    "keywords": ["Inflation"],
     "meta_description": "",
     "release_date": "2026-02-18T00:00:00.000Z",
     "summary": "CPIH is the most comprehensive measure of inflation. It extends CPI to include a measure of the costs associated with owning, maintaining and living in one's own home, known as owner occupiers' housing costs (OOH), along with council tax. This dataset provides CPIH time series (2005 to latest published month), allowing users to customise their own selection, view or download.",

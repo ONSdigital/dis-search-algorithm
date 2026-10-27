@@ -11,11 +11,7 @@
     "release_date": "2026-09-30T23:00:00.000Z",
     "summary": "",
     "title": "Great Britain population mid-year estimate",
-    "topics": [
-      "2425",
-      "5457",
-      "9581"
-    ],
+    "topics": ["2425", "5457", "9581"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/gbpop/pop",
     "canonical_topic": ""
   }

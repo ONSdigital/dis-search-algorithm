@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2024",
-    "keywords": [
-      "housing",
-      "non-housing",
-      "infrastructure",
-      "new work",
-      "repair and maintenance"
-    ],
+    "keywords": ["housing", "non-housing", "infrastructure", "new work", "repair and maintenance"],
     "meta_description": "Statistics on the construction industry, including value of output, new orders by sector, number of firms and total employment, and Construction Output Price Indices.",
     "release_date": "2026-02-19T00:00:00.000Z",
     "summary": "Statistics on the construction industry, including value of output, new orders by sector, number of firms and total employment, and Construction Output Price Indices.",
     "title": "Construction statistics, Great Britain",
-    "topics": [
-      "9658",
-      "1346"
-    ],
+    "topics": ["9658", "1346"],
     "uri": "/businessindustryandtrade/constructionindustry/articles/constructionstatistics/2024",
     "canonical_topic": ""
   }

@@ -6,20 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "theft",
-      "robbery",
-      "burglary",
-      "criminal damage"
-    ],
+    "keywords": ["theft", "robbery", "burglary", "criminal damage"],
     "meta_description": "When incidents happened, information about offenders and the victim’s perception of the incident.",
     "release_date": "2026-03-26T00:00:00.000Z",
     "summary": "When incidents happened, where it took place, the victim's perception of the incident, and the cost of items stolen. Annual data from the Crime Survey for England and Wales (CSEW).",
     "title": "Nature of crime: bicycle theft",
-    "topics": [
-      "9581",
-      "2668"
-    ],
+    "topics": ["9581", "2668"],
     "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/natureofcrimebicycletheft",
     "canonical_topic": ""
   }

@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "babies",
-      "most popular",
-      "baby name",
-      "top names"
-    ],
+    "keywords": ["babies", "most popular", "baby name", "top names"],
     "meta_description": "Rank and count of the top names for baby boys, changes in rank since the previous year and breakdown by country, region and month of birth.",
     "release_date": "2026-07-08T23:00:00.000Z",
     "summary": "Rank and count of the top names for baby boys, changes in rank since the previous year and breakdown by country, region, mother's age and month of birth.",
     "title": "Baby names for boys in England and Wales",
-    "topics": [
-      "9581",
-      "7131",
-      "2919"
-    ],
+    "topics": ["9581", "7131", "2919"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalesbabynamesstatisticsboys",
     "canonical_topic": ""
   }

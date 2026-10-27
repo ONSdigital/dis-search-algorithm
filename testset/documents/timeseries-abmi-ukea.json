@@ -11,10 +11,7 @@
     "release_date": "2026-09-29T23:00:00.000Z",
     "summary": "",
     "title": "Gross Domestic Product: chained volume measures: Seasonally adjusted £m",
-    "topics": [
-      "9691",
-      "1245"
-    ],
+    "topics": ["9691", "1245"],
     "uri": "/economy/grossdomesticproductgdp/timeseries/abmi/ukea",
     "canonical_topic": ""
   }

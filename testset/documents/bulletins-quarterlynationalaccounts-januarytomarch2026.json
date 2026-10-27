@@ -6,20 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "January to March 2026",
-    "keywords": [
-      "sector accounts",
-      "UK economic activity",
-      "UK economy",
-      "QNA"
-    ],
+    "keywords": ["sector accounts", "UK economic activity", "UK economy", "QNA"],
     "meta_description": "Revised quarterly estimate of gross domestic product (GDP) for the UK.",
     "release_date": "2026-06-29T23:00:00.000Z",
     "summary": "Revised quarterly estimate of gross domestic product (GDP) for the UK. Uses additional data to provide a more precise indication of economic growth than the first estimate. ",
     "title": "GDP quarterly national accounts, UK",
-    "topics": [
-      "1245",
-      "9691"
-    ],
+    "topics": ["1245", "9691"],
     "uri": "/economy/grossdomesticproductgdp/bulletins/quarterlynationalaccounts/januarytomarch2026",
     "canonical_topic": ""
   }

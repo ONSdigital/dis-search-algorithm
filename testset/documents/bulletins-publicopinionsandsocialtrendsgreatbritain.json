@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "June 2026",
-    "keywords": [
-      "international conflict",
-      "trust in government",
-      "affordability",
-      "the NHS",
-      "national issues"
-    ],
+    "keywords": ["international conflict", "trust in government", "affordability", "the NHS", "national issues"],
     "meta_description": "Social insights on daily life, including important issues facing the UK and attitudes to artificial intelligence, from the Opinions and Lifestyle Survey (OPN).",
     "release_date": "2026-07-16T23:00:00.000Z",
     "summary": "Social insights on daily life, including important issues facing the UK and attitudes to artificial intelligence, from the Opinions and Lifestyle Survey (OPN).",
     "title": "Public opinions and social trends, Great Britain",
-    "topics": [
-      "9581",
-      "2456"
-    ],
+    "topics": ["9581", "2456"],
     "uri": "/peoplepopulationandcommunity/wellbeing/bulletins/publicopinionsandsocialtrendsgreatbritain/june2026",
     "canonical_topic": ""
   }

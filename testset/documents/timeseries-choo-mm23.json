@@ -11,10 +11,7 @@
     "release_date": "2026-10-20T23:00:00.000Z",
     "summary": "",
     "title": "RPI: housing: depreciation(Jan 1995=100)",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/timeseries/choo/mm23",
     "canonical_topic": ""
   }

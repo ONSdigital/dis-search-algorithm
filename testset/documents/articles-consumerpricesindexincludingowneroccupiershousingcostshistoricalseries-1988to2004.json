@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "1988 to 2004",
-    "keywords": [
-      "inflation",
-      "Consumer Prices Index",
-      "Retail Price Index",
-      "RPI",
-      "OOH",
-      "CPIH"
-    ],
+    "keywords": ["inflation", "Consumer Prices Index", "Retail Price Index", "RPI", "OOH", "CPIH"],
     "meta_description": "A historical series of our lead measure of inflation, the Consumer Prices Index including owner occupiers' housing costs (CPIH), which extends the series back to 1988. Historic class level indices for both CPI and CPIH are available for the first time. Data in this release are not a National Statistic.",
     "release_date": "2018-12-14T00:00:00.000Z",
     "summary": "A historical series of our lead measure of inflation, the Consumer Prices Index including owner occupiers' housing costs (CPIH), which extends the series back to 1988. Historic class level indices for both CPI and CPIH are available for the first time. Data in this release are not a National Statistic.",
     "title": "Consumer Prices Index including owner occupiers' housing costs (CPIH) historical series",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/articles/consumerpricesindexincludingowneroccupiershousingcostshistoricalseries/1988to2004",
     "canonical_topic": ""
   }

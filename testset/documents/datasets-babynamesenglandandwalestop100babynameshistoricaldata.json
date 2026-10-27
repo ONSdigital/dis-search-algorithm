@@ -6,23 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "top",
-      "ten",
-      "bost",
-      "girls",
-      "most",
-      "popular"
-    ],
+    "keywords": ["top", "ten", "bost", "girls", "most", "popular"],
     "meta_description": "Historic lists of top 100 names for baby boys and girls for 1904 to 1994 at 10-yearly intervals.",
     "release_date": "2025-07-30T23:00:00.000Z",
     "summary": "Historic lists of top 100 names for baby boys and girls for 1904 to 2024 at 10-yearly intervals.",
     "title": "Top 100 baby names in England and Wales: historical data",
-    "topics": [
-      "9581",
-      "7131",
-      "2919"
-    ],
+    "topics": ["9581", "7131", "2919"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalestop100babynameshistoricaldata",
     "canonical_topic": ""
   }

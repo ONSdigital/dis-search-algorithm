@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2022 to 2024",
-    "keywords": [
-      "life table",
-      "mortality rates",
-      "average lifespan",
-      "lifetime",
-      "coronavirus pandemic"
-    ],
+    "keywords": ["life table", "mortality rates", "average lifespan", "lifetime", "coronavirus pandemic"],
     "meta_description": "Trends in period life expectancy, a measure of the average number of years people will live beyond their current age, analysed by age and sex for the UK and its constituent countries.",
     "release_date": "2025-12-10T00:00:00.000Z",
     "summary": "Trends in period life expectancy, a measure of the average number of years people will live beyond their current age, analysed by age and sex for the UK and its constituent countries.",
     "title": "National life tables – life expectancy in the UK",
-    "topics": [
-      "9581",
-      "7131",
-      "6788"
-    ],
+    "topics": ["9581", "7131", "6788"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2022to2024",
     "canonical_topic": ""
   }

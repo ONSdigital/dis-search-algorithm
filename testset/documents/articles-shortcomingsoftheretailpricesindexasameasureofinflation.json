@@ -6,19 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "economy",
-      "weights",
-      "indices"
-    ],
+    "keywords": ["economy", "weights", "indices"],
     "meta_description": "Analysis of Office for National Statistics's current understanding of the drawbacks of RPI.",
     "release_date": "2018-03-08T00:00:00.000Z",
     "summary": "This article summarises the analysis that has been done to offer a clear view on our current understanding of the drawbacks of RPI.",
     "title": "Shortcomings of the Retail Prices Index as a measure of inflation",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/articles/shortcomingsoftheretailpricesindexasameasureofinflation/2018-03-08",
     "canonical_topic": ""
   }

@@ -6,22 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "migrant",
-      "migration",
-      "local",
-      "immigration",
-      "emigration"
-    ],
+    "keywords": ["migrant", "migration", "local", "immigration", "emigration"],
     "meta_description": "Different migration-related data sources at local authority level including migration flows, non-UK-born and non-British populations.",
     "release_date": "2021-09-16T23:00:00.000Z",
     "summary": "Different migration-related data sources at local authority level including migration flows, non-UK-born and non-British populations, National Insurance number registrations, GP registrations, and births to non-UK-born mothers. ",
     "title": "Local area migration indicators, UK (Discontinued after 2020)",
-    "topics": [
-      "8246",
-      "9581",
-      "2425"
-    ],
+    "topics": ["8246", "9581", "2425"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/migrationwithintheuk/datasets/localareamigrationindicatorsunitedkingdom",
     "canonical_topic": ""
   }

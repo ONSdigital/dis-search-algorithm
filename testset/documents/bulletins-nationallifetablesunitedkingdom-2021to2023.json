@@ -19,11 +19,7 @@
     "release_date": "2024-10-22T23:00:00.000Z",
     "summary": "Trends in period life expectancy, a measure of the average number of years people will live beyond their current age, analysed by age and sex for England and Wales",
     "title": "National life tables – life expectancy in England and Wales",
-    "topics": [
-      "9581",
-      "7131",
-      "6788"
-    ],
+    "topics": ["9581", "7131", "6788"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/lifeexpectancies/bulletins/nationallifetablesunitedkingdom/2021to2023",
     "canonical_topic": ""
   }

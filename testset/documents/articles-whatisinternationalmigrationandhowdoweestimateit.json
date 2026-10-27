@@ -6,24 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "migration",
-      "immigration",
-      "emigration",
-      "net migration",
-      "EU",
-      "Non-EU",
-      "Asylum"
-    ],
+    "keywords": ["migration", "immigration", "emigration", "net migration", "EU", "Non-EU", "Asylum"],
     "meta_description": "Estimating our population is complex. Find out what our migration statistics cover and how our methods are adapting to world events and changing trends",
     "release_date": "2026-05-20T23:00:00.000Z",
     "summary": "Estimating our population is complex. Find out what our migration statistics cover and how our methods are adapting to world events and changing trends",
     "title": "What is international migration and how do we estimate it?",
-    "topics": [
-      "1227",
-      "9581",
-      "2425"
-    ],
+    "topics": ["1227", "9581", "2425"],
     "uri": "/peoplepopulationandcommunity/populationandmigration/internationalmigration/articles/whatisinternationalmigrationandhowdoweestimateit/2025-11-18",
     "canonical_topic": ""
   }

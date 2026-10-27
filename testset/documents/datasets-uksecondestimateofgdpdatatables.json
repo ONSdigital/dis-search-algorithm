@@ -6,20 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "national accounts",
-      "GVA",
-      "economy",
-      "output"
-    ],
+    "keywords": ["national accounts", "GVA", "economy", "output"],
     "meta_description": "Annual and quarterly data for UK gross domestic product (GDP) estimates, in chained volume measures and current market prices.",
     "release_date": "2026-09-29T23:00:00.000Z",
     "summary": "Annual and quarterly data for UK gross domestic product (GDP) estimates, in chained volume measures and current market prices.",
     "title": "GDP – data tables ",
-    "topics": [
-      "1245",
-      "9691"
-    ],
+    "topics": ["1245", "9691"],
     "uri": "/economy/grossdomesticproductgdp/datasets/uksecondestimateofgdpdatatables",
     "canonical_topic": ""
   }

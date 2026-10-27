@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "cyber",
-      "computer virus",
-      "online",
-      "hacking",
-      "internet-enabled"
-    ],
+    "keywords": ["cyber", "computer virus", "online", "hacking", "internet-enabled"],
     "meta_description": "Annual data on the nature of fraud and computer misuse offences from the Crime Survey for England and Wales (CSEW). Year ending March 2021 and March 2022 data are from the Telephone-operated Crime Survey for England and Wales (TCSEW).",
     "release_date": "2026-03-26T00:00:00.000Z",
     "summary": "Annual data on the nature of fraud and computer misuse offences from the Crime Survey for England and Wales (CSEW). Year ending March 2021 and March 2022 data are from the Telephone-operated Crime Survey for England and Wales (TCSEW).",
     "title": "Nature of crime: fraud and computer misuse",
-    "topics": [
-      "2668",
-      "9581"
-    ],
+    "topics": ["2668", "9581"],
     "uri": "/peoplepopulationandcommunity/crimeandjustice/datasets/natureofcrimefraudandcomputermisuse",
     "canonical_topic": ""
   }

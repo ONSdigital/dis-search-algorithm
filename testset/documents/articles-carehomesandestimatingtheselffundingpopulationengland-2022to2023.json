@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "2022 to 2023",
-    "keywords": [
-      "self-funder",
-      "self-funding",
-      "care home",
-      "residential care"
-    ],
+    "keywords": ["self-funder", "self-funding", "care home", "residential care"],
     "meta_description": "An estimation of the size of the self-funding population in care homes in England. Provides data covering the period 1 March 2022 to 28 February 2023, broken down by geographic variables and care home characteristics.",
     "release_date": "2023-07-05T23:00:00.000Z",
     "summary": "An estimation of the size of the self-funding population in care homes in England. Provides data covering the period 1 March 2022 to 28 February 2023, broken down by geographic variables and care home characteristics.",
     "title": "Care homes and estimating the self-funding population, England",
-    "topics": [
-      "9581",
-      "3434",
-      "1382"
-    ],
+    "topics": ["9581", "3434", "1382"],
     "uri": "/peoplepopulationandcommunity/healthandsocialcare/socialcare/articles/carehomesandestimatingtheselffundingpopulationengland/2022to2023",
     "canonical_topic": ""
   }

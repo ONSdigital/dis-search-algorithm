@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "baby names",
-      "quality",
-      "boys' names",
-      "girls' names"
-    ],
+    "keywords": ["baby names", "quality", "boys' names", "girls' names"],
     "meta_description": "Quality and methodology information for baby names statistics produced for England and Wales.",
     "release_date": "2022-10-04T23:00:00.000Z",
     "summary": "Quality and methodology information for baby names statistics produced for England and Wales.",
     "title": "Baby names QMI",
-    "topics": [
-      "9581",
-      "7131",
-      "2919"
-    ],
+    "topics": ["9581", "7131", "2919"],
     "uri": "/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/methodologies/babynamesqmi",
     "canonical_topic": ""
   }

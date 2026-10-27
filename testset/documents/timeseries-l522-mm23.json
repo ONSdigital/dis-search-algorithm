@@ -11,10 +11,7 @@
     "release_date": "2026-10-20T23:00:00.000Z",
     "summary": "",
     "title": "CPIH INDEX 00: ALL ITEMS 2015=100",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/timeseries/l522/mm23",
     "canonical_topic": ""
   }

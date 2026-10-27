@@ -6,21 +6,12 @@
     "cdid": "",
     "dataset_id": "",
     "edition": "",
-    "keywords": [
-      "RPI",
-      "inflation",
-      "mortgage",
-      "carli",
-      "formula"
-    ],
+    "keywords": ["RPI", "inflation", "mortgage", "carli", "formula"],
     "meta_description": "We describe the Retail Prices Index and how it is calculated. Part of technical guidance on consumer prices indices.",
     "release_date": "2026-03-25T00:00:00.000Z",
     "summary": "We describe the Retail Prices Index and how it is calculated. Part of technical guidance on consumer prices indices.",
     "title": "Calculating the Retail Prices Index",
-    "topics": [
-      "1245",
-      "4972"
-    ],
+    "topics": ["1245", "4972"],
     "uri": "/economy/inflationandpriceindices/methodologies/calculatingtheretailpricesindex",
     "canonical_topic": ""
   }
